@@ -9,7 +9,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 //		config.height = 960;
 //		config.width = 540;  // iphone 7 / 2
-
 		config.height = 600;
 		config.width = 330;
 		new LwjglApplication(new MyGdxGame(), config);

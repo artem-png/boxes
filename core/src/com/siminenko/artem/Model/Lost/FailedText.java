@@ -18,12 +18,18 @@ import com.siminenko.artem.MyGdxGame;
  */
 
 public class FailedText {
-    BitmapFont font;
-    float xd;
-    float yd;
+    static BitmapFont font;
+    static float xd;
+    static float yd;
 
 
     public FailedText() {
+        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
+        yd = Gdx.graphics.getHeight() / MyGdxGame.width;
+        font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
+    }
+
+    public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
         font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
@@ -47,6 +53,5 @@ public class FailedText {
     }
 
     public void dispose() {
-        font.dispose();
     }
 }

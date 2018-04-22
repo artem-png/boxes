@@ -25,7 +25,7 @@ public class LostLayout implements LayoutInterface {
     MenuIcon menuIcon;
     int level;
 
-    Sprite whitebg;
+    static Sprite whitebg;
     int timeSetting = 15;
     int timePressed = timeSetting;
 
@@ -36,6 +36,9 @@ public class LostLayout implements LayoutInterface {
         restartText = new RestartText(level);
         failedText = new FailedText();
         this.level = level;
+    }
+
+    public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
     }
 
@@ -73,7 +76,6 @@ public class LostLayout implements LayoutInterface {
     public void dispose() {
         restartText.dispose();
         modelPicker.dispose();
-        whitebg.getTexture().dispose();
         failedText.dispose();
         menuIcon.dispose();
     }

@@ -96,7 +96,12 @@ public class GameLayout implements LayoutInterface {
         }
         if (isWin || isDispose) {
             Color c = batch.getColor();
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1f - (float) timeSettingEnd / (float) timePressedEnd);
+            float alpha = 1f - (float) timeSettingEnd / (float) timePressedEnd;
+            if (alpha >= 0.9f) {
+                alpha = 1f;
+            }
+            System.out.println(alpha);
+            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, alpha);
             MyGdxGame.batchDynamic.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
         }

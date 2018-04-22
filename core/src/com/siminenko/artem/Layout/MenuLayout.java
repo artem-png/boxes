@@ -19,7 +19,7 @@ public class MenuLayout implements LayoutInterface {
     Background background;
     PlayButton playButton;
 
-    Sprite whitebg;
+    static Sprite whitebg;
     int timeSetting = 15;
     int timePressed = timeSetting;
 
@@ -27,7 +27,9 @@ public class MenuLayout implements LayoutInterface {
         modelPicker = new ModelPicker();
         background = new Background();
         playButton = new PlayButton();
-        GameLayout.init();
+    }
+
+    public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
     }
 
@@ -65,6 +67,5 @@ public class MenuLayout implements LayoutInterface {
     public void dispose() {
         playButton.dispose();
         modelPicker.dispose();
-        whitebg.getTexture().dispose();
     }
 }

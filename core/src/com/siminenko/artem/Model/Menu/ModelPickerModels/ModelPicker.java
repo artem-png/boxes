@@ -11,18 +11,21 @@ import com.siminenko.artem.MyGdxGame;
  */
 
 public class ModelPicker {
-    Sprite currentModel;
+    static Sprite currentModel;
     Vector2 position;
     Vector2 size;
     float rotation;
     Scenarious scenarious;
 
     public ModelPicker() {
-        currentModel = new Sprite(new Texture("player.png"));
         size = new Vector2(12, 15);
         position = new Vector2(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 10);
         rotation = 0;
         scenarious = new Scenarious(position, rotation);
+    }
+
+    public static void init() {
+        currentModel = new Sprite(new Texture("player.png"));
     }
 
     public void act() {
@@ -48,6 +51,6 @@ public class ModelPicker {
     }
 
     public void dispose() {
-        currentModel.getTexture().dispose();
+
     }
 }

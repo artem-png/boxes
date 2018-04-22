@@ -25,11 +25,11 @@ public class MenuIcon {
     int timePressed = timeSetting;
     Vector2 size = new Vector2(7, 7);
     Vector2 position = new Vector2(1, MyGdxGame.height - 1 - size.y);
-    Sprite button;
-    Sprite icon;
-    Sprite whitebg;
+    static Sprite button;
+    static Sprite icon;
+    static Sprite whitebg;
 
-    public MenuIcon() {
+    public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
         button = new Sprite(new Texture("menu/buttonCircle.png"));
         icon = new Sprite(new Texture("menu/menuList.png"));
@@ -38,7 +38,7 @@ public class MenuIcon {
     public void act() {
         if (isPressed) {
             timePressed--;
-            if (timePressed <= 1) {
+            if (timePressed <= 0) {
                 MyGdxGame.layoutManager.set(new MenuLayout());
             }
         } else {
@@ -60,15 +60,17 @@ public class MenuIcon {
 
         if (isPressed) {
             Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
+            float alpha = 1f - (float) (timePressed) / (float) timeSetting;
+            if (alpha >= 0.8f) {
+                alpha = 1f;
+            }
+            batch.setColor(c.r, c.g, c.b, alpha);
             batch.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
             batch.setColor(c.r, c.g, c.b, 1);
         }
     }
 
     public void dispose() {
-        whitebg.getTexture().dispose();
-        button.getTexture().dispose();
-        icon.getTexture().dispose();
+
     }
 }

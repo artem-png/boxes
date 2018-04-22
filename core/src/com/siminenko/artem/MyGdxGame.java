@@ -9,7 +9,12 @@ import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Layout.LayoutManager;
+import com.siminenko.artem.Layout.LostLayout;
 import com.siminenko.artem.Layout.MenuLayout;
+import com.siminenko.artem.Model.Lost.FailedText;
+import com.siminenko.artem.Model.Lost.MenuIcon;
+import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 
 public class MyGdxGame extends ApplicationAdapter {
     public static SpriteBatch batch;
@@ -34,7 +39,16 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
         batchFont = new SpriteBatch();
+
+
         progress.init();
+        FailedText.init();
+        MenuIcon.init();
+        MenuLayout.init();
+        LostLayout.init();
+        RestartText.init();
+        ModelPicker.init();
+        GameLayout.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());

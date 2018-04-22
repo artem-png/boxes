@@ -18,15 +18,15 @@ import com.siminenko.artem.MyGdxGame;
  */
 
 public class RestartText {
-    BitmapFont font;
+    static BitmapFont font;
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
     Vector2 size = new Vector2(40, 10);
-    Sprite whitebg;
-    float xd;
-    float yd;
+    static Sprite whitebg;
+    static float xd;
+    static float yd;
 
     boolean isUpText = false;
     float alpha = 1;
@@ -35,11 +35,14 @@ public class RestartText {
     int level;
 
     public RestartText(int level) {
+        this.level = level;
+    }
+
+    public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
         font = Tex.generateFont(Color.BLUE, (int) (3 * xd), "menufont.ttf");
-        this.level = level;
     }
 
     public void act() {
@@ -96,7 +99,6 @@ public class RestartText {
     }
 
     public void dispose() {
-        whitebg.getTexture().dispose();
-        font.dispose();
+
     }
 }
