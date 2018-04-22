@@ -8,6 +8,7 @@ import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.ModelGenerator.Background;
+import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -16,7 +17,7 @@ import com.siminenko.artem.MyGdxGame;
 
 public class MenuLayout implements LayoutInterface {
     ModelPicker modelPicker;
-    Background background;
+    BackgroundCircle background;
     PlayButton playButton;
 
     static Sprite whitebg;
@@ -25,7 +26,7 @@ public class MenuLayout implements LayoutInterface {
 
     public MenuLayout() {
         modelPicker = new ModelPicker();
-        background = new Background();
+        background = new BackgroundCircle();
         playButton = new PlayButton();
     }
 
