@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Layout.LayoutManager;
@@ -19,10 +20,12 @@ public class MyGdxGame extends ApplicationAdapter {
     public static int width;
     public static int height;
     public static Tex tex;
+    public static Progress progress;
 
     @Override
     public void create() {
         tex = new Tex();
+        progress = new Progress();
         width = 45;
         height = 80;
         camera = new OrthographicCamera(width, height);
@@ -31,9 +34,10 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
         batchFont = new SpriteBatch();
+        progress.init();
 
         layoutManager = new LayoutManager();
-        layoutManager.push(new GameLayout());
+        layoutManager.push(new MenuLayout());
     }
 
     @Override

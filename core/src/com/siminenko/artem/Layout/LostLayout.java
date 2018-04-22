@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Model.Level.LevelGetter;
+import com.siminenko.artem.Model.Lost.FailedText;
+import com.siminenko.artem.Model.Lost.MenuIcon;
+import com.siminenko.artem.Model.Lost.RestartText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.ModelGenerator.Background;
@@ -14,34 +17,37 @@ import com.siminenko.artem.MyGdxGame;
  * Created by artem on 3/21/18.
  */
 
-public class MenuLayout implements LayoutInterface {
+public class LostLayout implements LayoutInterface {
     ModelPicker modelPicker;
     Background background;
-    PlayButton playButton;
+    RestartText restartText;
+    FailedText failedText;
+    MenuIcon menuIcon;
+    int level;
 
     Sprite whitebg;
     int timeSetting = 15;
     int timePressed = timeSetting;
 
-    public MenuLayout() {
+    public LostLayout(int level) {
         modelPicker = new ModelPicker();
         background = new Background();
-        playButton = new PlayButton();
-        GameLayout.init();
+        menuIcon = new MenuIcon();
+        restartText = new RestartText(level);
+        failedText = new FailedText();
+        this.level = level;
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
     }
 
     @Override
     public void act(float delta) {
-        modelPicker.act();
-        background.act();
-        playButton.act();
         if (timeSetting >= 0) {
             timeSetting--;
         }
-        if (playButton.isReady()) {
-            MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
-        }
+        modelPicker.act();
+        background.act();
+        restartText.act();
+        menuIcon.act();
     }
 
     @Override
@@ -50,7 +56,9 @@ public class MenuLayout implements LayoutInterface {
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
         modelPicker.render(MyGdxGame.batchDynamic);
-        playButton.render(MyGdxGame.batchDynamic);
+        restartText.render(MyGdxGame.batchDynamic);
+        failedText.render(MyGdxGame.batchDynamic);
+        menuIcon.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
@@ -63,8 +71,10 @@ public class MenuLayout implements LayoutInterface {
 
     @Override
     public void dispose() {
-        playButton.dispose();
+        restartText.dispose();
         modelPicker.dispose();
         whitebg.getTexture().dispose();
+        failedText.dispose();
+        menuIcon.dispose();
     }
 }

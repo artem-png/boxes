@@ -10,8 +10,8 @@ public class DesktopLauncher {
 //		config.height = 960;
 //		config.width = 540;  // iphone 7 / 2
 
-		config.height = 800;
-		config.width = 450;
+		config.height = 600;
+		config.width = 330;
 		new LwjglApplication(new MyGdxGame(), config);
 	}
 }

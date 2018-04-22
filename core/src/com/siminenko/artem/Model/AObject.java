@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.MyGdxGame;
 
 /**
  * Created by artem on 4/19/18.
@@ -36,6 +37,11 @@ public abstract class AObject {
         fixtureDef.restitution = restitution;
 
         fixture = body.createFixture(fixtureDef);
+        this.body.setActive(false);
+    }
+
+    public void setVelocity(Vector2 vector2) {
+        this.body.setLinearVelocity(vector2);
     }
 
     public void setGravityScale(float scale) {
@@ -43,13 +49,20 @@ public abstract class AObject {
     }
 
     public boolean isAway() {
-        return body.getPosition().y < -40 || body.getPosition().x > 300 || body.getPosition().x < -200;
+        return body.getPosition().y < -30
+                || body.getPosition().x > MyGdxGame.width + 30
+                || body.getPosition().x < -30
+                || (body.getPosition().y > MyGdxGame.height + 30 && body.getLinearVelocity().y > 5);
     }
 
     public void act() {
         if (isAway()) {
             this.setDispose(true);
         }
+    }
+
+    public Body getBody() {
+        return this.body;
     }
 
     public abstract void render(SpriteBatch batch);

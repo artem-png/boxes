@@ -1,13 +1,17 @@
 package com.siminenko.artem.Layout;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Listeners.BallonListener;
+import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.ModelGenerator.Background;
-import com.siminenko.artem.ModelGenerator.ObstacleGenerator;
 import com.siminenko.artem.MyGdxGame;
 
 import box2dLight.RayHandler;
@@ -17,44 +21,63 @@ import box2dLight.RayHandler;
  */
 
 public class GameLayout implements LayoutInterface {
-    public World world;
-    public RayHandler rayHandler;
-    public Box2DDebugRenderer dDebugRenderer;
+    public static World world;
+    public static RayHandler rayHandler;
+    public static Box2DDebugRenderer dDebugRenderer;
     Player player;
-    ObstacleGenerator obstacleGenerator;
     Background background;
+    Sprite whitebg;
     int timeBeforeDeath = 60;
     int timelapse = 0;
 
+    int timeSetting = 15;
+    int timePressed = timeSetting;
+
+    int timeSettingEnd = 60;
+    int timePressedEnd = timeSettingEnd;
+
     public static boolean isDispose = false;
 
-    public GameLayout() {
-        world = new World(new Vector2(0, -30f), true);
+    public static boolean isWin = false;
+
+    ALevel level;
+
+    public GameLayout(ALevel level) {
+        player = new Player(world, new Vector2(MyGdxGame.width / 2, 30));
+        background = new Background();
+        whitebg = new Sprite(new Texture("menu/whitebg.png"));
+        this.level = level;
+        this.level.setPlayer(player);
+        this.level.init();
+    }
+
+    public static void init() {
+        world = new World(new Vector2(0, -20f), true);
         world.setContactListener(new BallonListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
-        player = new Player(world, new Vector2(MyGdxGame.width / 2, 30));
-        obstacleGenerator = new ObstacleGenerator(world);
-        background = new Background();
     }
 
     @Override
     public void act(float delta) {
         background.act();
-        if (GameLayout.isDispose) {
-            if (this.world == null) {
-                world = new World(new Vector2(0, -30f), true);
-                player = new Player(world, new Vector2(MyGdxGame.width / 2, 30));
-                obstacleGenerator = new ObstacleGenerator(world);
-                isDispose = false;
-            } else {
-                this.dispose();
-            }
+        if (GameLayout.isDispose && death()) {
+            GameLayout.isDispose = false;
+            MyGdxGame.layoutManager.set(new LostLayout(level.level));
+            return;
         }
-        if (world != null) {
-            world.step(1 / (float)(60 + timelapse), 6, 2);
-            player.act();
-            obstacleGenerator.act();
+        world.step(1 / (float) (60 + timelapse), 6, 2);
+        player.act();
+        level.act();
+        if (timeSetting >= 0) {
+            timeSetting--;
+        }
+        if (level.isComplete()) {
+            isWin = true;
+            if (win()) {
+                isWin = false;
+                MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(level.level + 1)));
+            }
         }
     }
 
@@ -64,25 +87,47 @@ public class GameLayout implements LayoutInterface {
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
         player.render(MyGdxGame.batchDynamic);
-        obstacleGenerator.render(MyGdxGame.batchDynamic);
+        level.render(MyGdxGame.batchDynamic);
+        if (timeSetting > 0) {
+            Color c = MyGdxGame.batchDynamic.getColor();
+            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
+            MyGdxGame.batchDynamic.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
+        }
+        if (isWin || isDispose) {
+            Color c = batch.getColor();
+            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1f - (float) timeSettingEnd / (float) timePressedEnd);
+            MyGdxGame.batchDynamic.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
+        }
         MyGdxGame.batchDynamic.end();
         batch.begin();
-        if (world != null) {
-           // dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        // dDebugRenderer.render(world, MyGdxGame.camera.combined);
+    }
+
+    public boolean win() {
+        timeSettingEnd --;
+        if (timeSettingEnd <= 0) {
+            return true;
         }
+
+        return false;
+    }
+
+    public boolean death() {
+        timeBeforeDeath--;
+        timelapse += 25;
+        timeSettingEnd --;
+        if (timeSettingEnd <= 0) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public void dispose() {
-        timeBeforeDeath--;
-        timelapse += 25;
-        if (timeBeforeDeath <= 0) {
-            player.dispose();
-            obstacleGenerator.dispose();
-            world.dispose();
-            world = null;
-            timeBeforeDeath = 60;
-            timelapse = 0;
-        }
+        player.dispose();
+        level.dispose();
     }
 }

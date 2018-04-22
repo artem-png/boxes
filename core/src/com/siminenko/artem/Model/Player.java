@@ -19,6 +19,8 @@ public class Player extends AObject {
     int fingerDistance = Gdx.graphics.getHeight() / 7;
     Ballon ballon;
 
+    int touchDelay = 10;
+
     public Player(World world, Vector2 position) {
         this.world = world;
 //        shape = new CircleShape();
@@ -34,12 +36,13 @@ public class Player extends AObject {
         this.shape = shape;
 
 
-        this.createObject(position, this.shape, world, 0.35f, 0.5f, 0f);
+        this.createObject(position, this.shape, world, 0.45f, 0.5f, 0f);
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6));
 //        Tex.player1.setOrigin(2.5f, 2.5f); // circle
         Tex.player1.setOrigin(2.5f, 2.0f);
+        this.body.setActive(true);
     }
 
     @Override
@@ -75,7 +78,8 @@ public class Player extends AObject {
         if (this.isDisposed) {
             return;
         }
-        if (Gdx.input.isTouched()) {
+        touchDelay--;
+        if (touchDelay <= 0 && Gdx.input.isTouched()) {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y - fingerDistance, 0));
             this.body.setLinearVelocity(

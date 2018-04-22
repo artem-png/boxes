@@ -21,7 +21,6 @@ public class ObstaclePanel extends AObject {
         this.shape = shape;
         this.createObject(position, shape, world, 0.7f, 1f, 0);
         this.body.setUserData(new ObstaclePanelData(this));
-        this.body.setLinearVelocity(0, 0);
     }
 
     @Override

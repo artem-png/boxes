@@ -24,6 +24,7 @@ public class Ballon extends AObject {
         this.body.setUserData(new BallonData(this));
         this.body.setGravityScale(0);
         Tex.baloon1.setOrigin(6, 6);
+        this.body.setActive(true);
     }
 
     public void act() {

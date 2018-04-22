@@ -21,7 +21,7 @@ public class ObstacleCircle extends AObject {
         shape.setRadius(size/2);
         this.shape = shape;
         this.size = size;
-        this.createObject(position, shape, world, 0.5f, 1f, 0.3f);
+        this.createObject(position, shape, world, 0.5f, 1f, 0.7f);
         this.body.setUserData(new CircleData(this));
         this.body.setLinearVelocity(velocity.x, velocity.y);
         origin = new Vector2(size/2, size/2);
