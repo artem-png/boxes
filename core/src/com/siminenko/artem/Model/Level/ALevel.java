@@ -41,7 +41,7 @@ public abstract class ALevel {
     }
 
     public void afterWin() {
-        Progress.saveLevelProgress(1);
+        Progress.saveLevelProgress(this.level);
     }
 
     public void setPlayer(Player player) {

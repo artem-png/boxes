@@ -37,6 +37,7 @@ public class Tex {
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {
+        FreeTypeFontGenerator.setMaxTextureSize(2048);
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(name));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;

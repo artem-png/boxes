@@ -19,6 +19,6 @@ public class Level1 extends ALevel {
     @Override
     public void init() {
         this.aScenarioVector2.add(new TutorialMove(GameLayout.world, this.player, this, 30));
-        this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
+        this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30, 0));
     }
 }
