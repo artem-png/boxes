@@ -29,9 +29,9 @@ public class Player extends AObject {
 
         PolygonShape shape = new PolygonShape();
         Vector2[] vector2 = new Vector2[3];
-        vector2[0] = new Vector2(0f, 2.5f);
-        vector2[1] = new Vector2(-2.5f, -1.5f);
-        vector2[2] = new Vector2(2.5f, -1.5f);
+        vector2[0] = new Vector2(0f, 3f);
+        vector2[1] = new Vector2(-2.9f, -1.8f);
+        vector2[2] = new Vector2(2.9f, -1.8f);
         shape.set(vector2);
         this.shape = shape;
 
@@ -41,7 +41,7 @@ public class Player extends AObject {
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6));
 //        Tex.player1.setOrigin(2.5f, 2.5f); // circle
-        Tex.player1.setOrigin(2.5f, 2.0f);
+        Tex.player1.setOrigin(2.9f, 1.8f);
         this.body.setActive(true);
     }
 
@@ -49,6 +49,19 @@ public class Player extends AObject {
     public void act() {
         input();
         ballon.act();
+        if (body.getAngularVelocity() > 0) {
+            body.setAngularVelocity(body.getAngularVelocity() - 0.01f);
+            if (body.getAngularVelocity() < 0) {
+                body.setAngularVelocity(0);
+            }
+        }
+        if (body.getAngularVelocity() < 0) {
+            body.setAngularVelocity(body.getAngularVelocity() + 0.01f);
+            if (body.getAngularVelocity() > 0) {
+                body.setAngularVelocity(0);
+            }
+        }
+
     }
 
     @Override
@@ -56,12 +69,12 @@ public class Player extends AObject {
         ballon.render(batch);
         batch.draw(
                 Tex.player1,
-                this.body.getPosition().x - 2.5f,
+                this.body.getPosition().x - 2.9f,
                 this.body.getPosition().y - 1.8f,
                 Tex.player1.getOriginX(),
                 Tex.player1.getOriginY(),
-                5,
-                5,
+                5.8f,
+                6f,
                 Tex.player1.getScaleX(),
                 Tex.player1.getScaleY(),
                 (float) Math.toDegrees(this.body.getAngle())

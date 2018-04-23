@@ -24,15 +24,12 @@ public class FailedText {
 
 
     public FailedText() {
-        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
-        yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
     }
 
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
+        font = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
     }
 
     public void act() {
@@ -45,8 +42,11 @@ public class FailedText {
         font.draw(
                 MyGdxGame.batchFont,
                 "FAILED",
-                Tex.x * 228,
-                Tex.y * 423
+                0,
+                Tex.y * 423,
+                Gdx.graphics.getWidth(),
+                1,
+                false
         );
         MyGdxGame.batchFont.end();
         batch.begin();

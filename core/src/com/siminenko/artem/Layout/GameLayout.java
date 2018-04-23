@@ -106,7 +106,7 @@ public class GameLayout implements LayoutInterface {
         }
         MyGdxGame.batchDynamic.end();
         batch.begin();
-        // dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        //dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {

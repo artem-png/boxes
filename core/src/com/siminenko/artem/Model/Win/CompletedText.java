@@ -18,15 +18,13 @@ public class CompletedText {
 
 
     public CompletedText() {
-        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
-        yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
+
     }
 
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.BLUE, (int) (5 * xd), "menufont.ttf");
+        font = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
     }
 
     public void act() {
@@ -39,8 +37,11 @@ public class CompletedText {
         font.draw(
                 MyGdxGame.batchFont,
                 "COMPLETED",
-                Tex.x * 100,
-                Tex.y * 423
+                0,
+                Tex.y * 410,
+                Gdx.graphics.getWidth(),
+                1,
+                false
         );
         MyGdxGame.batchFont.end();
         batch.begin();

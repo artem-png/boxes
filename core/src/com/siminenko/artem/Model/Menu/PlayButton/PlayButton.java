@@ -21,24 +21,22 @@ public class PlayButton {
     int timeSetting = 20;
     int timePressed = timeSetting;
     Sprite button;
-    Sprite arrow;
+    Sprite buttonPressed;
     Sprite whitebg;
     Vector2 size;
-    Vector2 sizeArrow;
     BitmapFont font;
 
     float xd;
     float yd;
 
     public PlayButton() {
-        button = new Sprite(new Texture("menu/button.png"));
-        arrow = new Sprite(new Texture("menu/right.png"));
+        button = new Sprite(new Texture("menu/playButton.png"));
+        buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
-        size = new Vector2(20, 8);
-        sizeArrow = new Vector2(6, 6);
+        size = new Vector2(22, 6.5f);
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (3 * xd), "menufont.ttf");
+        font = Tex.generateFont(Color.WHITE, (int) (3.1f * xd), "smallfont.ttf");
     }
 
     public void act() {
@@ -62,26 +60,19 @@ public class PlayButton {
 
     public void render(SpriteBatch batch) {
         batch.draw(
-                button,
+                !isPressed ? button : buttonPressed,
                 MyGdxGame.width / 2 - size.x / 2,
                 MyGdxGame.height / 2 - 7 - size.y / 2,
                 size.x,
                 size.y
         );
-        batch.draw(
-                arrow,
-                MyGdxGame.width / 2 - sizeArrow.x / 2 - 6,
-                MyGdxGame.height / 2 - 7 - sizeArrow.y / 2,
-                sizeArrow.x,
-                sizeArrow.y
-        );
         batch.end();
         MyGdxGame.batchFont.begin();
         font.draw(
                 MyGdxGame.batchFont,
-                "play",
-                Tex.x * 340,
-                Tex.y * 213
+                "PLAY",
+                Tex.x * 375,
+                Tex.y * 204
         );
         MyGdxGame.batchFont.end();
         batch.begin();
@@ -100,7 +91,6 @@ public class PlayButton {
 
     public void dispose() {
         button.getTexture().dispose();
-        arrow.getTexture().dispose();
         whitebg.getTexture().dispose();
         font.dispose();
     }

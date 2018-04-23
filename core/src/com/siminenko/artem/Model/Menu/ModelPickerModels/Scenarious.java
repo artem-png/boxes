@@ -24,7 +24,7 @@ public class Scenarious {
 
     boolean isBigger = true;
 
-    float bigAmountSetting = 0.06f;
+    float bigAmountSetting = 0.09f;
     float bigAmount = bigAmountSetting;
 
     public Scenarious(Vector2 s, float r) {

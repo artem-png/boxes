@@ -23,16 +23,14 @@ public class MenuIcon {
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
-    Vector2 size = new Vector2(7, 7);
-    Vector2 position = new Vector2(1, MyGdxGame.height - 1 - size.y);
+    Vector2 size = new Vector2(6, 6);
+    Vector2 position = new Vector2(2, MyGdxGame.height - 2 - size.y);
     static Sprite button;
-    static Sprite icon;
     static Sprite whitebg;
 
     public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
-        button = new Sprite(new Texture("menu/buttonCircle.png"));
-        icon = new Sprite(new Texture("menu/menuList.png"));
+        button = new Sprite(new Texture("menu/buttonHome.png"));
     }
 
     public void act() {
@@ -56,7 +54,6 @@ public class MenuIcon {
 
     public void render(SpriteBatch batch) {
         batch.draw(this.button, position.x, position.y, size.x, size.y);
-        batch.draw(this.icon, position.x + 1, position.y + 1, size.x - 2, size.y -2);
 
         if (isPressed) {
             Color c = batch.getColor();
