@@ -19,6 +19,14 @@ public class Scenarious {
     float a = 0;
     float ad = 0.05f;
 
+    float s = 0.1f;
+    float sc = 0.1f;
+
+    boolean isBigger = true;
+
+    float bigAmountSetting = 0.06f;
+    float bigAmount = bigAmountSetting;
+
     public Scenarious(Vector2 s, float r) {
         sizeOriginal = s;
         rotationOriginal = r;
@@ -49,6 +57,20 @@ public class Scenarious {
     }
 
     public Vector2 modifySize(Vector2 size) {
+        this.s = s + sc;
+        float v = (float) Math.cos(s);
+        if (v < 0 && isBigger) {
+            isBigger = false;
+        }
+        if (v > 0 && !isBigger) {
+            isBigger = true;
+        }
+        if (v > 0 && isBigger) {
+            size.add(bigAmount, bigAmount);
+        }
+        if (v < 0 && !isBigger) {
+            size.add(-bigAmount, -bigAmount);
+        }
         return size;
     }
 }

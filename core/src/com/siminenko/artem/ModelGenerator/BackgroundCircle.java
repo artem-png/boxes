@@ -25,10 +25,19 @@ public class BackgroundCircle {
     float a = 0.1f;
     float ac = 0.1f;
 
-    public BackgroundCircle() {
-        white = new Sprite(new Texture("menu/whiteCircle.png"));
-        grey = new Sprite(new Texture("menu/greyCircle.png"));
+    public BackgroundCircle(int i) {
+        if (i == 1) {
+            white = new Sprite(new Texture("menu/whiteCircle.png"));
+            grey = new Sprite(new Texture("menu/greyCircle.png"));
+        } else if (i == 2) {
+            white = new Sprite(new Texture("menu/circlePurpleLight.png"));
+            grey = new Sprite(new Texture("menu/circlePurpleDark.png"));
+        } else if (i == 3) {
+            white = new Sprite(new Texture("menu/circleOrangeLight.png"));
+            grey = new Sprite(new Texture("menu/circleOrangeDark.png"));
+        }
 
+        circles.add(new Vector2(140, 0));
         circles.add(new Vector2(120, 0));
         circles.add(new Vector2(100, 0));
         circles.add(new Vector2(80, 0));
@@ -42,15 +51,15 @@ public class BackgroundCircle {
         for (int i = 0; i < circles.size(); i++) {
             if (i % 2 == 1) {
                 if (isPair) {
-                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2, circles.get(i).x, circles.get(i).x);
+                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
                 } else {
-                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2, circles.get(i).x, circles.get(i).x);
+                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
                 }
             } else {
                 if (isPair) {
-                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2, circles.get(i).x, circles.get(i).x);
+                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
                 } else {
-                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2, circles.get(i).x, circles.get(i).x);
+                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
                 }
             }
         }
@@ -62,10 +71,12 @@ public class BackgroundCircle {
         if (deltaAdditional < 0) {
             deltaAdditional = deltaAdditional /2;
         }
-        for (int i = 0; i < circles.size(); i++) {
-            circles.get(i).add(deltaAdditional + deltaConstant, 0);
+        if (deltaAdditional + deltaConstant > 0.23 || deltaAdditional + deltaConstant < -0.23f) {
+            for (int i = 0; i < circles.size(); i++) {
+                circles.get(i).add(deltaAdditional + deltaConstant, 0);
+            }
         }
-        if (circles.firstElement().x > MyGdxGame.height + 70) {
+        if (circles.firstElement().x > MyGdxGame.height + 85) {
             circles.remove(circles.firstElement());
             circles.add(new Vector2(10, 0));
             isPair = !isPair;

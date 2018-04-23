@@ -1,4 +1,4 @@
-package com.siminenko.artem.Model.Menu.PlayButton;
+package com.siminenko.artem.Model.Win;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,40 +8,57 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.MyGdxGame;
 
 /**
- * Created by User on 21.04.2018.
+ * Created by User on 22.04.2018.
  */
 
-public class PlayButton {
+public class NextLevelText {
+    static BitmapFont font;
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
-    Sprite button;
-    Sprite arrow;
-    Sprite whitebg;
-    Vector2 size;
-    Vector2 sizeArrow;
-    BitmapFont font;
+    Vector2 size = new Vector2(40, 10);
+    static Sprite whitebg;
+    static float xd;
+    static float yd;
 
-    float xd;
-    float yd;
+    boolean isUpText = false;
+    float alpha = 1;
+    float alphaDelta = 0.014f;
 
-    public PlayButton() {
-        button = new Sprite(new Texture("menu/button.png"));
-        arrow = new Sprite(new Texture("menu/right.png"));
+    int level;
+
+    public NextLevelText(int level) {
+        this.level = level;
+    }
+
+    public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
-        size = new Vector2(20, 8);
-        sizeArrow = new Vector2(6, 6);
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (3 * xd), "menufont.ttf");
+        font = Tex.generateFont(Color.BLUE, (int) (3 * xd), "menufont.ttf");
     }
 
     public void act() {
+        if (isUpText) {
+            alpha += alphaDelta;
+            if (alpha >= 1) {
+                isUpText = false;
+                alpha = 1;
+            }
+        } else {
+            alpha -= alphaDelta;
+            if (alpha <= 0) {
+                isUpText = true;
+                alpha = 0;
+            }
+        }
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
@@ -53,7 +70,7 @@ public class PlayButton {
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 && vector3.x < MyGdxGame.width / 2 + size.x / 2) {
                     if (vector3.y > MyGdxGame.height / 2 - 7 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2) {
-                        isPressed = true;
+                        MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
                     }
                 }
             }
@@ -61,26 +78,13 @@ public class PlayButton {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(
-                button,
-                MyGdxGame.width / 2 - size.x / 2,
-                MyGdxGame.height / 2 - 7 - size.y / 2,
-                size.x,
-                size.y
-        );
-        batch.draw(
-                arrow,
-                MyGdxGame.width / 2 - sizeArrow.x / 2 - 6,
-                MyGdxGame.height / 2 - 7 - sizeArrow.y / 2,
-                sizeArrow.x,
-                sizeArrow.y
-        );
         batch.end();
         MyGdxGame.batchFont.begin();
+        font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, alpha);
         font.draw(
                 MyGdxGame.batchFont,
-                "play",
-                Tex.x * 340,
+                "tap to continue",
+                Tex.x * 105,
                 Tex.y * 213
         );
         MyGdxGame.batchFont.end();
@@ -94,14 +98,7 @@ public class PlayButton {
         }
     }
 
-    public boolean isReady() {
-        return isReady;
-    }
-
     public void dispose() {
-        button.getTexture().dispose();
-        arrow.getTexture().dispose();
-        whitebg.getTexture().dispose();
-        font.dispose();
+
     }
 }

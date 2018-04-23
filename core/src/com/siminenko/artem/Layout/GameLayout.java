@@ -76,7 +76,7 @@ public class GameLayout implements LayoutInterface {
             isWin = true;
             if (win()) {
                 isWin = false;
-                MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(level.level + 1)));
+                MyGdxGame.layoutManager.set(new WinLayout(level.level + 1));
             }
         }
     }
@@ -100,9 +100,8 @@ public class GameLayout implements LayoutInterface {
             if (alpha >= 0.9f) {
                 alpha = 1f;
             }
-            System.out.println(alpha);
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, alpha);
-            MyGdxGame.batchDynamic.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            MyGdxGame.batchDynamic.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
         }
         MyGdxGame.batchDynamic.end();

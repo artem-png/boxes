@@ -33,8 +33,8 @@ public class Background {
     int sa2;
     int sb2;
 
-    Vector2 sprite1Position = new Vector2(0, 0);
-    Vector2 sprite2Position = new Vector2(0, MyGdxGame.height);
+    Vector2 sprite1Position = new Vector2(-5, 0);
+    Vector2 sprite2Position = new Vector2(-5, MyGdxGame.height);
 
     public Background() {
         sa = this.getNewNumber(10000);
@@ -49,8 +49,8 @@ public class Background {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(sprite1, sprite1Position.x, sprite1Position.y, MyGdxGame.width, MyGdxGame.height + 2);
-        batch.draw(sprite2, sprite2Position.x, sprite2Position.y, MyGdxGame.width, MyGdxGame.height + 2);
+        batch.draw(sprite1, sprite1Position.x, sprite1Position.y, MyGdxGame.width + 10, MyGdxGame.height + 2);
+        batch.draw(sprite2, sprite2Position.x, sprite2Position.y, MyGdxGame.width + 10, MyGdxGame.height + 2);
     }
 
     public void act() {

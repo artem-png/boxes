@@ -38,7 +38,7 @@ public class ModelPicker {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(bgshadow, -5, position.y - 3, MyGdxGame.width + 5, size.y + 5);
+       // batch.draw(bgshadow, -5, position.y - 3, MyGdxGame.width + 5, size.y + 5);
         batch.draw(
                 currentModel,
                 position.x,

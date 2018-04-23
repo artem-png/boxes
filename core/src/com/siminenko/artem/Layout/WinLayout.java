@@ -4,13 +4,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
-import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
-import com.siminenko.artem.ModelGenerator.Background;
+import com.siminenko.artem.Model.Win.CompletedText;
+import com.siminenko.artem.Model.Win.NextLevelText;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
 
@@ -18,11 +17,11 @@ import com.siminenko.artem.MyGdxGame;
  * Created by artem on 3/21/18.
  */
 
-public class LostLayout implements LayoutInterface {
+public class WinLayout implements LayoutInterface {
     ModelPicker modelPicker;
     BackgroundCircle background;
-    RestartText restartText;
-    FailedText failedText;
+    NextLevelText continueText;
+    CompletedText successText;
     MenuIcon menuIcon;
     int level;
 
@@ -30,12 +29,12 @@ public class LostLayout implements LayoutInterface {
     int timeSetting = 15;
     int timePressed = timeSetting;
 
-    public LostLayout(int level) {
+    public WinLayout(int level) {
         modelPicker = new ModelPicker();
-        background = new BackgroundCircle(2);
+        background = new BackgroundCircle(3);
         menuIcon = new MenuIcon();
-        restartText = new RestartText(level);
-        failedText = new FailedText();
+        continueText = new NextLevelText(level);
+        successText = new CompletedText();
         this.level = level;
     }
 
@@ -50,7 +49,7 @@ public class LostLayout implements LayoutInterface {
         }
         modelPicker.act();
         background.act();
-        restartText.act();
+        continueText.act();
         menuIcon.act();
     }
 
@@ -60,9 +59,9 @@ public class LostLayout implements LayoutInterface {
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
         modelPicker.render(MyGdxGame.batchDynamic);
-        failedText.render(MyGdxGame.batchDynamic);
+        successText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
-        restartText.render(MyGdxGame.batchDynamic);
+        continueText.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
@@ -75,9 +74,9 @@ public class LostLayout implements LayoutInterface {
 
     @Override
     public void dispose() {
-        restartText.dispose();
+        continueText.dispose();
         modelPicker.dispose();
-        failedText.dispose();
+        successText.dispose();
         menuIcon.dispose();
     }
 }

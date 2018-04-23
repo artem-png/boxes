@@ -26,7 +26,7 @@ public class MenuLayout implements LayoutInterface {
 
     public MenuLayout() {
         modelPicker = new ModelPicker();
-        background = new BackgroundCircle();
+        background = new BackgroundCircle(1);
         playButton = new PlayButton();
     }
 
@@ -57,7 +57,7 @@ public class MenuLayout implements LayoutInterface {
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
-            MyGdxGame.batchDynamic.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            MyGdxGame.batchDynamic.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
         }
         MyGdxGame.batchDynamic.end();

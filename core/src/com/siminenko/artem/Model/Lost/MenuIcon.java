@@ -65,7 +65,7 @@ public class MenuIcon {
                 alpha = 1f;
             }
             batch.setColor(c.r, c.g, c.b, alpha);
-            batch.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            batch.draw(this.whitebg, -10, -10, MyGdxGame.width+20, MyGdxGame.height+20);
             batch.setColor(c.r, c.g, c.b, 1);
         }
     }

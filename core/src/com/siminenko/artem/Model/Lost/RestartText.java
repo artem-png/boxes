@@ -93,7 +93,7 @@ public class RestartText {
         if (isPressed) {
             Color c = batch.getColor();
             batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
-            batch.draw(this.whitebg, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            batch.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
             batch.setColor(c.r, c.g, c.b, 1);
         }
     }
