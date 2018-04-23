@@ -21,10 +21,8 @@ public class Level2 extends ALevel {
         this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
         this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
         this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
-    }
-
-    @Override
-    public void afterWin() {
-        Progress.saveLevelProgress(2);
+        this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
+        this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
+        this.aScenarioVector2.add(new SimpleBlockVertical(GameLayout.world, this.player, this, 30));
     }
 }

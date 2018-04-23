@@ -15,6 +15,7 @@ import com.siminenko.artem.Layout.WinLayout;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
@@ -55,6 +56,7 @@ public class MyGdxGame extends ApplicationAdapter {
         CompletedText.init();
         NextLevelText.init();
         WinLayout.init();
+        LevelText.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
@@ -72,7 +74,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.end();
         layoutManager.act(Gdx.graphics.getDeltaTime());
     }
-
     @Override
     public void dispose() {
         layoutManager.dispose();

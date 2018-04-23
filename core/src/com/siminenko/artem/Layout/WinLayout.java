@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
@@ -23,6 +24,7 @@ public class WinLayout implements LayoutInterface {
     NextLevelText continueText;
     CompletedText successText;
     MenuIcon menuIcon;
+    LevelText levelText;
     int level;
 
     static Sprite whitebg;
@@ -35,6 +37,7 @@ public class WinLayout implements LayoutInterface {
         menuIcon = new MenuIcon();
         continueText = new NextLevelText(level);
         successText = new CompletedText();
+        levelText = new LevelText(level - 1, Color.DARK_GRAY);
         this.level = level;
     }
 
@@ -51,6 +54,7 @@ public class WinLayout implements LayoutInterface {
         background.act();
         continueText.act();
         menuIcon.act();
+        levelText.act();
     }
 
     @Override
@@ -60,6 +64,7 @@ public class WinLayout implements LayoutInterface {
         background.render(MyGdxGame.batchDynamic);
         modelPicker.render(MyGdxGame.batchDynamic);
         successText.render(MyGdxGame.batchDynamic);
+        levelText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
         continueText.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {

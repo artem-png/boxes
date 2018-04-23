@@ -1,6 +1,7 @@
 package com.siminenko.artem.Model.Level;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Player;
 
@@ -39,6 +40,10 @@ public abstract class ALevel {
         }
     }
 
+    public void afterWin() {
+        Progress.saveLevelProgress(1);
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -68,8 +73,6 @@ public abstract class ALevel {
         }
         return result;
     }
-
-    public abstract void afterWin();
 
     public void setNumber(int level) {
         this.level = level;

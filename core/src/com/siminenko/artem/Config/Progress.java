@@ -13,7 +13,7 @@ import com.siminenko.artem.Model.Level.Levels.Level2;
  */
 
 public class Progress {
-    public static final String progress = "progressLevel";
+    public static final String progress = "progressLevel4";
     public static int[] levels = new int[2];
 
     public void init() {

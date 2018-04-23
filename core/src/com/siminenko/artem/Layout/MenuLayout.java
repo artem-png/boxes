@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Level.LevelGetter;
+import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.ModelGenerator.Background;
@@ -19,6 +21,7 @@ public class MenuLayout implements LayoutInterface {
     ModelPicker modelPicker;
     BackgroundCircle background;
     PlayButton playButton;
+    LevelText levelText;
 
     static Sprite whitebg;
     int timeSetting = 15;
@@ -28,6 +31,7 @@ public class MenuLayout implements LayoutInterface {
         modelPicker = new ModelPicker();
         background = new BackgroundCircle(1);
         playButton = new PlayButton();
+        levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
     }
 
     public static void init() {
@@ -39,6 +43,7 @@ public class MenuLayout implements LayoutInterface {
         modelPicker.act();
         background.act();
         playButton.act();
+        levelText.act();
         if (timeSetting >= 0) {
             timeSetting--;
         }
@@ -53,6 +58,7 @@ public class MenuLayout implements LayoutInterface {
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
         modelPicker.render(MyGdxGame.batchDynamic);
+        levelText.render(MyGdxGame.batchDynamic);
         playButton.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
@@ -68,5 +74,6 @@ public class MenuLayout implements LayoutInterface {
     public void dispose() {
         playButton.dispose();
         modelPicker.dispose();
+        levelText.dispose();
     }
 }
