@@ -9,9 +9,13 @@ import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Layout.LayoutManager;
+import com.siminenko.artem.Layout.LevelsLayout;
 import com.siminenko.artem.Layout.LostLayout;
 import com.siminenko.artem.Layout.MenuLayout;
 import com.siminenko.artem.Layout.WinLayout;
+import com.siminenko.artem.Model.LevelLayout.BackIcon;
+import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
+import com.siminenko.artem.Model.LevelLayout.TopPanel;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
@@ -57,6 +61,10 @@ public class MyGdxGame extends ApplicationAdapter {
         NextLevelText.init();
         WinLayout.init();
         LevelText.init();
+        LevelsLayout.init();
+        TopPanel.init();
+        BackIcon.init();
+        LevelGenerator.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());

@@ -61,7 +61,6 @@ public class Player extends AObject {
                 body.setAngularVelocity(0);
             }
         }
-
     }
 
     @Override

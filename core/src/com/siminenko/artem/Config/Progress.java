@@ -43,6 +43,17 @@ public class Progress {
         return getLevelByInt(index);
     }
 
+    public static int getNextLevelInt() {
+        int index = 1;
+        for (int i = 0; i < levels.length; i ++) {
+            if (levels[i] == 1) {
+                index = i + 2;
+            }
+        }
+
+        return index;
+    }
+
     public static ALevel getLevelByInt(int index) {
         ALevel level = null;
 

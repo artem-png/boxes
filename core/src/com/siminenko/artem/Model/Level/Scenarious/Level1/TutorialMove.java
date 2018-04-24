@@ -106,12 +106,12 @@ public class TutorialMove extends AScenario {
             }
             batch.setColor(color.r, color.g, color.b, 1);
 
-            batch.draw(shadow, -5, 43, MyGdxGame.width + 10, 11);
-            batch.draw(Tex.baloon1, 1, 44, 9, 9);
-            batch.draw(plus, 11, 47f, 3, 3);
-            batch.draw(Tex.rectangle1, 18, 45, 7, 7);
-            batch.draw(equal, 28.5f, 47f, 3, 3);
-            batch.draw(death, 36, 45f, 7, 7);
+            batch.draw(shadow, -5, 48, MyGdxGame.width + 10, 11);
+            batch.draw(Tex.baloon1, 1, 49, 9, 9);
+            batch.draw(plus, 12f, 52f, 3, 3);
+            batch.draw(Tex.rectangle1, 20.5f, 50, 2, 7);
+            batch.draw(equal, 28f, 52f, 3, 3);
+            batch.draw(death, 36, 50f, 7, 7);
 
         }
     }

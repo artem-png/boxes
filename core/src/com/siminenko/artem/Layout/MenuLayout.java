@@ -8,6 +8,7 @@ import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Menu.PlayButton.LevelButton;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
@@ -22,6 +23,7 @@ public class MenuLayout implements LayoutInterface {
     BackgroundCircle background;
     PlayButton playButton;
     LevelText levelText;
+    LevelButton levelButton;
 
     static Sprite whitebg;
     int timeSetting = 15;
@@ -32,6 +34,7 @@ public class MenuLayout implements LayoutInterface {
         background = new BackgroundCircle(1);
         playButton = new PlayButton();
         levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
+        levelButton = new LevelButton();
     }
 
     public static void init() {
@@ -44,6 +47,7 @@ public class MenuLayout implements LayoutInterface {
         background.act();
         playButton.act();
         levelText.act();
+        levelButton.act();
         if (timeSetting >= 0) {
             timeSetting--;
         }
@@ -60,6 +64,7 @@ public class MenuLayout implements LayoutInterface {
         modelPicker.render(MyGdxGame.batchDynamic);
         levelText.render(MyGdxGame.batchDynamic);
         playButton.render(MyGdxGame.batchDynamic);
+        levelButton.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
@@ -75,5 +80,6 @@ public class MenuLayout implements LayoutInterface {
         playButton.dispose();
         modelPicker.dispose();
         levelText.dispose();
+        levelButton.dispose();
     }
 }
