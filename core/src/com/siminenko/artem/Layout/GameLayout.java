@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Listeners.BallonListener;
+import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.ModelGenerator.Background;
@@ -27,6 +28,7 @@ public class GameLayout implements LayoutInterface {
     Player player;
     Background background;
     Sprite whitebg;
+    PauseIcon pauseIcon;
     int timeBeforeDeath = 60;
     int timelapse = 0;
 
@@ -49,6 +51,7 @@ public class GameLayout implements LayoutInterface {
         this.level = level;
         this.level.setPlayer(player);
         this.level.init();
+        pauseIcon = new PauseIcon(level.level);
     }
 
     public static void init() {
@@ -67,8 +70,13 @@ public class GameLayout implements LayoutInterface {
             return;
         }
         world.step(1 / (float) (60 + timelapse), 6, 2);
-        player.act();
+        if (!pauseIcon.isPressed) {
+            player.act();
+        } else {
+            player.stop();
+        }
         level.act();
+        pauseIcon.act();
         if (timeSetting >= 0) {
             timeSetting--;
         }
@@ -88,6 +96,7 @@ public class GameLayout implements LayoutInterface {
         background.render(MyGdxGame.batchDynamic);
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
+        pauseIcon.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);

@@ -63,6 +63,10 @@ public class Player extends AObject {
         }
     }
 
+    public void stop() {
+        this.body.setLinearVelocity(0, 0);
+    }
+
     @Override
     public void render(SpriteBatch batch) {
         ballon.render(batch);
@@ -91,7 +95,7 @@ public class Player extends AObject {
             return;
         }
         touchDelay--;
-        if (touchDelay <= 0 && Gdx.input.isTouched()) {
+        if (touchDelay <= 0 && Gdx.input.isTouched() && !Gdx.input.justTouched()) {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y - fingerDistance, 0));
             this.body.setLinearVelocity(

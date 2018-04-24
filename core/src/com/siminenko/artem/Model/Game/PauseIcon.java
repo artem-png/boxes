@@ -1,48 +1,48 @@
-package com.siminenko.artem.Model.Lost;
+package com.siminenko.artem.Model.Game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.siminenko.artem.Config.Progress;
-import com.siminenko.artem.Config.Tex;
-import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Layout.MenuLayout;
+import com.siminenko.artem.Layout.PauseLayout;
 import com.siminenko.artem.MyGdxGame;
 
 /**
  * Created by User on 22.04.2018.
  */
 
-public class MenuIcon {
+public class PauseIcon {
     boolean isReady = false;
-    boolean isPressed = false;
-    int timeSetting = 20;
+    public boolean isPressed = false;
+    int timeSetting = 5;
     int timePressed = timeSetting;
-    Vector2 size = new Vector2(6, 6);
+    Vector2 size = new Vector2(4, 4);
     Vector2 position = new Vector2(2, MyGdxGame.height - 2 - size.y);
     static Sprite button;
     static Sprite whitebg;
+    int level;
 
-    public boolean disposeAll = false;
+    public PauseIcon(int level) {
+        this.level = level;
+    }
 
     public static void init() {
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
-        button = new Sprite(new Texture("menu/buttonHome.png"));
+        button = new Sprite(new Texture("pause.png"));
     }
 
     public void act() {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 0) {
-                if (disposeAll) {
-                    MyGdxGame.layoutManager.pop();
-                }
-                MyGdxGame.layoutManager.set(new MenuLayout());
+                MyGdxGame.layoutManager.push(new PauseLayout(level));
+                isReady = false;
+                isPressed = false;
+                timePressed = timeSetting;
             }
         } else {
             if (Gdx.input.justTouched()) {

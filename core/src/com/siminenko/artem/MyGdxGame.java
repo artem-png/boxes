@@ -12,7 +12,9 @@ import com.siminenko.artem.Layout.LayoutManager;
 import com.siminenko.artem.Layout.LevelsLayout;
 import com.siminenko.artem.Layout.LostLayout;
 import com.siminenko.artem.Layout.MenuLayout;
+import com.siminenko.artem.Layout.PauseLayout;
 import com.siminenko.artem.Layout.WinLayout;
+import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
 import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
 import com.siminenko.artem.Model.LevelLayout.TopPanel;
@@ -21,6 +23,8 @@ import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Pause.ContinueButton;
+import com.siminenko.artem.Model.Pause.PausedText;
 import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
 
@@ -65,6 +69,10 @@ public class MyGdxGame extends ApplicationAdapter {
         TopPanel.init();
         BackIcon.init();
         LevelGenerator.init();
+        PauseLayout.init();
+        PauseIcon.init();
+        PausedText.init();
+        ContinueButton.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());

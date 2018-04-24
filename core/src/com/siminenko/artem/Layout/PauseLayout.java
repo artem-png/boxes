@@ -1,15 +1,20 @@
 package com.siminenko.artem.Layout;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Progress;
-import com.siminenko.artem.Model.Level.LevelGetter;
+import com.siminenko.artem.Model.LevelLayout.BackIcon;
+import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
+import com.siminenko.artem.Model.LevelLayout.TopPanel;
+import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
-import com.siminenko.artem.Model.Menu.PlayButton.LevelButton;
-import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
+import com.siminenko.artem.Model.Pause.ContinueButton;
+import com.siminenko.artem.Model.Pause.PausedText;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
@@ -18,23 +23,30 @@ import com.siminenko.artem.MyGdxGame;
  * Created by artem on 3/21/18.
  */
 
-public class MenuLayout implements LayoutInterface {
-    ModelPicker modelPicker;
-    BackgroundCircle background;
-    PlayButton playButton;
-    LevelText levelText;
-    LevelButton levelButton;
-
+public class PauseLayout implements LayoutInterface {
     static Sprite whitebg;
+    BackgroundCircle backgroundCircle;
+    ModelPicker modelPicker;
+    MenuIcon menuIcon;
+    ContinueButton continueButton;
+    PausedText pausedText;
+    LevelText levelText;
     int timeSetting = 15;
     int timePressed = timeSetting;
 
-    public MenuLayout() {
+    int levelsCount;
+
+    int level;
+
+    public PauseLayout(int level) {
+        backgroundCircle = new BackgroundCircle(1);
         modelPicker = new ModelPicker();
-        background = new BackgroundCircle(1);
-        playButton = new PlayButton();
-        levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
-        levelButton = new LevelButton();
+        menuIcon = new MenuIcon();
+        menuIcon.disposeAll = true;
+        pausedText = new PausedText();
+        continueButton = new ContinueButton();
+        this.level = level;
+        levelText = new LevelText(level, Color.DARK_GRAY);
     }
 
     public static void init() {
@@ -43,28 +55,27 @@ public class MenuLayout implements LayoutInterface {
 
     @Override
     public void act(float delta) {
-        modelPicker.act();
-        background.act();
-        playButton.act();
-        levelText.act();
-        levelButton.act();
         if (timeSetting >= 0) {
             timeSetting--;
         }
-        if (playButton.isReady()) {
-            MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
-        }
+        backgroundCircle.act();
+        modelPicker.act();
+        menuIcon.act();
+        continueButton.act();
+        pausedText.act();
+        levelText.act();
     }
 
     @Override
     public void render(SpriteBatch batch) {
         batch.end();
         MyGdxGame.batchDynamic.begin();
-        background.render(MyGdxGame.batchDynamic);
+        backgroundCircle.render(MyGdxGame.batchDynamic);
         modelPicker.render(MyGdxGame.batchDynamic);
+        pausedText.render(MyGdxGame.batchDynamic);
         levelText.render(MyGdxGame.batchDynamic);
-        levelButton.render(MyGdxGame.batchDynamic);
-        playButton.render(MyGdxGame.batchDynamic);
+        menuIcon.render(MyGdxGame.batchDynamic);
+        continueButton.render(MyGdxGame.batchDynamic);
         if (timeSetting > 0) {
             Color c = MyGdxGame.batchDynamic.getColor();
             MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
@@ -77,9 +88,6 @@ public class MenuLayout implements LayoutInterface {
 
     @Override
     public void dispose() {
-        playButton.dispose();
-        modelPicker.dispose();
-        levelText.dispose();
-        levelButton.dispose();
+
     }
 }

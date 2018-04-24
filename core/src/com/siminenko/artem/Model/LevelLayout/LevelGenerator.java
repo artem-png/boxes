@@ -40,9 +40,9 @@ public class LevelGenerator {
 
     public static void init() {
         level = new Sprite(new Texture("levels/levelPreview.png"));
-        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
-        yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.BLACK, (int)(2.6 * xd), "smallfont.ttf");
+        xd = (float)Gdx.graphics.getWidth() / (float)MyGdxGame.width;
+        yd = (float)Gdx.graphics.getHeight() / (float)MyGdxGame.width;
+        font = Tex.generateFont(Color.WHITE, (int)(2.6 * xd), "smallfont.ttf");
     }
 
     public void setLevel(int beginLevel) {
@@ -53,6 +53,16 @@ public class LevelGenerator {
         int a = firstLevel;
         for (int i = 4; i > 0; i--) {
             for (int j = 0; j < 3; j++) {
+                Color c = batch.getColor();
+                if (i == 4) {
+                    batch.setColor(0.98f, 0.79f, 0.35f, 1);
+                } else if (i == 3) {
+                    batch.setColor(0.8f, 0.789f, 0.628f, 1);
+                } else if (i == 2) {
+                    batch.setColor(0.589f, 0.88f, 0.55f, 1);
+                } else if (i == 1) {
+                    batch.setColor(0.47f, 0.83f, 0.81f, 1);
+                }
                 if (a <= levelCount) {
                     batch.draw(
                             level,
@@ -66,7 +76,7 @@ public class LevelGenerator {
                     font.draw(
                             MyGdxGame.batchFont,
                             a + "",
-                            (j * 13 + 5.5f) * xd,
+                            (j * 13 + 5.4f) * xd,
                             (i * 6.17f + 10.2f) * yd,
                             9.4f * xd,
                             1,
@@ -76,6 +86,7 @@ public class LevelGenerator {
                     batch.begin();
                     a++;
                 }
+                batch.setColor(c);
             }
         }
         if (timePressed > 0 && isPressed) {
