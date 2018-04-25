@@ -24,7 +24,6 @@ public class LevelGenerator {
     static float xd;
     static float yd;
 
-    static Sprite whitebg;
     int timeSetting = 15;
     int timePressed = timeSetting;
 
@@ -35,7 +34,6 @@ public class LevelGenerator {
     public LevelGenerator(int beginLevel) {
         firstLevel = beginLevel;
         levelCount = Progress.levels.length;
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
     }
 
     public static void init() {
@@ -89,12 +87,6 @@ public class LevelGenerator {
                 batch.setColor(c);
             }
         }
-        if (timePressed > 0 && isPressed) {
-            Color c = MyGdxGame.batchDynamic.getColor();
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1 - (float) timePressed / (float) timeSetting);
-            MyGdxGame.batchDynamic.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public void act() {
@@ -114,6 +106,7 @@ public class LevelGenerator {
                             if (vector3.y > i * 11 + 13 && vector3.y < i * 11 + 13 + 8) {
                                 chosenlevel = a;
                                 isPressed = true;
+                                MyGdxGame.setUp(15, true);
                             }
                         }
                     }

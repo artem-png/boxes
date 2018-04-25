@@ -33,12 +33,12 @@ public class GameLayout implements LayoutInterface {
     int timelapse = 0;
 
     int timeSetting = 15;
-    int timePressed = timeSetting;
 
     int timeSettingEnd = 60;
-    int timePressedEnd = timeSettingEnd;
 
     public static boolean isDispose = false;
+
+    public static boolean isDisposeAnimation = false;
 
     public static boolean isWin = false;
 
@@ -52,6 +52,7 @@ public class GameLayout implements LayoutInterface {
         this.level.setPlayer(player);
         this.level.init();
         pauseIcon = new PauseIcon(level.level);
+        MyGdxGame.setUp(15, false);
     }
 
     public static void init() {
@@ -64,10 +65,16 @@ public class GameLayout implements LayoutInterface {
     @Override
     public void act(float delta) {
         background.act();
-        if (GameLayout.isDispose && death()) {
-            GameLayout.isDispose = false;
-            MyGdxGame.layoutManager.set(new LostLayout(level.level));
-            return;
+        if (GameLayout.isDispose) {
+            if (!isDisposeAnimation) {
+                MyGdxGame.setUp(60, true);
+            }
+            isDisposeAnimation = true;
+            if (death()) {
+                GameLayout.isDispose = false;
+                MyGdxGame.layoutManager.set(new LostLayout(level.level));
+                return;
+            }
         }
         world.step(1 / (float) (60 + timelapse), 6, 2);
         if (!pauseIcon.isPressed) {
@@ -81,6 +88,9 @@ public class GameLayout implements LayoutInterface {
             timeSetting--;
         }
         if (level.isComplete()) {
+            if (!isWin) {
+                MyGdxGame.setUp(60, true);
+            }
             isWin = true;
             if (win()) {
                 isWin = false;
@@ -97,22 +107,6 @@ public class GameLayout implements LayoutInterface {
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
         pauseIcon.render(MyGdxGame.batchDynamic);
-        if (timeSetting > 0) {
-            Color c = MyGdxGame.batchDynamic.getColor();
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
-            MyGdxGame.batchDynamic.draw(this.whitebg, - 10, 0, MyGdxGame.width + 20, MyGdxGame.height);
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
-        }
-        if (isWin || isDispose) {
-            Color c = batch.getColor();
-            float alpha = 1f - (float) timeSettingEnd / (float) timePressedEnd;
-            if (alpha >= 0.9f) {
-                alpha = 1f;
-            }
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, alpha);
-            MyGdxGame.batchDynamic.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
-        }
         MyGdxGame.batchDynamic.end();
         batch.begin();
         //dDebugRenderer.render(world, MyGdxGame.camera.combined);

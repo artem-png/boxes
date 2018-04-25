@@ -19,12 +19,10 @@ import com.siminenko.artem.MyGdxGame;
 
 public class NextLevelText {
     static BitmapFont font;
-    boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
     Vector2 size = new Vector2(40, 10);
-    static Sprite whitebg;
     static float xd;
     static float yd;
 
@@ -39,7 +37,6 @@ public class NextLevelText {
     }
 
     public static void init() {
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
         font = Tex.generateFont(Color.DARK_GRAY, (int) (3 * xd), "smallfont.ttf");
@@ -62,7 +59,7 @@ public class NextLevelText {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
-                isReady = true;
+                MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
             }
         } else {
             if (Gdx.input.justTouched()) {
@@ -70,7 +67,8 @@ public class NextLevelText {
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
                     if (vector3.y > MyGdxGame.height / 2 - 7 - size.y / 2 - 5 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2 + 5) {
-                        MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
+                        isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -92,13 +90,6 @@ public class NextLevelText {
         );
         MyGdxGame.batchFont.end();
         batch.begin();
-
-        if (isPressed) {
-            Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
-            batch.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            batch.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public void dispose() {

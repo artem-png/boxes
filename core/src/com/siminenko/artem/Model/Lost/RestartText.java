@@ -24,7 +24,6 @@ public class RestartText {
     int timeSetting = 20;
     int timePressed = timeSetting;
     Vector2 size = new Vector2(40, 10);
-    static Sprite whitebg;
     static float xd;
     static float yd;
 
@@ -39,7 +38,6 @@ public class RestartText {
     }
 
     public static void init() {
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
         font = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
@@ -62,6 +60,7 @@ public class RestartText {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
+                MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
                 isReady = true;
             }
         } else {
@@ -70,7 +69,8 @@ public class RestartText {
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
                     if (vector3.y > MyGdxGame.height / 2 - 7 - size.y / 2 - 5 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2 + 5) {
-                        MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
+                        isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -92,13 +92,6 @@ public class RestartText {
         );
         MyGdxGame.batchFont.end();
         batch.begin();
-
-        if (isPressed) {
-            Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
-            batch.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            batch.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public void dispose() {

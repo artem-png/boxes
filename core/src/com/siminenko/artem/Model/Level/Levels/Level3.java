@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircle;
-import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockVertical;
 import com.siminenko.artem.MyGdxGame;
 
 /**

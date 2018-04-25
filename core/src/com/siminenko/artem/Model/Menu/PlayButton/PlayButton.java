@@ -52,6 +52,7 @@ public class PlayButton {
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 && vector3.x < MyGdxGame.width / 2 + size.x / 2) {
                     if (vector3.y > MyGdxGame.height / 2 - 7 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2) {
                         isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -76,13 +77,6 @@ public class PlayButton {
         );
         MyGdxGame.batchFont.end();
         batch.begin();
-
-        if (isPressed) {
-            Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
-            batch.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            batch.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public boolean isReady() {

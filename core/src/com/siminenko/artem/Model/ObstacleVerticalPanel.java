@@ -14,12 +14,16 @@ public class ObstacleVerticalPanel extends AObject {
     float sizeX = 3;
     float sizeY = 12;
 
-    public ObstacleVerticalPanel(World world, Vector2 position) {
+    public ObstacleVerticalPanel(World world, Vector2 position, float sizeX, float sizeY, float mass) {
         this.world = world;
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(sizeX/2, sizeY/2);
+        if (sizeX != 0) {
+            shape.setAsBox(sizeX/2, sizeY/2);
+        } else {
+            shape.setAsBox(this.sizeX/2, this.sizeY/2);
+        }
         this.shape = shape;
-        this.createObject(position, shape, world, 0.7f, 1f, 0);
+        this.createObject(position, shape, world, mass, 1f, 0);
         this.body.setLinearVelocity(0, 0);
     }
 

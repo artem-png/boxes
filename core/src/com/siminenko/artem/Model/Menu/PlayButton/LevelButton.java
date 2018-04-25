@@ -24,7 +24,6 @@ public class LevelButton {
     Sprite button;
     Sprite buttonPressed;
     Sprite icon;
-    Sprite whitebg;
     Vector2 size = new Vector2(6.5f, 6.5f);
     float xd;
     float yd;
@@ -34,7 +33,6 @@ public class LevelButton {
     public LevelButton() {
         button = new Sprite(new Texture("menu/circleOrangeLight.png"));
         buttonPressed = new Sprite(new Texture("menu/circleOrangeDark.png"));
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         icon = new Sprite(new Texture("menu/levels.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
@@ -53,6 +51,7 @@ public class LevelButton {
                 if (vector3.x > position.x - size.x/2 && vector3.x < position.x + size.x/2) {
                     if (vector3.y > position.y - size.y/2 && vector3.y < position.y + size.y/2) {
                         isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -70,13 +69,6 @@ public class LevelButton {
         batch.draw(icon, position.x - 3.25f, position.y - 3.25f, size.x, size.y);
         batch.end();
         batch.begin();
-
-        if (isPressed) {
-            Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, 1f - (float) timePressed / (float) timeSetting);
-            batch.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            batch.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public boolean isReady() {
@@ -87,6 +79,5 @@ public class LevelButton {
         button.getTexture().dispose();
         buttonPressed.getTexture().dispose();
         icon.getTexture().dispose();
-        whitebg.getTexture().dispose();
     }
 }

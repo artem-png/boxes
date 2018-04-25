@@ -19,19 +19,16 @@ import com.siminenko.artem.MyGdxGame;
  */
 
 public class MenuIcon {
-    boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
     Vector2 size = new Vector2(6, 6);
     Vector2 position = new Vector2(2, MyGdxGame.height - 2 - size.y);
     static Sprite button;
-    static Sprite whitebg;
 
     public boolean disposeAll = false;
 
     public static void init() {
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         button = new Sprite(new Texture("menu/buttonHome.png"));
     }
 
@@ -51,6 +48,7 @@ public class MenuIcon {
                 if (vector3.x > position.x - size.x && vector3.x < position.x + size.x) {
                     if (vector3.y > position.y - size.y && vector3.y < position.y + size.y) {
                         isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -59,17 +57,6 @@ public class MenuIcon {
 
     public void render(SpriteBatch batch) {
         batch.draw(this.button, position.x, position.y, size.x, size.y);
-
-        if (isPressed) {
-            Color c = batch.getColor();
-            float alpha = 1f - (float) (timePressed) / (float) timeSetting;
-            if (alpha >= 0.8f) {
-                alpha = 1f;
-            }
-            batch.setColor(c.r, c.g, c.b, alpha);
-            batch.draw(this.whitebg, -10, -10, MyGdxGame.width+20, MyGdxGame.height+20);
-            batch.setColor(c.r, c.g, c.b, 1);
-        }
     }
 
     public void dispose() {

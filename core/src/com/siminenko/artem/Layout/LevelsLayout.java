@@ -30,10 +30,6 @@ public class LevelsLayout implements LayoutInterface {
     LevelGenerator levelGenerator;
     static Sprite arrow;
 
-    static Sprite whitebg;
-    int timeSetting = 15;
-    int timePressed = timeSetting;
-
     int levelsCount;
 
     int level;
@@ -45,6 +41,7 @@ public class LevelsLayout implements LayoutInterface {
         this.level = Progress.getNextLevelInt() / 12 + 1;
         levelGenerator = new LevelGenerator(level);
         levelsCount = Progress.levels.length;
+        MyGdxGame.setUp(15, false);
     }
 
     public void setLevel(int level) {
@@ -53,15 +50,11 @@ public class LevelsLayout implements LayoutInterface {
     }
 
     public static void init() {
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         arrow = new Sprite(new Texture("menu/backIcon.png"));
     }
 
     @Override
     public void act(float delta) {
-        if (timeSetting >= 0) {
-            timeSetting--;
-        }
         background.act();
         backIcon.act();
         topPanel.act();
@@ -113,12 +106,6 @@ public class LevelsLayout implements LayoutInterface {
                     arrow.getScaleY(),
                     180
             );
-        }
-        if (timeSetting > 0) {
-            Color c = MyGdxGame.batchDynamic.getColor();
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
-            MyGdxGame.batchDynamic.draw(this.whitebg, -10, -10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
         }
         MyGdxGame.batchDynamic.end();
         batch.begin();

@@ -48,6 +48,10 @@ public abstract class AObject {
         this.body.setGravityScale(scale);
     }
 
+    public void setAngularVelocity(float scale) {
+        this.body.setAngularVelocity(scale);
+    }
+
     public boolean isAway() {
         return body.getPosition().y < -30
                 || body.getPosition().x > MyGdxGame.width + 30

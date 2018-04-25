@@ -9,6 +9,7 @@ import com.siminenko.artem.Model.Level.Levels.Level1;
 import com.siminenko.artem.Model.Level.Levels.Level2;
 import com.siminenko.artem.Model.Level.Levels.Level3;
 import com.siminenko.artem.Model.Level.Levels.Level4;
+import com.siminenko.artem.Model.Level.Levels.Level5;
 
 /**
  * Created by User on 22.04.2018.
@@ -16,7 +17,7 @@ import com.siminenko.artem.Model.Level.Levels.Level4;
 
 public class Progress {
     public static final String progress = "progressLevel4";
-    public static int[] levels = new int[50];
+    public static int[] levels = new int[5];
 
     public void init() {
         Preferences prefs = Gdx.app.getPreferences(progress);
@@ -67,12 +68,12 @@ public class Progress {
             level = new Level2();
         } else if (index == 3) {
             level = new Level3();
-        }  else if (index == 4) {
+        } else if (index == 4) {
             level = new Level4();
-        } else {
-            level = new Level4();
-            index = 4;
+        } else if (index == 5) {
+            level = new Level5();
         }
+
         level.setNumber(index);
 
         return level;

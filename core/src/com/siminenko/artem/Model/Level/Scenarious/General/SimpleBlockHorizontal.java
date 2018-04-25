@@ -7,22 +7,20 @@ import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.AScenario;
 import com.siminenko.artem.Model.ObstaclePanel;
-import com.siminenko.artem.Model.ObstacleVerticalPanel;
 import com.siminenko.artem.Model.Player;
+import com.siminenko.artem.MyGdxGame;
 
 /**
  * Created by User on 22.04.2018.
  */
 
-public class SimpleBlockVertical extends AScenario {
+public class SimpleBlockHorizontal extends AScenario {
 
-    public SimpleBlockVertical(World world, Player player, ALevel level, int delay, float rotation, Vector2 position) {
+    public SimpleBlockHorizontal(World world, Player player, ALevel level, int delay, float rotation) {
         this.level = level;
         this.world = world;
         this.player = player;
-        ObstacleVerticalPanel o = new ObstacleVerticalPanel(world, position, 0, 0, 0.8f);
-        o.setAngularVelocity(rotation);
-        this.objects.add(o);
+        this.objects.add(new ObstaclePanel(world, getStandartPosition()));
         this.doDelay = delay;
     }
 

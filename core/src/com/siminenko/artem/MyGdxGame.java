@@ -4,6 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
@@ -39,6 +41,11 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Tex tex;
     public static Progress progress;
 
+    Sprite whitebg;
+    static int time;
+    static int timeSetting;
+    static boolean isUp = false;
+
     @Override
     public void create() {
         tex = new Tex();
@@ -51,7 +58,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
         batchFont = new SpriteBatch();
-
+        whitebg = new Sprite(new Texture("menu/whitebg.png"));
 
         progress.init();
         FailedText.init();
@@ -78,17 +85,36 @@ public class MyGdxGame extends ApplicationAdapter {
         layoutManager.push(new MenuLayout());
     }
 
+    public static void setUp(int time, boolean isUp) {
+        MyGdxGame.isUp = isUp;
+        MyGdxGame.time = time;
+        MyGdxGame.timeSetting = time;
+    }
+
     @Override
     public void render() {
         Gdx.gl.glClearColor(0.9f, 0.9f, 0.9f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+        time--;
+
         batch.setProjectionMatrix(camera.combined);
         batchDynamic.setProjectionMatrix(camera.combined);
         batch.begin();
         layoutManager.render(batch);
         batch.end();
         layoutManager.act(Gdx.graphics.getDeltaTime());
+        batchDynamic.begin();
+        if (time > 0) {
+            if (isUp) {
+                batchDynamic.setColor(1, 1, 1, 1f - (float) time / (float) timeSetting);
+            } else {
+                batchDynamic.setColor(1, 1, 1, (float) time / (float) timeSetting);
+            }
+            batchDynamic.draw(whitebg, -5, -5, width + 10, height + 10);
+        }
+        batchDynamic.end();
+        batchDynamic.setColor(batchDynamic.getColor().r, batchDynamic.getColor().g, batchDynamic.getColor().b, 1);
     }
     @Override
     public void dispose() {

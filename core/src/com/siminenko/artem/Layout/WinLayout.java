@@ -27,10 +27,6 @@ public class WinLayout implements LayoutInterface {
     LevelText levelText;
     int level;
 
-    static Sprite whitebg;
-    int timeSetting = 15;
-    int timePressed = timeSetting;
-
     public WinLayout(int level) {
         modelPicker = new ModelPicker();
         background = new BackgroundCircle(3);
@@ -39,17 +35,15 @@ public class WinLayout implements LayoutInterface {
         successText = new CompletedText();
         levelText = new LevelText(level - 1, Color.DARK_GRAY);
         this.level = level;
+        MyGdxGame.setUp(15, false);
     }
 
     public static void init() {
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
+
     }
 
     @Override
     public void act(float delta) {
-        if (timeSetting >= 0) {
-            timeSetting--;
-        }
         modelPicker.act();
         background.act();
         continueText.act();
@@ -67,12 +61,6 @@ public class WinLayout implements LayoutInterface {
         levelText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
         continueText.render(MyGdxGame.batchDynamic);
-        if (timeSetting > 0) {
-            Color c = MyGdxGame.batchDynamic.getColor();
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, (float) timeSetting / (float) timePressed);
-            MyGdxGame.batchDynamic.draw(this.whitebg, - 10, - 10, MyGdxGame.width + 20, MyGdxGame.height + 20);
-            MyGdxGame.batchDynamic.setColor(c.r, c.g, c.b, 1);
-        }
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
