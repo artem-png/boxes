@@ -16,11 +16,11 @@ import com.siminenko.artem.MyGdxGame;
 
 public class SimpleBlockHorizontal extends AScenario {
 
-    public SimpleBlockHorizontal(World world, Player player, ALevel level, int delay, float rotation) {
+    public SimpleBlockHorizontal(World world, Player player, ALevel level, int delay, float rotation, Vector2 position, Vector2 speed, int x, int y) {
         this.level = level;
         this.world = world;
         this.player = player;
-        this.objects.add(new ObstaclePanel(world, getStandartPosition()));
+        this.objects.add(new ObstaclePanel(world, position, speed, rotation, x, y));
         this.doDelay = delay;
     }
 

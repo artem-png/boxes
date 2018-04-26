@@ -20,7 +20,6 @@ public abstract class AObject {
     Shape shape;
     FixtureDef fixtureDef;
     Fixture fixture;
-    final int MAX_SPEED = -40;
     World world;
 
     boolean isDisposed = false;

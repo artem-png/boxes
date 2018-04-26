@@ -13,7 +13,7 @@ import com.siminenko.artem.Model.Data.ObstaclePanelData;
 public class ObstacleTriangle extends AObject {
     int size;
 
-    public ObstacleTriangle(World world, Vector2 position, int size) {
+    public ObstacleTriangle(World world, Vector2 position, int size, Vector2 speed, float initRotation, float rotation, float mass) {
         this.world = world;
         PolygonShape shape = new PolygonShape();
         Vector2[] vector2 = new Vector2[3];
@@ -25,9 +25,10 @@ public class ObstacleTriangle extends AObject {
         }
         shape.set(vector2);
         this.shape = shape;
-        this.createObject(position, shape, world, 0.9f, 1f, 0);
-        this.body.setLinearVelocity(0, 0);
-        this.body.setTransform(this.body.getPosition(), (float)Math.toRadians(180));
+        this.createObject(position, shape, world, mass, 1f, 0);
+        this.body.setLinearVelocity(speed);
+        this.body.setAngularVelocity(rotation);
+        this.body.setTransform(this.body.getPosition(), (float)Math.toRadians(initRotation));
     }
 
     @Override

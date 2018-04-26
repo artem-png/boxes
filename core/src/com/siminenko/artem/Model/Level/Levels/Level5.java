@@ -31,7 +31,8 @@ public class Level5 extends ALevel {
                 this,
                 30,
                 0,
-                new Vector2(MyGdxGame.width/2 - 10, MyGdxGame.height + 10)
+                new Vector2(MyGdxGame.width / 2 - 10, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
@@ -39,7 +40,8 @@ public class Level5 extends ALevel {
                 this,
                 0,
                 0,
-                new Vector2(MyGdxGame.width/2 - 5, MyGdxGame.height + 10)
+                new Vector2(MyGdxGame.width / 2 - 5, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
@@ -47,7 +49,8 @@ public class Level5 extends ALevel {
                 this,
                 0,
                 0,
-                new Vector2(MyGdxGame.width/2, MyGdxGame.height + 10)
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
@@ -55,7 +58,8 @@ public class Level5 extends ALevel {
                 this,
                 0,
                 0,
-                new Vector2(MyGdxGame.width/2 + 5, MyGdxGame.height + 10)
+                new Vector2(MyGdxGame.width / 2 + 5, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
@@ -63,31 +67,79 @@ public class Level5 extends ALevel {
                 this,
                 0,
                 0,
-                new Vector2(MyGdxGame.width/2 + 10, MyGdxGame.height + 10)
+                new Vector2(MyGdxGame.width / 2 + 10, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
                 this.player,
                 this,
                 140,
-                15,
-                new Vector2(MyGdxGame.width/2 - 8, MyGdxGame.height + 10)
+                25,
+                new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
                 this.player,
                 this,
                 0,
-                15,
-                new Vector2(MyGdxGame.width/2 + 8, MyGdxGame.height + 10)
+                25,
+                new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 10),
+                new Vector2(0, 0)
         ));
         this.aScenarioVector2.add(new SimpleBlockVertical(
                 GameLayout.world,
                 this.player,
                 this,
-                70,
-                15,
-                new Vector2(MyGdxGame.width/2, MyGdxGame.height + 10)
+                50,
+                25,
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
+                new Vector2(0, 0)
+        ));
+        this.aScenarioVector2.add(new SimpleBlockVertical(
+                GameLayout.world,
+                this.player,
+                this,
+                50,
+                25,
+                new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 10),
+                new Vector2(0, 0)
+        ));
+        this.aScenarioVector2.add(new SimpleBlockVertical(
+                GameLayout.world,
+                this.player,
+                this,
+                0,
+                25,
+                new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 10),
+                new Vector2(0, 0)
+        ));
+
+        this.aScenarioVector2.add(new SimpleBlockVertical(
+                GameLayout.world,
+                this.player,
+                this,
+                130,
+                35 + r.nextInt(3),
+                new Vector2(-10, MyGdxGame.height),
+                new Vector2(17, 0)
+        ));
+        this.aScenarioVector2.add(new SimpleBlockVertical(
+                GameLayout.world,
+                this.player,
+                this,
+                0,
+                35 + r.nextInt(3),
+                new Vector2(MyGdxGame.width + 10, MyGdxGame.height),
+                new Vector2(-17, 0)
+        ));
+        this.aScenarioVector2.add(new SimpleBlockBig(
+                GameLayout.world,
+                this.player,
+                this,
+                50,
+                0
         ));
     }
 }

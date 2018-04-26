@@ -16,11 +16,11 @@ import com.siminenko.artem.Model.Player;
 
 public class SimpleBlockCircle extends AScenario {
 
-    public SimpleBlockCircle(World world, Player player, ALevel level, int delay, int size, Vector2 vector2, Vector2 position) {
+    public SimpleBlockCircle(World world, Player player, ALevel level, int delay, int size, Vector2 speed, Vector2 position) {
         this.level = level;
         this.world = world;
         this.player = player;
-        this.objects.add(new ObstacleCircle(world, position, vector2, size));
+        this.objects.add(new ObstacleCircle(world, position, speed, size));
         this.doDelay = delay;
     }
 

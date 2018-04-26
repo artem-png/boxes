@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.AScenario;
-import com.siminenko.artem.Model.ObstaclePanel;
+import com.siminenko.artem.Model.ObstacleTriangle;
 import com.siminenko.artem.Model.ObstacleVerticalPanel;
 import com.siminenko.artem.Model.Player;
 
@@ -14,13 +14,13 @@ import com.siminenko.artem.Model.Player;
  * Created by User on 22.04.2018.
  */
 
-public class SimpleBlockVertical extends AScenario {
+public class SimpleBlockTriangle extends AScenario {
 
-    public SimpleBlockVertical(World world, Player player, ALevel level, int delay, float rotation, Vector2 position, Vector2 speed) {
+    public SimpleBlockTriangle(World world, Player player, ALevel level, int delay, float rotation, float initRotation, Vector2 position, Vector2 speed, float mass) {
         this.level = level;
         this.world = world;
         this.player = player;
-        ObstacleVerticalPanel o = new ObstacleVerticalPanel(world, position, 0, 0, 0.8f);
+        ObstacleTriangle o = new ObstacleTriangle(world, position, 1, speed, initRotation, rotation, mass);
         o.setAngularVelocity(rotation);
         o.setVelocity(speed);
         this.objects.add(o);
