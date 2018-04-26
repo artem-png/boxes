@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.AScenario;
+import com.siminenko.artem.Model.Level.TutorialSprite;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.MyGdxGame;
 
@@ -40,6 +41,13 @@ public class TutorialMove extends AScenario {
 
     int reading = 100;
 
+    TutorialSprite tplayer;
+    TutorialSprite tplus;
+    TutorialSprite tblock;
+    TutorialSprite tequal;
+    TutorialSprite tdeath;
+
+
     public TutorialMove(World world, Player player, ALevel level, int delay) {
         this.level = level;
         this.world = world;
@@ -52,6 +60,12 @@ public class TutorialMove extends AScenario {
         death = new Sprite(new Texture("tutorial/sad.png"));
         equal = new Sprite(new Texture("tutorial/equal.png"));
         shadow = new Sprite(new Texture("menu/bgshadow.png"));
+
+        tplayer = new TutorialSprite(Tex.player1, new Vector2(1, 49), new Vector2(9, 9));
+        tplus = new TutorialSprite(plus, new Vector2(12, 52), new Vector2(3, 3));
+        tblock = new TutorialSprite(Tex.rectangle1, new Vector2(20.5f, 50), new Vector2(2, 7));
+        tequal = new TutorialSprite(equal, new Vector2(28f, 52f), new Vector2(3, 3));
+        tdeath = new TutorialSprite(death, new Vector2(36, 50f), new Vector2(7, 7));
     }
 
     @Override
@@ -92,6 +106,11 @@ public class TutorialMove extends AScenario {
                 goLeft = true;
             }
         }
+        tplayer.act();
+        tblock.act();
+        tequal.act();
+        tdeath.act();
+        tplus.act();
     }
 
     @Override
@@ -107,12 +126,11 @@ public class TutorialMove extends AScenario {
             batch.setColor(color.r, color.g, color.b, 1);
 
             batch.draw(shadow, -5, 48, MyGdxGame.width + 10, 11);
-            batch.draw(Tex.baloon1, 1, 49, 9, 9);
-            batch.draw(plus, 12f, 52f, 3, 3);
-            batch.draw(Tex.rectangle1, 20.5f, 50, 2, 7);
-            batch.draw(equal, 28f, 52f, 3, 3);
-            batch.draw(death, 36, 50f, 7, 7);
-
+            tplayer.render(batch);
+            tblock.render(batch);
+            tequal.render(batch);
+            tdeath.render(batch);
+            tplus.render(batch);
         }
     }
 

@@ -75,7 +75,7 @@ public class Level5 extends ALevel {
                 this.player,
                 this,
                 140,
-                25,
+                20,
                 new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 10),
                 new Vector2(0, 0)
         ));
@@ -84,7 +84,7 @@ public class Level5 extends ALevel {
                 this.player,
                 this,
                 0,
-                25,
+                20,
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 10),
                 new Vector2(0, 0)
         ));
@@ -92,8 +92,8 @@ public class Level5 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                50,
-                25,
+                90,
+                20,
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
                 new Vector2(0, 0)
         ));
@@ -101,8 +101,8 @@ public class Level5 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                50,
-                25,
+                90,
+                20,
                 new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 10),
                 new Vector2(0, 0)
         ));
@@ -111,7 +111,7 @@ public class Level5 extends ALevel {
                 this.player,
                 this,
                 0,
-                25,
+                20,
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 10),
                 new Vector2(0, 0)
         ));
@@ -120,8 +120,8 @@ public class Level5 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                130,
-                35 + r.nextInt(3),
+                150,
+                30 + r.nextInt(3),
                 new Vector2(-10, MyGdxGame.height),
                 new Vector2(17, 0)
         ));
@@ -130,7 +130,7 @@ public class Level5 extends ALevel {
                 this.player,
                 this,
                 0,
-                35 + r.nextInt(3),
+                30 + r.nextInt(3),
                 new Vector2(MyGdxGame.width + 10, MyGdxGame.height),
                 new Vector2(-17, 0)
         ));

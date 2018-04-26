@@ -7,6 +7,7 @@ import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockBig;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleBomb;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockTriangle;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockVertical;
+import com.siminenko.artem.Model.Level.Scenarious.Level6.TutorialBomb;
 import com.siminenko.artem.MyGdxGame;
 
 import java.util.Random;
@@ -25,16 +26,17 @@ public class Level6 extends ALevel {
     public void init() {
         Random r = new Random();
 
+        this.aScenarioVector2.add(new TutorialBomb(GameLayout.world, this.player, this, 0));
         SimpleBlockCircleBomb o = new SimpleBlockCircleBomb(
                 GameLayout.world,
                 this.player,
                 this,
-                50,
+                90,
                 8,
                 new Vector2(0, -5),
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 5),
                 0.9f,
-                30,
+                20,
                 110
         );
         o.gravityScale = 0.5f;
@@ -44,12 +46,12 @@ public class Level6 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                60,
+                80,
                 5,
                 new Vector2(0, -3),
                 new Vector2(MyGdxGame.width / 2 - 5, MyGdxGame.height + 5),
                 0.9f,
-                15,
+                10,
                 90
         );
         o.gravityScale = 0.3f;
@@ -64,7 +66,7 @@ public class Level6 extends ALevel {
                 new Vector2(0, -3),
                 new Vector2(MyGdxGame.width / 2 + 5, MyGdxGame.height + 5),
                 0.9f,
-                15,
+                10,
                 90
         );
         o.gravityScale = 0.3f;
@@ -75,7 +77,7 @@ public class Level6 extends ALevel {
                 GameLayout.world,
                 player,
                 this,
-                80,
+                90,
                 0,
                 180,
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 5),
@@ -100,7 +102,7 @@ public class Level6 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                60,
+                90,
                 3,
                 new Vector2(0, -3),
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 5),
