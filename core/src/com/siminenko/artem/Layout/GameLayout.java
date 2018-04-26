@@ -89,6 +89,7 @@ public class GameLayout implements LayoutInterface {
         }
         if (level.isComplete()) {
             if (!isWin) {
+                timelapse += 90;
                 MyGdxGame.setUp(60, true);
             }
             isWin = true;

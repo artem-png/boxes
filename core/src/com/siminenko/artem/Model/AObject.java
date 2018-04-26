@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -21,6 +22,7 @@ public abstract class AObject {
     FixtureDef fixtureDef;
     Fixture fixture;
     World world;
+    ALevel level;
 
     boolean isDisposed = false;
 
@@ -37,6 +39,10 @@ public abstract class AObject {
 
         fixture = body.createFixture(fixtureDef);
         this.body.setActive(false);
+    }
+
+    public void setLevel(ALevel level) {
+        this.level = level;
     }
 
     public void setVelocity(Vector2 vector2) {

@@ -22,6 +22,10 @@ public class ObstacleTriangle extends AObject {
             vector2[0] = new Vector2(0f, 5f);
             vector2[1] = new Vector2(-4.6f, -3f);
             vector2[2] = new Vector2(4.6f, -3f);
+        } else if (size == 2) {
+            vector2[0] = new Vector2(0f, 2f);
+            vector2[1] = new Vector2(-1.5f, -1f);
+            vector2[2] = new Vector2(1.5f, -1f);
         }
         shape.set(vector2);
         this.shape = shape;
@@ -38,17 +42,32 @@ public class ObstacleTriangle extends AObject {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(
-                Tex.triangle1,
-                this.body.getPosition().x - 4.6f,
-                this.body.getPosition().y - 3f,
-                4.6f,
-                3,
-                9.2f,
-                8,
-                Tex.rectangle1.getScaleX(),
-                Tex.rectangle1.getScaleY(),
-                (float) Math.toDegrees(this.body.getAngle())
-        );
+        if (size == 1) {
+            batch.draw(
+                    Tex.triangle1,
+                    this.body.getPosition().x - 4.6f,
+                    this.body.getPosition().y - 3f,
+                    4.6f,
+                    3,
+                    9.2f,
+                    8,
+                    Tex.rectangle1.getScaleX(),
+                    Tex.rectangle1.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else {
+            batch.draw(
+                    Tex.triangle1,
+                    this.body.getPosition().x - 1.5f,
+                    this.body.getPosition().y - 1f,
+                    1.5f,
+                    1,
+                    3f,
+                    3,
+                    Tex.rectangle1.getScaleX(),
+                    Tex.rectangle1.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        }
     }
 }

@@ -36,7 +36,7 @@ public class Player extends AObject {
         this.shape = shape;
 
 
-        this.createObject(position, this.shape, world, 0.45f, 0.5f, 0f);
+        this.createObject(position, this.shape, world, 0.30f, 0.5f, 0f);
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6));

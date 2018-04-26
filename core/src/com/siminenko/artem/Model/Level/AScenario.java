@@ -19,6 +19,7 @@ public abstract class AScenario {
     protected ALevel level;
     public boolean isDead = false;
     public int doDelay;
+    public float gravityScale = 1;
     public Vector<AObject> objects = new Vector<AObject>();
 
     public void act() {
