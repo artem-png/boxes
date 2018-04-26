@@ -54,8 +54,8 @@ public class ObstacleCircleBomb extends AObject {
             this.body.applyLinearImpulse(new Vector2(1000, 1000), new Vector2(body.getPosition().x, body.getPosition().y), true);
             Random random = new Random();
             for (int i = 1; i < this.count; i++) {
-                int xSpeed = random.nextInt(200) - 100;
-                int ySpeed = random.nextInt(200) - 100;
+                int xSpeed = random.nextInt(80) - 40;
+                int ySpeed = random.nextInt(100) - 50;
                 int rotation = random.nextInt(30);
                 ObstacleTriangle obstacleTriangle = new ObstacleTriangle(
                         world,
