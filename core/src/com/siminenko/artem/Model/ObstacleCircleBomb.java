@@ -15,13 +15,14 @@ public class ObstacleCircleBomb extends AObject {
     float size;
     Vector2 origin;
 
-    boolean isUp = false;
     float setting = 40;
     float settingNow = setting;
-    float delta = 0.02f;
+    float delta = 0.00f;
+    float a = 0.00f;
     float color = 1f;
 
     int count;
+    int expTimeSetting;
     int expTime;
 
     boolean isExplosionComplete = false;
@@ -37,6 +38,7 @@ public class ObstacleCircleBomb extends AObject {
         origin = new Vector2(size / 2, size / 2);
         this.count = count;
         this.expTime = expTime;
+        this.expTimeSetting = expTime;
     }
 
     @Override
@@ -75,28 +77,16 @@ public class ObstacleCircleBomb extends AObject {
     }
 
     public void alphaChange() {
-        if (isUp) {
-            color += delta;
-            settingNow--;
-            if (settingNow <= 0) {
-                isUp = false;
-                settingNow = setting;
-            }
-        } else {
-            color -= delta;
-            settingNow--;
-            if (settingNow <= 0) {
-                isUp = true;
-                settingNow = setting;
-            }
-        }
+        delta = 0.00f + (float)Math.pow((double)0.7f * (1f - (float)expTime / (float)expTimeSetting), 1.7f);
+        a += delta;
+        color = Math.abs((float)Math.cos(this.a));
     }
 
     @Override
     public void render(SpriteBatch batch) {
         batch.setColor(batch.getColor().r, batch.getColor().g, batch.getColor().b, color);
         batch.draw(
-                Tex.circleBomb,
+                Tex.circle1,
                 this.body.getPosition().x - size / 2,
                 this.body.getPosition().y - size / 2,
                 origin.x,

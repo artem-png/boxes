@@ -16,10 +16,12 @@ import com.siminenko.artem.MyGdxGame;
  * Created by artem on 4/19/18.
  */
 public class Player extends AObject {
-    int fingerDistance = Gdx.graphics.getHeight() / 7;
+    int fingerDistance = Gdx.graphics.getHeight() / 15;
     Ballon ballon;
 
     int touchDelay = 10;
+
+    Vector2 touch = new Vector2();
 
     public Player(World world, Vector2 position) {
         this.world = world;
@@ -95,6 +97,9 @@ public class Player extends AObject {
             return;
         }
         touchDelay--;
+        if (Gdx.input.justTouched()) {
+            touch = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        }
         if (touchDelay <= 0 && Gdx.input.isTouched() && !Gdx.input.justTouched()) {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y - fingerDistance, 0));
