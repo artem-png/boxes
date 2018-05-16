@@ -68,8 +68,9 @@ public class Ballon extends AObject {
             ObstacleCircle obstacleTriangle = new ObstacleCircle(
                     world,
                     new Vector2(body.getPosition().x, body.getPosition().y - 0.5f),
-                    new Vector2(random.nextInt(6) - 3, random.nextInt(6) - 3),
-                    0.7f
+                    new Vector2(random.nextInt(60) - 30, random.nextInt(60) - 30),
+                    1f,
+                    1f
             );
             obstacleTriangle.body.setActive(true);
             this.level.aObjectVector2.add(obstacleTriangle);

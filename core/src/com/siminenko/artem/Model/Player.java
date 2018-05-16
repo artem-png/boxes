@@ -23,7 +23,8 @@ public class Player extends AObject {
 
     int touchDelay = 10;
 
-    Vector2 touch = new Vector2();
+    Vector3 touch = new Vector3();
+    Vector2 bodyTouch = new Vector2();
 
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
@@ -65,6 +66,20 @@ public class Player extends AObject {
                 body.setAngularVelocity(0);
             }
         }
+
+        if (body.getPosition().x < 0) {
+            body.setTransform(0, body.getPosition().y, body.getAngle());
+        }
+        if (body.getPosition().x > MyGdxGame.width) {
+            body.setTransform(MyGdxGame.width, body.getPosition().y, body.getAngle());
+        }
+
+        if (body.getPosition().y < 0) {
+            body.setTransform(body.getPosition().x, 0, body.getAngle());
+        }
+        if (body.getPosition().y > MyGdxGame.height) {
+            body.setTransform(body.getPosition().x, MyGdxGame.height, body.getAngle());
+        }
     }
 
     public void stop() {
@@ -100,14 +115,16 @@ public class Player extends AObject {
         }
         touchDelay--;
         if (Gdx.input.justTouched()) {
-            touch = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            touch = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+            bodyTouch = new Vector2(body.getPosition().x, body.getPosition().y);
         }
         if (touchDelay <= 0 && Gdx.input.isTouched() && !Gdx.input.justTouched()) {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y - fingerDistance, 0));
+            Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y, 0));
+            currentPosition.set(currentPosition.x + (bodyTouch.x - touch.x), currentPosition.y + (bodyTouch.y - touch.y), 0);
             this.body.setLinearVelocity(
-                    -(body.getPosition().x - currentPosition.x) * 10,
-                    -(body.getPosition().y - currentPosition.y) * 10
+                    -(body.getPosition().x - currentPosition.x) * 8,
+                    -(body.getPosition().y - currentPosition.y) * 8
             );
         } else {
             this.body.setLinearVelocity(0, 0);
