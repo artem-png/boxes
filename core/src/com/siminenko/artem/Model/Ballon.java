@@ -31,7 +31,6 @@ public class Ballon extends AObject {
         Tex.baloon1.setOrigin(6, 6);
         this.body.setActive(true);
         this.level = level;
-        System.out.println(level);
     }
 
     public void act() {
