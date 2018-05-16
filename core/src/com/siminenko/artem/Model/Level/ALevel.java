@@ -3,6 +3,8 @@ package com.siminenko.artem.Model.Level;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.AObject;
+import com.siminenko.artem.Model.Game.Particles;
+import com.siminenko.artem.Model.Game.ProgressBar;
 import com.siminenko.artem.Model.Player;
 
 import java.util.Vector;
@@ -16,16 +18,31 @@ public abstract class ALevel {
     public Vector<AScenario> aScenarioVector2 = new Vector<AScenario>();
     public Vector<AObject> aObjectVector2 = new Vector<AObject>();
     public int level;
+    ProgressBar bar;
+    Particles particles;
 
     public abstract void init();
 
+    public void afterInit()
+    {
+        this.bar = new ProgressBar(this);
+        this.particles = new Particles();
+    }
+
     public void act() {
+        particles.act();
         if (aScenarioVector2.size() > 0) {
             aScenarioVector2.firstElement().act();
             if (aScenarioVector2.firstElement().doDelay <= 0) {
                 aScenarioVector2.firstElement().action();
                 if (aScenarioVector2.firstElement().isDead) {
                     aScenarioVector2.remove(aScenarioVector2.firstElement());
+                    if (aScenarioVector2.size() > 0 && aScenarioVector2.firstElement().doDelay <= 0) {
+                        aScenarioVector2.firstElement().action();
+                        if (aScenarioVector2.firstElement().isDead) {
+                            aScenarioVector2.remove(aScenarioVector2.firstElement());
+                        }
+                    }
                 }
             }
         }
@@ -55,6 +72,12 @@ public abstract class ALevel {
         for (int i = 0; i < aObjectVector2.size(); i++) {
             aObjectVector2.get(i).render(b);
         }
+        bar.render(b);
+    }
+
+    public void renderBG(SpriteBatch batch){
+        particles.render(batch);
+
     }
 
     public void dispose() {

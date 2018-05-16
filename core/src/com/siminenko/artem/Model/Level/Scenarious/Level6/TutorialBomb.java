@@ -42,11 +42,19 @@ public class TutorialBomb extends AScenario {
         oclock = new Sprite(new Texture("oclock.png"));
         explode = new Sprite(new Texture("explosion.png"));
 
-        tbomb = new TutorialSprite(Tex.circleBomb, new Vector2(1.5f, 49.5f), new Vector2(8, 8));
+        tbomb = new TutorialSprite(Tex.circle1, new Vector2(1.5f, 49.5f), new Vector2(8, 8));
+        tbomb.isPulse = true;
+        tbomb.expTimeSetting = 200;
+        tbomb.expTime = 200;
+        tbomb.down = true;
         tplus = new TutorialSprite(plus, new Vector2(12, 52), new Vector2(3, 3));
+        tplus.down = true;
         ttime = new TutorialSprite(oclock, new Vector2(18f, 50), new Vector2(7, 7));
+        ttime.down = true;
         tequal = new TutorialSprite(equal, new Vector2(28f, 52f), new Vector2(3, 3));
-        texplode = new TutorialSprite(explode, new Vector2(35, 50f), new Vector2(7, 7));
+        tequal.down = true;
+        texplode = new TutorialSprite(explode, new Vector2(32.5f, 48.5f), new Vector2(10, 10));
+        texplode.down = true;
     }
 
     @Override
@@ -72,5 +80,14 @@ public class TutorialBomb extends AScenario {
     @Override
     public void action() {
         isDead = true;
+    }
+
+    public void dispose()
+    {
+        this.tbomb.dispose();
+        this.ttime.dispose();
+        this.tequal.dispose();
+        this.texplode.dispose();
+        this.tplus.dispose();
     }
 }

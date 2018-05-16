@@ -9,7 +9,9 @@ import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Data.UserData;
+import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -23,7 +25,7 @@ public class Player extends AObject {
 
     Vector2 touch = new Vector2();
 
-    public Player(World world, Vector2 position) {
+    public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
 //        shape = new CircleShape();
 //        shape.setRadius(2.5f);         circle
@@ -41,7 +43,7 @@ public class Player extends AObject {
         this.createObject(position, this.shape, world, 0.30f, 0.5f, 0f);
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
-        ballon = new Ballon(world, new Vector2(position.x, 6));
+        ballon = new Ballon(world, new Vector2(position.x, 6), level);
 //        Tex.player1.setOrigin(2.5f, 2.5f); // circle
         Tex.player1.setOrigin(2.9f, 1.8f);
         this.body.setActive(true);

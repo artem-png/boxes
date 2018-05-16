@@ -37,7 +37,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 5),
                 0.9f,
                 20,
-                110
+                140
         );
         o.gravityScale = 0.5f;
         this.aScenarioVector2.add(o);
@@ -52,7 +52,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2 - 5, MyGdxGame.height + 5),
                 0.9f,
                 10,
-                90
+                120
         );
         o.gravityScale = 0.3f;
         this.aScenarioVector2.add(o);
@@ -67,7 +67,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2 + 5, MyGdxGame.height + 5),
                 0.9f,
                 10,
-                90
+                120
         );
         o.gravityScale = 0.3f;
         this.aScenarioVector2.add(o);
@@ -77,7 +77,7 @@ public class Level6 extends ALevel {
                 GameLayout.world,
                 player,
                 this,
-                90,
+                130,
                 0,
                 180,
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 5),
@@ -108,7 +108,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height + 5),
                 0.9f,
                 5,
-                90
+                120
         );
         o.gravityScale = 0.3f;
         this.aScenarioVector2.add(o);
@@ -123,7 +123,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 5),
                 0.9f,
                 5,
-                90
+                120
         );
         o.gravityScale = 0.3f;
         this.aScenarioVector2.add(o);
@@ -138,7 +138,7 @@ public class Level6 extends ALevel {
                 new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 5),
                 0.9f,
                 5,
-                90
+                120
         );
         o.gravityScale = 0.3f;
         this.aScenarioVector2.add(o);

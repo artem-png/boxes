@@ -45,12 +45,13 @@ public class GameLayout implements LayoutInterface {
     ALevel level;
 
     public GameLayout(ALevel level) {
-        player = new Player(world, new Vector2(MyGdxGame.width / 2, 30));
+        player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
         background = new Background();
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
         this.level = level;
         this.level.setPlayer(player);
         this.level.init();
+        this.level.afterInit();
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
@@ -105,6 +106,7 @@ public class GameLayout implements LayoutInterface {
         batch.end();
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
+        level.renderBG(MyGdxGame.batchDynamic);
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
         pauseIcon.render(MyGdxGame.batchDynamic);

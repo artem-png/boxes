@@ -20,6 +20,7 @@ public class SimpleBlockCircleBomb extends AScenario {
         this.level = level;
         this.world = world;
         this.player = player;
+        this.gravityScale = 0.7f;
         ObstacleCircleBomb o = new ObstacleCircleBomb(world, position, speed, size, mass, triangles, expTime);
         o.setGravityScale(this.gravityScale);
         o.setLevel(level);
