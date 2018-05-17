@@ -1,5 +1,6 @@
 package com.siminenko.artem.Model;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -15,6 +16,8 @@ import com.siminenko.artem.Model.Data.ObstaclePanelData;
 public class ObstacleCircle extends AObject {
     float size;
     Vector2 origin;
+    Sprite sprite = Tex.circle1;
+
     public ObstacleCircle(World world, Vector2 position, Vector2 velocity, float size) {
         this.world = world;
         CircleShape shape = new CircleShape();
@@ -27,7 +30,7 @@ public class ObstacleCircle extends AObject {
         origin = new Vector2(size/2, size/2);
     }
 
-    public ObstacleCircle(World world, Vector2 position, Vector2 velocity, float size, float restitution) {
+    public ObstacleCircle(World world, Vector2 position, Vector2 velocity, float size, float restitution, Sprite sprite) {
         this.world = world;
         CircleShape shape = new CircleShape();
         shape.setRadius(size/2);
@@ -37,6 +40,7 @@ public class ObstacleCircle extends AObject {
         this.body.setUserData(new CircleData(this));
         this.body.setLinearVelocity(velocity.x, velocity.y);
         origin = new Vector2(size/2, size/2);
+        this.sprite = sprite;
     }
 
     @Override
@@ -47,15 +51,15 @@ public class ObstacleCircle extends AObject {
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(
-                Tex.circle1,
+                this.sprite,
                 this.body.getPosition().x - size/2,
                 this.body.getPosition().y - size/2,
                 origin.x,
                 origin.y,
                 size,
                 size,
-                Tex.circle1.getScaleX(),
-                Tex.circle1.getScaleY(),
+                this.sprite.getScaleX(),
+                this.sprite.getScaleY(),
                 (float) Math.toDegrees(this.body.getAngle())
         );
     }

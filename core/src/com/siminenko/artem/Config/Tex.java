@@ -15,6 +15,7 @@ public class Tex {
     public static Sprite baloon1;
     public static Sprite player1;
     public static Sprite circle1;
+    public static Sprite circle2;
     public static Sprite rectangle1;
     public static Sprite triangle1;
 
@@ -32,6 +33,7 @@ public class Tex {
         baloon1 = new Sprite(new Texture("baloon.png"));
         player1 = new Sprite(new Texture("player.png"));
         circle1 = new Sprite(new Texture("circle.png"));
+        circle2 = new Sprite(new Texture("circleRed.png"));
         rectangle1 = new Sprite(new Texture("rectanble.png"));
         triangle1 = new Sprite(new Texture("triangle.png"));
     }

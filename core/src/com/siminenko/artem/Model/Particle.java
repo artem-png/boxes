@@ -30,14 +30,14 @@ public class Particle {
     public Particle(Sprite sprite) {
         Random random = new Random();
         this.sprite = sprite;
-        float sizeF = (random.nextInt(10) + 3) / 10f;
+        float sizeF = (random.nextInt(10) + 4) / 10f;
         size = new Vector2(sizeF, sizeF);
         position = new Vector2(random.nextInt(MyGdxGame.width), random.nextInt(MyGdxGame.height));
         alpha = 0.0f;
         rotation = 0;
         rotationSpeed = random.nextInt(100) / 50f;
         speed = new Vector2(random.nextFloat() / 8f * negativeOrPositive(), random.nextFloat() / 8f * negativeOrPositive());
-        duration = 170 + random.nextInt(120);
+        duration = 170 + random.nextInt(100);
         color = new Color();
         color.set(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1);
     }

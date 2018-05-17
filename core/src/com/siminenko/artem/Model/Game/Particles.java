@@ -25,7 +25,8 @@ public class Particles {
     int timeoutSetting = 1;
     int timeout = timeoutSetting;
 
-    int maxParticles = 25;
+    int maxParticles = 35;
+
 
     public void act() {
         timeout--;

@@ -70,7 +70,8 @@ public class Ballon extends AObject {
                     new Vector2(body.getPosition().x, body.getPosition().y - 0.5f),
                     new Vector2(random.nextInt(60) - 30, random.nextInt(60) - 30),
                     1f,
-                    1f
+                    1f,
+                    Tex.circle2
             );
             obstacleTriangle.body.setActive(true);
             this.level.aObjectVector2.add(obstacleTriangle);
