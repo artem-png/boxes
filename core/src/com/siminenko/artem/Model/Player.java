@@ -4,9 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
@@ -26,27 +31,30 @@ public class Player extends AObject {
     Vector3 touch = new Vector3();
     Vector2 bodyTouch = new Vector2();
 
+    // triangle
+    float x0 = 0f;
+    float y0 = 3f;
+    float x1 = -2.9f;
+    float y1 = -1.8f;
+    float x2 = 2.9f;
+    float y2 = -1.8f;
+
+    // triangle big
+    float bigMultiplier = 2.4f;
+
+    boolean isBigger = false;
+    boolean isBig = false;
+    boolean isSizeModified = false;
+    int timeBigger = 0;
+
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
-//        shape = new CircleShape();
-//        shape.setRadius(2.5f);         circle
-//        this.shape = shape;
 
-        PolygonShape shape = new PolygonShape();
-        Vector2[] vector2 = new Vector2[3];
-        vector2[0] = new Vector2(0f, 3f);
-        vector2[1] = new Vector2(-2.9f, -1.8f);
-        vector2[2] = new Vector2(2.9f, -1.8f);
-        shape.set(vector2);
-        this.shape = shape;
-
-
-        this.createObject(position, this.shape, world, 0.30f, 0.5f, 0f);
+        toNormal(position);
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6), level);
-//        Tex.player1.setOrigin(2.5f, 2.5f); // circle
-        Tex.player1.setOrigin(2.9f, 1.8f);
+        Tex.player1.setOrigin(x2, -y2);
         this.body.setActive(true);
     }
 
@@ -80,6 +88,20 @@ public class Player extends AObject {
         if (body.getPosition().y > MyGdxGame.height) {
             body.setTransform(body.getPosition().x, MyGdxGame.height, body.getAngle());
         }
+
+        if (isBigger) {
+            isBigger = false;
+            toBig();
+        }
+
+        if (isSizeModified) {
+            timeBigger--;
+            if (timeBigger <= 0) {
+                toNormal(body.getPosition());
+                isBigger = false;
+                isSizeModified = false;
+            }
+        }
     }
 
     public void stop() {
@@ -89,14 +111,18 @@ public class Player extends AObject {
     @Override
     public void render(SpriteBatch batch) {
         ballon.render(batch);
+        float multi = 1;
+        if (isBig) {
+            multi = bigMultiplier;
+        }
         batch.draw(
                 Tex.player1,
-                this.body.getPosition().x - 2.9f,
-                this.body.getPosition().y - 1.8f,
+                this.body.getPosition().x + x1 * multi,
+                this.body.getPosition().y + y1 * multi,
                 Tex.player1.getOriginX(),
                 Tex.player1.getOriginY(),
-                5.8f,
-                6f,
+                -x1 * multi + x2 * multi,
+                y0 * 2 * multi,
                 Tex.player1.getScaleX(),
                 Tex.player1.getScaleY(),
                 (float) Math.toDegrees(this.body.getAngle())
@@ -129,5 +155,45 @@ public class Player extends AObject {
         } else {
             this.body.setLinearVelocity(0, 0);
         }
+    }
+
+    public void makeBigger(float percent, int time) {
+        if (!isSizeModified) {
+            isBigger = true;
+            isSizeModified = true;
+            timeBigger = time;
+        }
+    }
+
+    public void toBig() {
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vector2 = new Vector2[3];
+        vector2[0] = new Vector2(x0 * bigMultiplier, y0 * bigMultiplier);
+        vector2[1] = new Vector2(x1 * bigMultiplier, y1 * bigMultiplier);
+        vector2[2] = new Vector2(x2 * bigMultiplier, y2 * bigMultiplier);
+        shape.set(vector2);
+        this.shape = shape;
+        isBig = true;
+
+        this.createObject(body.getPosition(), this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
+        this.body.setActive(true);
+
+        Tex.player1.setOrigin(x2 * bigMultiplier, -y2 * bigMultiplier);
+    }
+
+    public void toNormal(Vector2 position) {
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vector2 = new Vector2[3];
+        vector2[0] = new Vector2(x0, y0);
+        vector2[1] = new Vector2(x1, y1);
+        vector2[2] = new Vector2(x2, y2);
+        shape.set(vector2);
+        this.shape = shape;
+        isBig = false;
+
+        this.createObject(position, this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
+        this.body.setActive(true);
+
+        Tex.player1.setOrigin(x2, -y2);
     }
 }

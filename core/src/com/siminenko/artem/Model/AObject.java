@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.MyGdxGame;
 
@@ -27,18 +28,28 @@ public abstract class AObject {
     boolean isDisposed = false;
 
     public void createObject(Vector2 position, Shape shape, World world, float density, float friction, float restitution) {
+        float rotate = 0;
+        if (body != null) {
+            rotate = body.getAngle();
+            GameLayout.world.destroyBody(body);
+        }
         bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(position.x, position.y);
         body = world.createBody(bodyDef);
+        body.setTransform(position.x, position.y, rotate);
+        setShapeToFixture(shape, density, friction, restitution);
+        this.body.setActive(false);
+    }
+
+    protected void setShapeToFixture(Shape shape, float density, float friction, float restitution) {
         fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = density;
         fixtureDef.friction = friction;
         fixtureDef.restitution = restitution;
-
         fixture = body.createFixture(fixtureDef);
-        this.body.setActive(false);
+        body.resetMassData();
     }
 
     public void setLevel(ALevel level) {

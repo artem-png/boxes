@@ -1,14 +1,12 @@
 package com.siminenko.artem.Layout;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.siminenko.artem.Config.Progress;
-import com.siminenko.artem.Listeners.BallonListener;
+import com.siminenko.artem.Listeners.BonusListener;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Player;
@@ -59,7 +57,7 @@ public class GameLayout implements LayoutInterface {
 
     public static void init() {
         world = new World(new Vector2(0, -20f), true);
-        world.setContactListener(new BallonListener());
+        world.setContactListener(new BonusListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
     }
@@ -112,7 +110,7 @@ public class GameLayout implements LayoutInterface {
         pauseIcon.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
-        //dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {

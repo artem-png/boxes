@@ -44,7 +44,7 @@ public class Level8 extends ALevel {
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
                 1,
-                20,
+                14,
                 160
         );
         this.aScenarioVector2.add(cb);
@@ -53,7 +53,7 @@ public class Level8 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                110,
+                130,
                 10,
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
@@ -71,7 +71,7 @@ public class Level8 extends ALevel {
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
                 1,
-                20,
+                14,
                 160
         );
         this.aScenarioVector2.add(cb);
@@ -80,7 +80,7 @@ public class Level8 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                110,
+                130,
                 6,
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
@@ -98,7 +98,7 @@ public class Level8 extends ALevel {
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
                 1,
-                20,
+                14,
                 160
         );
         this.aScenarioVector2.add(cb);
@@ -107,7 +107,7 @@ public class Level8 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                110,
+                130,
                 10,
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
@@ -125,7 +125,7 @@ public class Level8 extends ALevel {
                 new Vector2(0, 0),
                 new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
                 1,
-                20,
+                14,
                 160
         );
         this.aScenarioVector2.add(cb);
@@ -134,12 +134,12 @@ public class Level8 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                170,
+                200,
                 6,
                 new Vector2(25, 15),
                 new Vector2(-5, MyGdxGame.height - 25),
                 1,
-                20,
+                14,
                 80
         );
         this.aScenarioVector2.add(cb);
@@ -148,12 +148,12 @@ public class Level8 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                40,
+                70,
                 6,
                 new Vector2(-25, 15),
                 new Vector2(MyGdxGame.width + 5, MyGdxGame.height - 25),
                 1,
-                20,
+                14,
                 80
         );
         this.aScenarioVector2.add(cb);

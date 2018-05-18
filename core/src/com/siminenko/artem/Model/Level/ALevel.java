@@ -50,7 +50,7 @@ public abstract class ALevel {
             aObjectVector2.get(i).act();
         }
         for (int i = aObjectVector2.size() - 1; i >= 0; i--) {
-            if (aObjectVector2.get(i).isAway()) {
+            if (aObjectVector2.get(i).getDispose()) {
                 aObjectVector2.get(i).dispose();
                 aObjectVector2.remove(i);
             }
