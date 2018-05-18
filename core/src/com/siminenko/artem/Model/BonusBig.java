@@ -58,6 +58,6 @@ public class BonusBig extends ABonus {
 
     public void handlePlayer(Player player) {
         isBonusGiven = true;
-        player.makeBigger(1.5f, 350);
+        player.makeBigger(1.5f, 550);
     }
 }

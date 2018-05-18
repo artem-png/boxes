@@ -40,7 +40,7 @@ public class Player extends AObject {
     float y2 = -1.8f;
 
     // triangle big
-    float bigMultiplier = 2.4f;
+    float bigMultiplier = 2.0f;
 
     boolean isBigger = false;
     boolean isBig = false;
