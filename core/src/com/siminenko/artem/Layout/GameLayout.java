@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Listeners.BonusListener;
+import com.siminenko.artem.Model.Game.Effects;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Player;
@@ -23,6 +24,7 @@ public class GameLayout implements LayoutInterface {
     public static World world;
     public static RayHandler rayHandler;
     public static Box2DDebugRenderer dDebugRenderer;
+    public static Effects effects;
     Player player;
     Background background;
     Sprite whitebg;
@@ -53,6 +55,7 @@ public class GameLayout implements LayoutInterface {
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
+        effects = new Effects();
     }
 
     public static void init() {
@@ -60,11 +63,13 @@ public class GameLayout implements LayoutInterface {
         world.setContactListener(new BonusListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
+        effects = new Effects();
     }
 
     @Override
     public void act(float delta) {
         background.act();
+        effects.act();
         if (GameLayout.isDispose) {
             if (!isDisposeAnimation) {
                 MyGdxGame.setUp(60, true);
@@ -105,6 +110,7 @@ public class GameLayout implements LayoutInterface {
         MyGdxGame.batchDynamic.begin();
         background.render(MyGdxGame.batchDynamic);
         level.renderBG(MyGdxGame.batchDynamic);
+        effects.render(MyGdxGame.batchDynamic);
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
         pauseIcon.render(MyGdxGame.batchDynamic);
@@ -137,5 +143,6 @@ public class GameLayout implements LayoutInterface {
     public void dispose() {
         player.dispose();
         level.dispose();
+        effects.dispose();
     }
 }
