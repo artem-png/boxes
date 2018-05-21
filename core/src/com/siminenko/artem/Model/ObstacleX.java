@@ -1,5 +1,6 @@
 package com.siminenko.artem.Model;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -85,8 +86,14 @@ public class ObstacleX extends AObject implements Destroyable {
 
     @Override
     public void render(SpriteBatch batch) {
+        Sprite s;
+        if (type == ObstacleX.TYPE_DESTROYABLE) {
+            s = Tex.crestDestroyable;
+        } else {
+            s = Tex.crest1;
+        }
         batch.draw(
-                Tex.crest1,
+                s,
                 this.body.getPosition().x - 3f * sizeMultiplier,
                 this.body.getPosition().y - 3f * sizeMultiplier,
                 3f * sizeMultiplier,

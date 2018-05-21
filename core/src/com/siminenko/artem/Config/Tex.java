@@ -20,11 +20,14 @@ public class Tex {
     public static Sprite baloon1;
     public static Sprite player1;
     public static Sprite circle1;
+    public static Sprite circleDestroyable;
     public static Sprite circle2;
     public static Sprite rectangle1;
     public static Sprite triangle1;
     public static Sprite present1;
     public static Sprite crest1;
+    public static Sprite crestDestroyable;
+
 
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
@@ -45,6 +48,8 @@ public class Tex {
         rectangle1 = new Sprite(new Texture("rectanble.png"));
         triangle1 = new Sprite(new Texture("triangle.png"));
         crest1 = new Sprite(new Texture("crest.png"));
+        circleDestroyable = new Sprite(new Texture("circleDestroyable.png"));
+        crestDestroyable = new Sprite(new Texture("crestDestroyable.png"));
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {
