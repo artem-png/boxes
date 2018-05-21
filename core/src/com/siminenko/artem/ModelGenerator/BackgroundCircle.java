@@ -51,15 +51,15 @@ public class BackgroundCircle {
         for (int i = 0; i < circles.size(); i++) {
             if (i % 2 == 1) {
                 if (isPair) {
-                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
+                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 3, circles.get(i).x, circles.get(i).x);
                 } else {
-                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
+                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 3, circles.get(i).x, circles.get(i).x);
                 }
             } else {
                 if (isPair) {
-                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
+                    batch.draw(grey, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 3, circles.get(i).x, circles.get(i).x);
                 } else {
-                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 8, circles.get(i).x, circles.get(i).x);
+                    batch.draw(white, MyGdxGame.width / 2 - circles.get(i).x / 2, MyGdxGame.height / 2 - circles.get(i).x / 2 + 3, circles.get(i).x, circles.get(i).x);
                 }
             }
         }

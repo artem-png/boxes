@@ -43,7 +43,7 @@ public class FailedText {
                 MyGdxGame.batchFont,
                 "FAILED",
                 0,
-                Tex.y * 423,
+                Tex.y * 400,
                 Gdx.graphics.getWidth(),
                 1,
                 false

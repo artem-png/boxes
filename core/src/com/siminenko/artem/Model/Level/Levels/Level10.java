@@ -54,7 +54,7 @@ public class Level10 extends ALevel {
                 new Vector2(0, 0),
                 0,
                 0,
-                15,
+                10,
                 1,
                 2,
                 1

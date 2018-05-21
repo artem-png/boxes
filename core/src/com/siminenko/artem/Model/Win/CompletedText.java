@@ -38,7 +38,7 @@ public class CompletedText {
                 MyGdxGame.batchFont,
                 "COMPLETED",
                 0,
-                Tex.y * 410,
+                Tex.y * 400,
                 Gdx.graphics.getWidth(),
                 1,
                 false

@@ -37,7 +37,7 @@ public class ContinueButton {
         buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (3.0f * xd), "smallfont.ttf");
+        font = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");
     }
 
     public void act() {
@@ -51,7 +51,7 @@ public class ContinueButton {
                 Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 && vector3.x < MyGdxGame.width / 2 + size.x / 2) {
-                    if (vector3.y > MyGdxGame.height / 2 - 7 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2) {
+                    if (vector3.y > MyGdxGame.height / 2 - 10 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2) {
                         isPressed = true;
                         MyGdxGame.setUp(20, true);
                     }
@@ -64,7 +64,7 @@ public class ContinueButton {
         batch.draw(
                 !isPressed ? button : buttonPressed,
                 MyGdxGame.width / 2 - size.x / 2,
-                MyGdxGame.height / 2 - 7 - size.y / 2,
+                MyGdxGame.height / 2 - 7 - size.y / 2 - 4,
                 size.x,
                 size.y
         );
@@ -73,8 +73,8 @@ public class ContinueButton {
         font.draw(
                 MyGdxGame.batchFont,
                 "CONTINUE",
-                Tex.x * 327,
-                Tex.y * 204
+                Tex.x * 330,
+                Tex.y * 179
         );
         MyGdxGame.batchFont.end();
         batch.begin();

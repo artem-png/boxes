@@ -37,7 +37,7 @@ public class PausedText {
                 MyGdxGame.batchFont,
                 "PAUSED",
                 0,
-                Tex.y * 415,
+                Tex.y * 410,
                 Gdx.graphics.getWidth(),
                 1,
                 false

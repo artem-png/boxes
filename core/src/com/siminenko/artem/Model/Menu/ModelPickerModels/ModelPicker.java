@@ -40,7 +40,7 @@ public class ModelPicker {
         scenarious.act();
         size = scenarious.modifySize(size);
         rotation = scenarious.modifyRotation(rotation);
-        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 10);
+        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 5);
         effects.effects.add(Tex.getParticle(0.8f, new Vector2(this.position.x + this.size.x/2, this.position.y + this.size.y/2), 40));
         effects.act();
     }

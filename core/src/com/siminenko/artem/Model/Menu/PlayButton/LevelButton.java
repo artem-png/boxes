@@ -28,7 +28,7 @@ public class LevelButton {
     float xd;
     float yd;
 
-    Vector2 position = new Vector2(38.4f, MyGdxGame.height / 2 - 3.7f - size.y / 2);
+    Vector2 position = new Vector2(38.4f, MyGdxGame.height / 2 - 3.7f - size.y / 2 - 5);
 
     public LevelButton() {
         button = new Sprite(new Texture("menu/circleOrangeLight.png"));

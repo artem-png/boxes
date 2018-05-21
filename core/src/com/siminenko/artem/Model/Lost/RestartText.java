@@ -68,7 +68,7 @@ public class RestartText {
                 Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
-                    if (vector3.y > MyGdxGame.height / 2 - 20 - size.y / 2 - 5 && vector3.y < MyGdxGame.height / 2 - 7 + size.y / 2 + 5) {
+                    if (vector3.y > MyGdxGame.height / 2 - 23 - size.y / 2 - 5 && vector3.y < MyGdxGame.height / 2 - 10 + size.y / 2) {
                         isPressed = true;
                         MyGdxGame.setUp(20, true);
                     }
@@ -85,7 +85,7 @@ public class RestartText {
                 MyGdxGame.batchFont,
                 "TAP TO RESTART",
                 0,
-                Tex.y * 200,
+                Tex.y * 180,
                 Gdx.graphics.getWidth(),
                 1,
                 false
