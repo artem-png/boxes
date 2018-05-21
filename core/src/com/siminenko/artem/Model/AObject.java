@@ -25,6 +25,10 @@ public abstract class AObject {
     World world;
     ALevel level;
 
+    public boolean isNeedParticles = true;
+
+    boolean isDestroyed = false;
+
     boolean isDisposed = false;
 
     public void createObject(Vector2 position, Shape shape, World world, float density, float friction, float restitution) {

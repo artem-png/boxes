@@ -33,6 +33,7 @@ public class ObstacleTriangle extends AObject {
         this.body.setLinearVelocity(speed);
         this.body.setAngularVelocity(rotation);
         this.body.setTransform(this.body.getPosition(), (float)Math.toRadians(initRotation));
+        this.body.setUserData(this);
     }
 
     @Override

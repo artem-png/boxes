@@ -4,14 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
@@ -102,6 +95,10 @@ public class Player extends AObject {
                 isSizeModified = false;
             }
         }
+
+        if (GameLayout.isWin) {
+            Tex.createParticles(5, 1f, this.body.getPosition());
+        }
     }
 
     public void stop() {
@@ -177,6 +174,7 @@ public class Player extends AObject {
 
         this.createObject(body.getPosition(), this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
         this.body.setActive(true);
+        Tex.createParticles(30, 1, body.getPosition());
 
         Tex.player1.setOrigin(x2 * bigMultiplier, -y2 * bigMultiplier);
     }
@@ -193,6 +191,7 @@ public class Player extends AObject {
 
         this.createObject(position, this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
         this.body.setActive(true);
+        Tex.createParticles(30, 1, body.getPosition());
 
         Tex.player1.setOrigin(x2, -y2);
     }

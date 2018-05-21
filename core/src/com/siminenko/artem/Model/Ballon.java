@@ -38,6 +38,9 @@ public class Ballon extends AObject {
             this.setDispose(true);
         }
         rotation();
+        if (GameLayout.isWin) {
+            Tex.createParticles(5, 1f, this.body.getPosition());
+        }
     }
 
     @Override
@@ -73,6 +76,7 @@ public class Ballon extends AObject {
                     1f,
                     Tex.circle2
             );
+            obstacleTriangle.isNeedParticles = false;
             obstacleTriangle.body.setActive(true);
             this.level.aObjectVector2.add(obstacleTriangle);
         }

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.siminenko.artem.Listeners.BonusListener;
+import com.siminenko.artem.Listeners.DestroyableListener;
 import com.siminenko.artem.Model.Game.Effects;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
@@ -42,7 +42,7 @@ public class GameLayout implements LayoutInterface {
 
     public static boolean isWin = false;
 
-    ALevel level;
+    public static ALevel level;
 
     public GameLayout(ALevel level) {
         player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
@@ -60,7 +60,7 @@ public class GameLayout implements LayoutInterface {
 
     public static void init() {
         world = new World(new Vector2(0, -20f), true);
-        world.setContactListener(new BonusListener());
+        world.setContactListener(new DestroyableListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
         effects = new Effects();

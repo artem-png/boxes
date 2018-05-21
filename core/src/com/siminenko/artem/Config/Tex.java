@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Vector2;
+import com.siminenko.artem.Layout.GameLayout;
+import com.siminenko.artem.Model.EffectSquare;
+
+import java.util.Random;
 
 /**
  * Created by artem on 3/21/18.
@@ -19,6 +24,7 @@ public class Tex {
     public static Sprite rectangle1;
     public static Sprite triangle1;
     public static Sprite present1;
+    public static Sprite crest1;
 
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
@@ -38,6 +44,7 @@ public class Tex {
         circle2 = new Sprite(new Texture("circleRed.png"));
         rectangle1 = new Sprite(new Texture("rectanble.png"));
         triangle1 = new Sprite(new Texture("triangle.png"));
+        crest1 = new Sprite(new Texture("crest.png"));
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {
@@ -49,5 +56,46 @@ public class Tex {
         BitmapFont font20 = generator.generateFont(parameter);
 
         return font20;
+    }
+
+    public static int negativeOrPositive() {
+        Random random = new Random();
+        int result = random.nextInt(2);
+        if (result == 0) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    public static void createParticles(int count, float sizeMulti, Vector2 position) {
+        Random random = new Random();
+        for (int i = 0; i < count; i++) {
+            float sizeF = (random.nextInt(10) + 4) / 13f * sizeMulti;
+            GameLayout.effects.effects.add(new EffectSquare(
+                    new Vector2(position),
+                    new Vector2(sizeF, sizeF),
+                    new Vector2(random.nextFloat() / 3.5f * Tex.negativeOrPositive(), random.nextFloat() / 3.5f * Tex.negativeOrPositive()),
+                    new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1),
+                    0.3f,
+                    random.nextInt(100) / 50f,
+                    40
+            ));
+        }
+    }
+
+    public static EffectSquare getParticle(float sizeMulti, Vector2 position, int time) {
+        Random random = new Random();
+        float sizeF = (random.nextInt(10) + 4) / 13f * sizeMulti;
+        EffectSquare effectSquare = new EffectSquare(
+                new Vector2(position),
+                new Vector2(sizeF, sizeF),
+                new Vector2(random.nextFloat() / 3.5f * Tex.negativeOrPositive(), random.nextFloat() / 3.5f * Tex.negativeOrPositive()),
+                new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1),
+                0.3f,
+                random.nextInt(100) / 50f,
+                time
+        );
+        return effectSquare;
     }
 }

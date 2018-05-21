@@ -25,6 +25,23 @@ public class ObstacleVerticalPanel extends AObject {
         this.shape = shape;
         this.createObject(position, shape, world, mass, 1f, 0);
         this.body.setLinearVelocity(0, 0);
+        this.body.setUserData(this);
+    }
+
+    public ObstacleVerticalPanel(World world, Vector2 position, Vector2 speed, float initRotation, float rotation, int sizeX, int sizeY, float mass) {
+        this.world = world;
+        PolygonShape shape = new PolygonShape();
+        if (sizeX != 0) {
+            shape.setAsBox(sizeX/2, sizeY/2);
+        } else {
+            shape.setAsBox(this.sizeX/2, this.sizeY/2);
+        }
+        this.shape = shape;
+        this.createObject(position, shape, world, mass, 1f, 0);
+        this.body.setLinearVelocity(speed);
+        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, initRotation);
+        this.body.setAngularVelocity(rotation);
+        this.body.setUserData(this);
     }
 
     @Override

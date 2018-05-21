@@ -26,8 +26,8 @@ public class EffectSquare extends AEffect{
 
     public void act() {
         super.act();
-        if (settingTime / 3 > time) {
-            alpha -= 0.03;
+        if (settingTime / 2 > time) {
+            alpha -= 0.02;
             if (alpha <= 0) {
                 alpha = 0;
             }

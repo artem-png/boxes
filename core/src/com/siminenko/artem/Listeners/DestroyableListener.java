@@ -4,14 +4,19 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Model.AObject;
+import com.siminenko.artem.Model.Ballon;
+import com.siminenko.artem.Model.Data.BallonData;
 import com.siminenko.artem.Model.Data.BonusBigData;
 import com.siminenko.artem.Model.Data.UserData;
+import com.siminenko.artem.Model.Destroyable;
 
 /**
  * Created by artem on 4/19/18.
  */
 
-public class BonusListener implements ContactListener {
+public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusBigData) {
@@ -19,6 +24,19 @@ public class BonusListener implements ContactListener {
         }
         if (contact.getFixtureB().getBody().getUserData() instanceof BonusBigData && contact.getFixtureA().getBody().getUserData() instanceof UserData) {
             ((BonusBigData) contact.getFixtureB().getBody().getUserData()).bonusBig.handlePlayer(((UserData) contact.getFixtureA().getBody().getUserData()).player);
+        }
+
+        if (contact.getFixtureB().getBody().getUserData() instanceof Destroyable && contact.getFixtureA().getBody().getUserData() instanceof UserData) {
+            ((Destroyable) contact.getFixtureB().getBody().getUserData()).doDestroy();
+        }
+        if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof Destroyable) {
+            ((Destroyable) contact.getFixtureA().getBody().getUserData()).doDestroy();
+        }
+
+        if (contact.getFixtureA().getBody().getUserData() instanceof AObject && ((AObject) contact.getFixtureA().getBody().getUserData()).isNeedParticles) {
+            Tex.createParticles(2, 1f, contact.getFixtureA().getBody().getPosition());
+        } else if (contact.getFixtureB().getBody().getUserData() instanceof AObject && ((AObject) contact.getFixtureB().getBody().getUserData()).isNeedParticles) {
+            Tex.createParticles(2, 1f, contact.getFixtureB().getBody().getPosition());
         }
     }
 

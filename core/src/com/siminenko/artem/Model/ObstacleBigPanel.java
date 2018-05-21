@@ -21,7 +21,7 @@ public class ObstacleBigPanel extends AObject {
         shape.setAsBox(sizeX/2, sizeY/2);
         this.shape = shape;
         this.createObject(position, shape, world, 0.9f, 1f, 0);
-        this.body.setUserData(new ObstacleBigPanelData(this));
+        this.body.setUserData(this);
     }
 
     @Override

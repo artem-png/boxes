@@ -1,10 +1,12 @@
 package com.siminenko.artem.Model;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 
 import java.util.Random;
 
@@ -39,6 +41,7 @@ public class ObstacleCircleBomb extends AObject {
         this.count = count;
         this.expTime = expTime;
         this.expTimeSetting = expTime;
+        this.body.setUserData(this);
     }
 
     @Override
@@ -68,9 +71,12 @@ public class ObstacleCircleBomb extends AObject {
                         rotation,
                         0.2f
                 );
+                obstacleTriangle.isNeedParticles = false;
                 obstacleTriangle.body.setActive(true);
                 this.level.aObjectVector2.add(obstacleTriangle);
             }
+
+            Tex.createParticles((int)(count * 1.5f), 1, body.getPosition());
             this.body.setActive(false);
             this.body.setTransform(-100, -300, 0);
         }
