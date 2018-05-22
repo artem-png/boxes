@@ -2,10 +2,13 @@ package com.siminenko.artem.Model.Level;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Game.Particles;
 import com.siminenko.artem.Model.Game.ProgressBar;
 import com.siminenko.artem.Model.Player;
+import com.siminenko.artem.Model.Powers.APower;
+import com.siminenko.artem.Model.Powers.PowerShield;
 
 import java.util.Vector;
 
@@ -17,9 +20,12 @@ public abstract class ALevel {
     public Player player;
     public Vector<AScenario> aScenarioVector2 = new Vector<AScenario>();
     public Vector<AObject> aObjectVector2 = new Vector<AObject>();
+    public Vector<APower> aPowerVector = new Vector<APower>();
     public int level;
     ProgressBar bar;
     Particles particles;
+
+    public boolean hasBlockPower = false;
 
     public abstract void init();
 
@@ -27,6 +33,10 @@ public abstract class ALevel {
     {
         this.bar = new ProgressBar(this);
         this.particles = new Particles();
+
+        if (hasBlockPower) {
+            aPowerVector.add(new PowerShield(level, GameLayout.world));
+        }
     }
 
     public void act() {
@@ -48,6 +58,9 @@ public abstract class ALevel {
         }
         for (int i = 0; i < aObjectVector2.size(); i++) {
             aObjectVector2.get(i).act();
+        }
+        for (int i = 0; i < aPowerVector.size(); i++) {
+            aPowerVector.get(i).act();
         }
         for (int i = aObjectVector2.size() - 1; i >= 0; i--) {
             if (aObjectVector2.get(i).getDispose()) {
@@ -71,6 +84,9 @@ public abstract class ALevel {
         }
         for (int i = 0; i < aObjectVector2.size(); i++) {
             aObjectVector2.get(i).render(b);
+        }
+        for (int i = 0; i < aPowerVector.size(); i++) {
+            aPowerVector.get(i).render(b);
         }
         bar.render(b);
     }

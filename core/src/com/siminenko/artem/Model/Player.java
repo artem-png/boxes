@@ -145,10 +145,9 @@ public class Player extends AObject {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y, 0));
             currentPosition.set(currentPosition.x + (bodyTouch.x - touch.x), currentPosition.y + (bodyTouch.y - touch.y), 0);
-            this.body.setLinearVelocity(
-                    -(body.getPosition().x - currentPosition.x) * 8,
-                    -(body.getPosition().y - currentPosition.y) * 8
-            );
+            float x = -(body.getPosition().x - currentPosition.x) * 8;
+            float y = -(body.getPosition().y - currentPosition.y) * 8;
+            this.body.setLinearVelocity(x, y);
         } else {
             this.body.setLinearVelocity(0, 0);
         }

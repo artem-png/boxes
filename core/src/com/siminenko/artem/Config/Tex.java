@@ -27,7 +27,7 @@ public class Tex {
     public static Sprite present1;
     public static Sprite crest1;
     public static Sprite crestDestroyable;
-
+    public static Sprite shield;
 
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
@@ -50,6 +50,7 @@ public class Tex {
         crest1 = new Sprite(new Texture("crest.png"));
         circleDestroyable = new Sprite(new Texture("circleDestroyable.png"));
         crestDestroyable = new Sprite(new Texture("crestDestroyable.png"));
+        shield = new Sprite(new Texture("shield.png"));
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {
