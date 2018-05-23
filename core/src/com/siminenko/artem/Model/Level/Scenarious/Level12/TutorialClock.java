@@ -40,7 +40,7 @@ public class TutorialClock extends AScenario {
         this.level = level;
         this.world = world;
         this.player = player;
-        this.doDelay = 250;
+        this.doDelay = 100;
 
         clicker = new Sprite(new Texture("tutorial/pointer.png"));
         activeClicker = new Sprite(new Texture("tutorial/pointerClicker.png"));
