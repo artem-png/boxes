@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Listeners.DestroyableListener;
+import com.siminenko.artem.Model.Game.BorderEffects;
 import com.siminenko.artem.Model.Game.Effects;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
@@ -25,6 +26,7 @@ public class GameLayout implements LayoutInterface {
     public static RayHandler rayHandler;
     public static Box2DDebugRenderer dDebugRenderer;
     public static Effects effects;
+    public static BorderEffects borderEffects;
     Player player;
     Background background;
     Sprite whitebg;
@@ -43,6 +45,9 @@ public class GameLayout implements LayoutInterface {
     public static boolean isWin = false;
 
     public static ALevel level;
+
+    public static int speedSetting = 60;
+    public static int speed = 60;
 
     public GameLayout(ALevel level) {
         player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
@@ -64,6 +69,8 @@ public class GameLayout implements LayoutInterface {
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
         effects = new Effects();
+        borderEffects = new BorderEffects();
+        borderEffects.init();
     }
 
     @Override
@@ -82,7 +89,7 @@ public class GameLayout implements LayoutInterface {
                 return;
             }
         }
-        world.step(1 / (float) (60 + timelapse), 60, 60);
+        world.step(1 / (float) (speed + timelapse), 60, 60);
         if (!pauseIcon.isPressed) {
             player.act();
         } else {
@@ -103,6 +110,7 @@ public class GameLayout implements LayoutInterface {
                 MyGdxGame.layoutManager.set(new WinLayout(level.level + 1));
             }
         }
+        borderEffects.act();
     }
 
     @Override
@@ -115,6 +123,7 @@ public class GameLayout implements LayoutInterface {
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
         pauseIcon.render(MyGdxGame.batchDynamic);
+        borderEffects.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
         //dDebugRenderer.render(world, MyGdxGame.camera.combined);
@@ -145,5 +154,6 @@ public class GameLayout implements LayoutInterface {
         player.dispose();
         level.dispose();
         effects.dispose();
+        borderEffects.dispose();
     }
 }

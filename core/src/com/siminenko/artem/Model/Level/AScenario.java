@@ -3,6 +3,7 @@ package com.siminenko.artem.Model.Level;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.MyGdxGame;
@@ -18,12 +19,13 @@ public abstract class AScenario {
     protected World world;
     protected ALevel level;
     public boolean isDead = false;
-    public int doDelay;
+    public float doDelay;
     public float gravityScale = 1;
     public Vector<AObject> objects = new Vector<AObject>();
 
+
     public void act() {
-        doDelay--;
+        doDelay -= 1f * ((float)GameLayout.speedSetting / (float)GameLayout.speed);
     }
 
     public abstract void render(SpriteBatch batch);

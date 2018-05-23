@@ -31,7 +31,7 @@ public class Level11 extends ALevel {
                     this,
                     3,
                     4,
-                    new Vector2(0, 0),
+                    new Vector2(0, -1),
                     new Vector2(MyGdxGame.width / 2 + i * 4, MyGdxGame.height + 5)
             ));
         }
@@ -43,7 +43,7 @@ public class Level11 extends ALevel {
                     3,
                     4,
                     new Vector2(0, -3),
-                    new Vector2(MyGdxGame.width / 2 + i * 4, MyGdxGame.height + 3)
+                    new Vector2(MyGdxGame.width / 2 + i * 4, MyGdxGame.height + 4)
             ));
         }
         this.aScenarioVector2.add(new TutorialPower(GameLayout.world, this.player, this, 0));

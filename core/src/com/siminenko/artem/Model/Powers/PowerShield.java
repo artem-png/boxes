@@ -41,7 +41,7 @@ public class PowerShield extends APower {
     public PowerShield(int level, World world) {
         levelNumber = level;
         this.world = world;
-        delaySetting = 600;
+        delaySetting = 700;
 
         // shape
         PolygonShape shape = new PolygonShape();

@@ -8,6 +8,7 @@ import com.siminenko.artem.Model.Game.Particles;
 import com.siminenko.artem.Model.Game.ProgressBar;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.Model.Powers.APower;
+import com.siminenko.artem.Model.Powers.PowerClock;
 import com.siminenko.artem.Model.Powers.PowerShield;
 
 import java.util.Vector;
@@ -26,6 +27,7 @@ public abstract class ALevel {
     Particles particles;
 
     public boolean hasBlockPower = false;
+    public boolean hasTimePower = false;
 
     public abstract void init();
 
@@ -36,6 +38,9 @@ public abstract class ALevel {
 
         if (hasBlockPower) {
             aPowerVector.add(new PowerShield(level, GameLayout.world));
+        }
+        if (hasTimePower) {
+            aPowerVector.add(new PowerClock(level, GameLayout.world));
         }
     }
 

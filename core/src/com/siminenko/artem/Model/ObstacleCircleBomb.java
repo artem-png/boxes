@@ -25,7 +25,7 @@ public class ObstacleCircleBomb extends AObject {
 
     int count;
     int expTimeSetting;
-    int expTime;
+    float expTime;
 
     boolean isExplosionComplete = false;
 
@@ -52,7 +52,7 @@ public class ObstacleCircleBomb extends AObject {
     }
 
     public void explosionTime() {
-        expTime--;
+        expTime -= 1 * ((float)GameLayout.speedSetting / (float)GameLayout.speed);
         if (expTime <= 0 && !isExplosionComplete) {
             isExplosionComplete = true;
             this.body.setLinearVelocity(0, 0);
