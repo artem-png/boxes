@@ -11,6 +11,7 @@ import com.siminenko.artem.Model.Data.BallonData;
 import com.siminenko.artem.Model.Data.BonusBigData;
 import com.siminenko.artem.Model.Data.UserData;
 import com.siminenko.artem.Model.Destroyable;
+import com.siminenko.artem.Model.Player;
 
 /**
  * Created by artem on 4/19/18.
@@ -19,6 +20,11 @@ import com.siminenko.artem.Model.Destroyable;
 public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
+        if (!Player.isTouch && (contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData)) {
+            Player.isTouch = true;
+        }
+
+
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusBigData) {
             ((BonusBigData) contact.getFixtureA().getBody().getUserData()).bonusBig.handlePlayer(((UserData) contact.getFixtureB().getBody().getUserData()).player);
         }

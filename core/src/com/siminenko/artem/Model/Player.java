@@ -23,6 +23,7 @@ public class Player extends AObject {
 
     Vector3 touch = new Vector3();
     Vector2 bodyTouch = new Vector2();
+    Vector2 lastTouch = new Vector2();
 
     // triangle
     float x0 = 0f;
@@ -39,6 +40,8 @@ public class Player extends AObject {
     boolean isBig = false;
     boolean isSizeModified = false;
     int timeBigger = 0;
+
+    public static boolean isTouch = false;
 
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
@@ -145,12 +148,24 @@ public class Player extends AObject {
             Vector2 currentPosition1 = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 currentPosition = MyGdxGame.camera.unproject(new Vector3(currentPosition1.x, currentPosition1.y, 0));
             currentPosition.set(currentPosition.x + (bodyTouch.x - touch.x), currentPosition.y + (bodyTouch.y - touch.y), 0);
-            float x = -(body.getPosition().x - currentPosition.x) * 8;
-            float y = -(body.getPosition().y - currentPosition.y) * 8;
+            float x = -(body.getPosition().x - currentPosition.x) * 20;
+            float y = -(body.getPosition().y - currentPosition.y) * 20;
             this.body.setLinearVelocity(x, y);
+
+            if (!isTouch) {
+                float xd = -(body.getPosition().x - currentPosition.x) / 12;
+                float yd = -(body.getPosition().y - currentPosition.y) / 12;
+                if (Math.abs(xd) + Math.abs(yd) > 0.7) {
+                    this.body.setTransform(this.body.getPosition().x + xd, this.body.getPosition().y + yd, body.getAngle());
+                }
+            }
         } else {
             this.body.setLinearVelocity(0, 0);
         }
+        if (this.body.getAngularVelocity() > 10) {
+            this.body.setAngularVelocity(this.body.getAngularVelocity() - 0.05f);
+        }
+        isTouch = false;
     }
 
     public void makeBigger(float percent, int time) {
@@ -188,7 +203,7 @@ public class Player extends AObject {
         this.shape = shape;
         isBig = false;
 
-        this.createObject(position, this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
+        this.createObject(position, this.shape, GameLayout.world, 0.2f, 0.3f, 0.0f);
         this.body.setActive(true);
         Tex.createParticles(30, 1, body.getPosition());
 

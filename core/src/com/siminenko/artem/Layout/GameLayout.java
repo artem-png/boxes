@@ -59,7 +59,7 @@ public class GameLayout implements LayoutInterface {
     }
 
     public static void init() {
-        world = new World(new Vector2(0, -20f), true);
+        world = new World(new Vector2(0, -15f), true);
         world.setContactListener(new DestroyableListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
@@ -77,11 +77,12 @@ public class GameLayout implements LayoutInterface {
             isDisposeAnimation = true;
             if (death()) {
                 GameLayout.isDispose = false;
+                GameLayout.isWin = false;
                 MyGdxGame.layoutManager.set(new LostLayout(level.level));
                 return;
             }
         }
-        world.step(1 / (float) (60 + timelapse), 6, 2);
+        world.step(1 / (float) (60 + timelapse), 60, 60);
         if (!pauseIcon.isPressed) {
             player.act();
         } else {

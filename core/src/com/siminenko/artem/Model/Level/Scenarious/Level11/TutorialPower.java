@@ -27,7 +27,7 @@ public class TutorialPower extends AScenario {
     Vector2 size = new Vector2(7, 7);
     Vector2 sizeClicked = new Vector2(6f, 6f);
 
-    Vector2 position = new Vector2(MyGdxGame.width - 6, 25);
+    Vector2 position = new Vector2(MyGdxGame.width - 8, 37);
 
     boolean isClicked = false;
 
@@ -43,7 +43,7 @@ public class TutorialPower extends AScenario {
         this.level = level;
         this.world = world;
         this.player = player;
-        this.doDelay = 100000;
+        this.doDelay = 250;
 
         clicker = new Sprite(new Texture("tutorial/pointer.png"));
         activeClicker = new Sprite(new Texture("tutorial/pointerClicker.png"));
@@ -56,7 +56,7 @@ public class TutorialPower extends AScenario {
 
         if (Gdx.input.justTouched()) {
             Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if (vector3.x > MyGdxGame.width - 6 && vector3.y > 14 && vector3.y < 24) {
+            if (vector3.x > MyGdxGame.width - 6 && vector3.y > 28 && vector3.y < 38) {
                 isDead = true;
                 this.doDelay = 0;
             }

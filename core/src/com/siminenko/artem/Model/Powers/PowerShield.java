@@ -103,7 +103,7 @@ public class PowerShield extends APower {
         if (delay == 0 && !shieldUp && !shieldDown) {
             if (Gdx.input.justTouched()) {
                 Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-                if (vector3.x > MyGdxGame.width - 6 && vector3.y > 14 && vector3.y < 24) {
+                if (vector3.x > MyGdxGame.width - 6 && vector3.y > 28 && vector3.y < 38) {
                     isActive = true;
                     body.setActive(true);
                     shieldDown = true;
@@ -122,7 +122,7 @@ public class PowerShield extends APower {
           batch.draw(
                   sprite,
                   MyGdxGame.width - 1,
-                  20,
+                  30,
                   5,
                   -2,
                   6,
