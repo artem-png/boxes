@@ -28,23 +28,28 @@ public class BorderEffects {
 
     public void act() {
         if (freesUp) {
-            freezAlpha += 0.03;
-            GameLayout.speed += 3;
+            freezAlpha += 0.02;
+            GameLayout.speed += 4;
             if (freezAlpha > 1) {
-                System.out.println(GameLayout.speed);
                 freezAlpha = 1;
                 freesUp = false;
             }
         }
 
         if (freesDown) {
-            freezAlpha -= 0.05;
-            GameLayout.speed -= 1;
+            freezAlpha -= 0.02;
+            GameLayout.speed -= 4;
             if (freezAlpha < 0) {
                 freezAlpha = 0;
                 freesDown = false;
             }
         }
+    }
+
+    public void reset() {
+        freesUp = false;
+        freezAlpha = 0;
+        freesDown = false;
     }
 
     public void setFreezUp() {
@@ -58,15 +63,11 @@ public class BorderEffects {
     public void render(SpriteBatch batch) {
         if (GameLayout.speed > GameLayout.speedSetting) {
             batch.setColor(batch.getColor().r, batch.getColor().g, batch.getColor().b, freezAlpha);
-            batch.draw(this.freezBG, 0, 0, MyGdxGame.width, MyGdxGame.height);
+            batch.draw(this.freezBG, -2, 0, MyGdxGame.width + 2, MyGdxGame.height);
             batch.setColor(batch.getColor().r, batch.getColor().g, batch.getColor().b, 1);
         }
     }
 
     public void dispose() {
-        if (freezBG != null) {
-            freezBG.getTexture().dispose();
-            freezBG = null;
-        }
     }
 }

@@ -5,6 +5,7 @@ import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockHorizontal;
 import com.siminenko.artem.Model.Level.Scenarious.Level1.TutorialMove;
+import com.siminenko.artem.Model.Level.Scenarious.Level12.TutorialClock;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -15,6 +16,7 @@ public class Level12 extends ALevel {
 
     public Level12() {
         this.hasTimePower = true;
+        this.hasBlockPower = true;
     }
 
     @Override
@@ -29,6 +31,13 @@ public class Level12 extends ALevel {
                 new Vector2(0, 0),
                 0,
                 0
+        ));
+
+        this.aScenarioVector2.add(new TutorialClock(
+                GameLayout.world,
+                this.player,
+                this,
+                30
         ));
     }
 }

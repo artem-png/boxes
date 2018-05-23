@@ -23,13 +23,13 @@ import java.util.Random;
  */
 
 public class PowerClock extends APower {
-    int timePowerSetting = 200;
+    int timePowerSetting = 300;
     int timePower = timePowerSetting;
 
     Sprite sprite = new Sprite(new Texture("clockPower.png"));
 
     int maxShieldRotate = 40;
-    int shieldRotate = 40;
+    int shieldRotate = -40;
 
     boolean shieldUp = false;
     boolean shieldDown = false;
@@ -71,9 +71,10 @@ public class PowerClock extends APower {
             timePower--;
             if (timePower == 0) {
                 GameLayout.borderEffects.setFreezDown();
+                isActive = false;
+                delay = delaySetting;
+                timePower = timePowerSetting;
             }
-            isActive = false;
-            delay = delaySetting;
         }
     }
 
@@ -93,12 +94,12 @@ public class PowerClock extends APower {
     public void render(SpriteBatch batch) {
         batch.draw(
                 sprite,
-                3,
+                -4,
                 30,
-                5,
-                -2,
+                0,
+                -1,
                 6,
-                7,
+                6,
                 sprite.getScaleX(),
                 sprite.getScaleY(),
                 shieldRotate

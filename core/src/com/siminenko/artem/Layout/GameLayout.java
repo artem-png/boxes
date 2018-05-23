@@ -85,6 +85,8 @@ public class GameLayout implements LayoutInterface {
             if (death()) {
                 GameLayout.isDispose = false;
                 GameLayout.isWin = false;
+                speed = speedSetting;
+                borderEffects.reset();
                 MyGdxGame.layoutManager.set(new LostLayout(level.level));
                 return;
             }
@@ -107,6 +109,8 @@ public class GameLayout implements LayoutInterface {
             isWin = true;
             if (win()) {
                 isWin = false;
+                speed = speedSetting;
+                borderEffects.reset();
                 MyGdxGame.layoutManager.set(new WinLayout(level.level + 1));
             }
         }
