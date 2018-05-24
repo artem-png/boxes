@@ -10,7 +10,7 @@ import java.util.Vector;
  */
 
 public class LayoutManager {
-    Vector<LayoutInterface> vector;
+    public Vector<LayoutInterface> vector;
 
     public LayoutManager()
     {
@@ -18,8 +18,14 @@ public class LayoutManager {
     }
 
     public void render(SpriteBatch batch) {
-        if (vector.size() > 0)
-        vector.get(vector.size()-1).render(batch);
+        if (vector.size() > 0) {
+            if (vector.get(vector.size() - 1).getIsParralel()) {
+                if (vector.size() - 2 >= 0) {
+                    vector.get(vector.size() - 2).render(batch);
+                }
+            }
+            vector.get(vector.size() - 1).render(batch);
+        }
     }
 
     public void act(float delta) {

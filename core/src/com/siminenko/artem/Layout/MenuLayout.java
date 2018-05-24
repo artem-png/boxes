@@ -80,4 +80,9 @@ public class MenuLayout implements LayoutInterface {
         levelButton.dispose();
         infiniteButton.dispose();
     }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
+    }
 }

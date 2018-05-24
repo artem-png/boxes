@@ -77,4 +77,9 @@ public class PauseLayout implements LayoutInterface {
     public void dispose() {
 
     }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
+    }
 }

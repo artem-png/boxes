@@ -75,4 +75,9 @@ public class LostLayout implements LayoutInterface {
         menuIcon.dispose();
         levelText.dispose();
     }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
+    }
 }

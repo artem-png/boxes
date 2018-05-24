@@ -137,4 +137,9 @@ public class LevelsLayout implements LayoutInterface {
         topPanel.dispose();
         levelGenerator.dispose();
     }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
+    }
 }

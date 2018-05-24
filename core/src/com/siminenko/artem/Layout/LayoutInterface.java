@@ -11,4 +11,6 @@ public interface LayoutInterface {
     public void act(float delta);
     public void render(SpriteBatch batch);
     public void dispose();
+
+    public boolean getIsParralel();
 }

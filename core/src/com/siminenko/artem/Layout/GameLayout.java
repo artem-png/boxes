@@ -49,6 +49,8 @@ public class GameLayout implements LayoutInterface {
     public static int speedSetting = 60;
     public static int speed = 60;
 
+    public boolean isInfinite = false;
+
     public GameLayout(ALevel level) {
         player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
         background = new Background();
@@ -161,5 +163,10 @@ public class GameLayout implements LayoutInterface {
         borderEffects.dispose();
         GameLayout.isWin = false;
         GameLayout.isDispose = false;
+    }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
     }
 }

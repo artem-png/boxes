@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.Config.Info;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
@@ -15,6 +16,7 @@ import com.siminenko.artem.Layout.LevelsLayout;
 import com.siminenko.artem.Layout.LostLayout;
 import com.siminenko.artem.Layout.MenuLayout;
 import com.siminenko.artem.Layout.PauseLayout;
+import com.siminenko.artem.Layout.RateLayout;
 import com.siminenko.artem.Layout.WinLayout;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
@@ -40,11 +42,14 @@ public class MyGdxGame extends ApplicationAdapter {
     public static int height;
     public static Tex tex;
     public static Progress progress;
+    public static Info info;
 
     Sprite whitebg;
     static int time;
     static int timeSetting;
     static boolean isUp = false;
+
+    int rateL = 10;
 
     @Override
     public void create() {
@@ -80,9 +85,13 @@ public class MyGdxGame extends ApplicationAdapter {
         PauseIcon.init();
         PausedText.init();
         ContinueButton.init();
+        Info.init();
+        Info.addRunNumber();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
+
+
     }
 
     public static void setUp(int time, boolean isUp) {
@@ -115,6 +124,13 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         batchDynamic.end();
         batchDynamic.setColor(batchDynamic.getColor().r, batchDynamic.getColor().g, batchDynamic.getColor().b, 1);
+
+        rateL--;
+        if (rateL < 0 && layoutManager.vector.size() == 1) {
+            if (Info.rateChoise == Info.RATE_SHOISE_NOT_YET && Info.runNumber > 2 && Info.rateChoiseRunLast == 0) {
+                layoutManager.push(new RateLayout());
+            }
+        }
     }
     @Override
     public void dispose() {

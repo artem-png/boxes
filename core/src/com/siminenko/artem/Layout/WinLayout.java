@@ -72,4 +72,9 @@ public class WinLayout implements LayoutInterface {
         successText.dispose();
         menuIcon.dispose();
     }
+
+    @Override
+    public boolean getIsParralel() {
+        return false;
+    }
 }
