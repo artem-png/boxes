@@ -15,7 +15,7 @@ import com.siminenko.artem.MyGdxGame;
  * Created by User on 21.04.2018.
  */
 
-public class PlayButton {
+public class InfiniteButton {
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
@@ -29,9 +29,9 @@ public class PlayButton {
     float xd;
     float yd;
 
-    public PlayButton() {
-        button = new Sprite(new Texture("menu/playButton.png"));
-        buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
+    public InfiniteButton() {
+        button = new Sprite(new Texture("inifite/playInfiniteButton.png"));
+        buttonPressed = new Sprite(new Texture("inifite/playInfiniteButtonPressed.png"));
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
         size = new Vector2(22, 6.5f);
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
@@ -50,7 +50,7 @@ public class PlayButton {
                 Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 && vector3.x < MyGdxGame.width / 2 + size.x / 2) {
-                    if (vector3.y > MyGdxGame.height / 2 - 12 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 12 + size.y / 2) {
+                    if (vector3.y > MyGdxGame.height / 2 - 21 - size.y / 2 && vector3.y < MyGdxGame.height / 2 - 21 + size.y / 2) {
                         isPressed = true;
                         MyGdxGame.setUp(20, true);
                     }
@@ -63,7 +63,7 @@ public class PlayButton {
         batch.draw(
                 !isPressed ? button : buttonPressed,
                 MyGdxGame.width / 2 - size.x / 2,
-                MyGdxGame.height / 2 - 7 - size.y / 2 - 5,
+                MyGdxGame.height / 2 - 7 - size.y / 2 - 14,
                 size.x,
                 size.y
         );
@@ -71,9 +71,9 @@ public class PlayButton {
         MyGdxGame.batchFont.begin();
         font.draw(
                 MyGdxGame.batchFont,
-                "PLAY",
+                "SURVIVE",
                 Tex.x * 365,
-                Tex.y * 174
+                Tex.y * 120
         );
         MyGdxGame.batchFont.end();
         batch.begin();

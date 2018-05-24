@@ -23,7 +23,7 @@ import java.util.Random;
  */
 
 public class PowerClock extends APower {
-    int timePowerSetting = 300;
+    int timePowerSetting = 450;
     int timePower = timePowerSetting;
 
     Sprite sprite = new Sprite(new Texture("clockPower.png"));
@@ -33,6 +33,8 @@ public class PowerClock extends APower {
 
     boolean shieldUp = false;
     boolean shieldDown = false;
+
+    Random random = new Random();
 
     public PowerClock(int level, World world) {
         levelNumber = level;
@@ -69,6 +71,10 @@ public class PowerClock extends APower {
 
         if (isActive && timePower > 0) {
             timePower--;
+            Tex.createParticles(1, 0.5f, new Vector2(1, random.nextInt(MyGdxGame.height)));
+            Tex.createParticles(1, 0.5f, new Vector2(MyGdxGame.width - 1, random.nextInt(MyGdxGame.height)));
+            Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(MyGdxGame.width), MyGdxGame.height - 1));
+            Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(MyGdxGame.width), 1));
             if (timePower == 0) {
                 GameLayout.borderEffects.setFreezDown();
                 isActive = false;

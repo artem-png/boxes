@@ -3,8 +3,12 @@ package com.siminenko.artem.Model.Level.Levels;
 import com.badlogic.gdx.math.Vector2;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Level.ALevel;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockBig;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleBomb;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleDestroyable;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockHorizontal;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockVertical;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockX;
 import com.siminenko.artem.Model.Level.Scenarious.Level1.TutorialMove;
 import com.siminenko.artem.Model.Level.Scenarious.Level12.TutorialClock;
 import com.siminenko.artem.MyGdxGame;
@@ -22,79 +26,150 @@ public class Level12 extends ALevel {
 
     @Override
     public void init() {
-        for (int i = -2; i < 5; i++) {
-            this.aScenarioVector2.add(new SimpleBlockHorizontal(
-                    GameLayout.world,
-                    this.player,
-                    this,
-                    7,
-                    0,
-                    new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 4),
-                    new Vector2(0, 0),
-                    2,
-                    5
-            ));
-        }
-        for (int i = 3; i >= -2; i--) {
-            this.aScenarioVector2.add(new SimpleBlockHorizontal(
-                    GameLayout.world,
-                    this.player,
-                    this,
-                    7,
-                    0,
-                    new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 4),
-                    new Vector2(0, 0),
-                    2,
-                    5
-            ));
-        }
-
-        SimpleBlockCircleBomb o = new SimpleBlockCircleBomb(
+        this.aScenarioVector2.add(new SimpleBlockX(
                 GameLayout.world,
                 this.player,
                 this,
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
+                new Vector2(0, 0),
+                30,
                 0,
-                4,
-                new Vector2(13, -5),
-                new Vector2(-5, 50),
-                0.9f,
                 5,
-                110
-        );
-        this.aScenarioVector2.add(o);
-
-        o = new SimpleBlockCircleBomb(
-                GameLayout.world,
-                this.player,
-                this,
-                0,
-                4,
-                new Vector2(-13, -5),
-                new Vector2(MyGdxGame.width + 5, 50),
-                0.9f,
-                11,
-                100
-        );
-        this.aScenarioVector2.add(o);
-
-        this.aScenarioVector2.add(new TutorialClock(
-                GameLayout.world,
-                this.player,
-                this,
-                10
+                1,
+                2,
+                2
         ));
+        this.aScenarioVector2.add(new SimpleBlockX(
+                GameLayout.world,
+                this.player,
+                this,
+                new Vector2(MyGdxGame.width / 2 - 5, MyGdxGame.height + 10),
+                new Vector2(0, 0),
+                50,
+                0,
+                10,
+                1,
+                2,
+                1
+        ));
+        this.aScenarioVector2.add(new SimpleBlockX(
+                GameLayout.world,
+                this.player,
+                this,
+                new Vector2(MyGdxGame.width / 2 + 5, MyGdxGame.height + 10),
+                new Vector2(0, 0),
+                0,
+                0,
+                10,
+                1,
+                2,
+                1
+        ));
+        this.aScenarioVector2.add(new SimpleBlockCircleDestroyable(
+                GameLayout.world,
+                this.player,
+                this,
+                60,
+                12,
+                new Vector2(0, -6),
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
+                2
+        ));
+        this.aScenarioVector2.add(new SimpleBlockVertical(
+                GameLayout.world,
+                this.player,
+                this,
+                90,
+                0,
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 20),
+                new Vector2(0, 0)
+        ));
+        for (int i = 1; i < 4; i++) {
+            this.aScenarioVector2.add(new SimpleBlockVertical(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    30,
+                    0,
+                    new Vector2(MyGdxGame.width / 2 + i * 6, MyGdxGame.height + 20),
+                    new Vector2(0, 0)
+            ));
+        }
 
-        for (int i = -2; i < 5; i++) {
+        for (int i = 3; i >= -4; i--) {
+            this.aScenarioVector2.add(new SimpleBlockVertical(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    30,
+                    0,
+                    new Vector2(MyGdxGame.width / 2 + i * 6, MyGdxGame.height + 20),
+                    new Vector2(0, 0)
+            ));
+        }
+
+        for (int i = -4; i <= 0; i++) {
+            this.aScenarioVector2.add(new SimpleBlockVertical(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    30,
+                    0,
+                    new Vector2(MyGdxGame.width / 2 + i * 6, MyGdxGame.height + 20),
+                    new Vector2(0, 0)
+            ));
+        }
+        this.aScenarioVector2.add(new SimpleBlockHorizontal(
+                GameLayout.world,
+                this.player,
+                this,
+                90,
+                0,
+                new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 20),
+                new Vector2(0, -15),
+                13,
+                1
+        ));
+        for (int i = 0; i <= 10; i++) {
             this.aScenarioVector2.add(new SimpleBlockHorizontal(
                     GameLayout.world,
                     this.player,
                     this,
-                    7,
+                    10,
                     0,
-                    new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 2),
-                    new Vector2(0, -20),
+                    new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 20),
+                    new Vector2(0, -15),
+                    13,
+                    1
+            ));
+        }
+
+        this.aScenarioVector2.add(new SimpleBlockX(
+                GameLayout.world,
+                this.player,
+                this,
+                new Vector2(MyGdxGame.width / 2 + -10 * 2, MyGdxGame.height + 10),
+                new Vector2(0, -10),
+                60,
+                0,
+                10,
+                1,
+                2,
+                1
+        ));
+        for (int i = -9; i <= 10; i++) {
+            this.aScenarioVector2.add(new SimpleBlockX(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    new Vector2(MyGdxGame.width / 2 + i * 2, MyGdxGame.height + 10),
+                    new Vector2(0, -10),
+                    20,
+                    0,
+                    10,
+                    1,
                     2,
-                    6
+                    1
             ));
         }
     }

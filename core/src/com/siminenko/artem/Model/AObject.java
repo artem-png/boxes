@@ -73,10 +73,11 @@ public abstract class AObject {
     }
 
     public boolean isAway() {
-        return body.getPosition().y < -30
-                || body.getPosition().x > MyGdxGame.width + 30
-                || body.getPosition().x < -30
-                || (body.getPosition().y > MyGdxGame.height + 30 && body.getLinearVelocity().y > 5);
+        return body.getPosition().y < -25
+                || body.getPosition().x > MyGdxGame.width + 25
+                || body.getPosition().x < -25
+                || (body.getPosition().y > MyGdxGame.height + 25 && body.getLinearVelocity().y > 5);
+
     }
 
     public void act() {

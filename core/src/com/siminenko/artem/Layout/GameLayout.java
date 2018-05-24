@@ -159,5 +159,7 @@ public class GameLayout implements LayoutInterface {
         level.dispose();
         effects.dispose();
         borderEffects.dispose();
+        GameLayout.isWin = false;
+        GameLayout.isDispose = false;
     }
 }

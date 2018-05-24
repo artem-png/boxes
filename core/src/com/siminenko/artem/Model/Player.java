@@ -1,6 +1,8 @@
 package com.siminenko.artem.Model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -43,6 +45,8 @@ public class Player extends AObject {
 
     public static boolean isTouch = false;
 
+    Sprite sprite;
+
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
 
@@ -50,8 +54,9 @@ public class Player extends AObject {
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6), level);
-        Tex.player1.setOrigin(x2, -y2);
         this.body.setActive(true);
+        sprite = new Sprite(new Texture("player.png"));
+        sprite.setOrigin(x2, -y2);
     }
 
     @Override
@@ -116,15 +121,15 @@ public class Player extends AObject {
             multi = bigMultiplier;
         }
         batch.draw(
-                Tex.player1,
+                sprite,
                 this.body.getPosition().x + x1 * multi,
                 this.body.getPosition().y + y1 * multi,
-                Tex.player1.getOriginX(),
-                Tex.player1.getOriginY(),
+                sprite.getOriginX(),
+                sprite.getOriginY(),
                 -x1 * multi + x2 * multi,
                 y0 * 2 * multi,
-                Tex.player1.getScaleX(),
-                Tex.player1.getScaleY(),
+                sprite.getScaleX(),
+                sprite.getScaleY(),
                 (float) Math.toDegrees(this.body.getAngle())
         );
     }

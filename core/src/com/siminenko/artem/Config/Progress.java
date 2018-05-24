@@ -33,6 +33,10 @@ public class Progress {
         }
     }
 
+    public static int getMaxLevel() {
+        return levels.length;
+    }
+
     public static void saveLevelProgress(int level) {
         Preferences prefs = Gdx.app.getPreferences(progress);
         prefs.putInteger("level" + level, 1);

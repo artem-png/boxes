@@ -1,5 +1,6 @@
 package com.siminenko.artem.Layout;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,6 +9,7 @@ import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Menu.PlayButton.InfiniteButton;
 import com.siminenko.artem.Model.Menu.PlayButton.LevelButton;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.ModelGenerator.Background;
@@ -24,6 +26,7 @@ public class MenuLayout implements LayoutInterface {
     PlayButton playButton;
     LevelText levelText;
     LevelButton levelButton;
+    InfiniteButton infiniteButton;
 
     public MenuLayout() {
         modelPicker = new ModelPicker();
@@ -31,6 +34,7 @@ public class MenuLayout implements LayoutInterface {
         playButton = new PlayButton();
         levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
         levelButton = new LevelButton();
+        infiniteButton = new InfiniteButton();
         MyGdxGame.setUp(15, false);
     }
 
@@ -45,8 +49,12 @@ public class MenuLayout implements LayoutInterface {
         playButton.act();
         levelText.act();
         levelButton.act();
+        infiniteButton.act();
         if (playButton.isReady()) {
             MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
+        }
+        if (infiniteButton.isReady()) {
+           // Gdx.net.openURI("https://play.google.com/store/apps/details?id=com.shagunstudios.racinggame");
         }
     }
 
@@ -59,6 +67,7 @@ public class MenuLayout implements LayoutInterface {
         levelText.render(MyGdxGame.batchDynamic);
         levelButton.render(MyGdxGame.batchDynamic);
         playButton.render(MyGdxGame.batchDynamic);
+        infiniteButton.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -69,5 +78,6 @@ public class MenuLayout implements LayoutInterface {
         modelPicker.dispose();
         levelText.dispose();
         levelButton.dispose();
+        infiniteButton.dispose();
     }
 }

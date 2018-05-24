@@ -120,4 +120,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public void dispose() {
         layoutManager.dispose();
     }
+
+    @Override
+    public void resume() {
+        super.resume();
+        tex = new Tex();
+    }
 }
