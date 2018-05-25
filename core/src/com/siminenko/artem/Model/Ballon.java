@@ -19,7 +19,7 @@ public class Ballon extends AObject {
     float rotationNumber = 0.0f;
     float rotationDelta = 0.04f;
 
-    float count = 100;
+    float count = 30;
 
     public Ballon(World world, Vector2 position, ALevel level) {
         this.world = world;
@@ -49,8 +49,8 @@ public class Ballon extends AObject {
                 Tex.baloon1,
                 this.body.getPosition().x - 6f,
                 this.body.getPosition().y - 6f,
-                Tex.baloon1.getOriginX(),
-                Tex.baloon1.getOriginY(),
+                6,
+                6,
                 12,
                 12,
                 Tex.baloon1.getScaleX(),
@@ -72,8 +72,8 @@ public class Ballon extends AObject {
                     world,
                     new Vector2(body.getPosition().x, body.getPosition().y - 0.5f),
                     new Vector2(random.nextInt(60) - 30, random.nextInt(60) - 30),
-                    1f,
-                    1f,
+                    1.5f,
+                    0.5f,
                     Tex.circle2
             );
             obstacleTriangle.isNeedParticles = false;

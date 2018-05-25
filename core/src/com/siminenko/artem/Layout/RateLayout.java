@@ -28,17 +28,21 @@ public class RateLayout implements LayoutInterface {
     Sprite rateBg = new Sprite(new Texture("rateBg.png"));
     float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
     float xd = (float) Gdx.graphics.getWidth() / (float) MyGdxGame.width;
-    BitmapFont textFont = Tex.generateFont(Color.DARK_GRAY, (int) (2.2f * yd), "smallfont.ttf");
-    BitmapFont yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
-    BitmapFont laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
-    BitmapFont neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
+    static BitmapFont textFont;
+    static BitmapFont yesFont;
+    static BitmapFont laterFont;
+    static BitmapFont neverFont;
 
     public RateLayout() {
 
     }
 
     public static void init() {
-
+        float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
+        textFont = Tex.generateFont(Color.DARK_GRAY, (int) (2.2f * yd), "smallfont.ttf");
+        yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
+        laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
+        neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
     }
 
     @Override
@@ -92,7 +96,7 @@ public class RateLayout implements LayoutInterface {
                 MyGdxGame.batchFont,
                 "NEVER",
                 2.5f * xd,
-                20* yd
+                20 * yd
         );
         MyGdxGame.batchFont.end();
         batch.begin();

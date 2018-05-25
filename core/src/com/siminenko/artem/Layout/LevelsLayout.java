@@ -102,7 +102,7 @@ public class LevelsLayout implements LayoutInterface {
         topPanel.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         MyGdxGame.batchFont.begin();
-        font1.draw(MyGdxGame.batchFont, "TUTORIAL", 0, 79 * yd, Gdx.graphics.getWidth(), 1, false);
+        font1.draw(MyGdxGame.batchFont, "TUTORIAL", 0, 78 * yd, Gdx.graphics.getWidth(), 1, false);
         MyGdxGame.batchFont.end();
         MyGdxGame.batchDynamic.begin();
         levelGenerator.render(MyGdxGame.batchDynamic);

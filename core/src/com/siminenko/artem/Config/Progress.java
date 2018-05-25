@@ -24,17 +24,31 @@ import com.siminenko.artem.Model.Level.Levels.Level9;
 
 public class Progress {
     public static final String progress = "progressLevel4";
+    public static final String maxScoreSetting = "maxScore";
     public static int[] levels = new int[12];
+    public static int maxScore = 0;
 
     public void init() {
         Preferences prefs = Gdx.app.getPreferences(progress);
         for (int i = 0; i < levels.length; i ++) {
             levels[i] = prefs.getInteger("level" + (i + 1), 0);
         }
+        maxScore = prefs.getInteger(maxScoreSetting, 0);
     }
 
     public static int getMaxLevel() {
         return levels.length;
+    }
+
+    public static boolean saveScore(int currentScore) {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        if (maxScore < currentScore) {
+            prefs.putInteger(maxScoreSetting, currentScore);
+            maxScore = currentScore;
+            return true;
+        }
+
+        return false;
     }
 
     public static void saveLevelProgress(int level) {
@@ -97,6 +111,8 @@ public class Progress {
             level = new Level11();
         } else if (index == 12) {
             level = new Level12();
+        } else {
+            return level;
         }
 
         level.setNumber(index);

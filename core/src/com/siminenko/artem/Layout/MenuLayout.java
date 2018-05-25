@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Level.LevelGetter;
+import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.InfiniteButton;
@@ -54,7 +55,7 @@ public class MenuLayout implements LayoutInterface {
             MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
         }
         if (infiniteButton.isReady()) {
-           // Gdx.net.openURI("https://play.google.com/store/apps/details?id=com.shagunstudios.racinggame");
+            MyGdxGame.layoutManager.set(new GameLayout(new LevelLoop()));
         }
     }
 

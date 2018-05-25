@@ -37,7 +37,7 @@ public class Level7 extends ALevel {
                 new Vector2(0, -1),
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
                 1,
-                100,
+                30,
                 140
         );
         this.aScenarioVector2.add(cb);
