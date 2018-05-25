@@ -25,6 +25,8 @@ public abstract class ALevel {
     public int level;
     ProgressBar bar;
     Particles particles;
+    public int blockTime;
+    public int clockTime;
 
     public boolean hasBlockPower = false;
     public boolean hasTimePower = false;
@@ -37,10 +39,10 @@ public abstract class ALevel {
         this.particles = new Particles();
 
         if (hasBlockPower) {
-            aPowerVector.add(new PowerShield(level, GameLayout.world));
+            aPowerVector.add(new PowerShield(level, GameLayout.world, blockTime));
         }
         if (hasTimePower) {
-            aPowerVector.add(new PowerClock(level, GameLayout.world));
+            aPowerVector.add(new PowerClock(level, GameLayout.world, clockTime));
         }
     }
 

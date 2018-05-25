@@ -20,6 +20,7 @@ public class Level11 extends ALevel {
 
     public Level11() {
         this.hasBlockPower = true;
+        this.blockTime = 700;
     }
 
     @Override
@@ -52,12 +53,12 @@ public class Level11 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                160,
+                180,
                 8,
                 new Vector2(0, -5),
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 5),
                 0.9f,
-                10,
+                9,
                 140
         );
         this.aScenarioVector2.add(o);
@@ -66,12 +67,12 @@ public class Level11 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                140,
+                170,
                 8,
                 new Vector2(23, 20),
                 new Vector2(-5, 35),
                 0.9f,
-                12,
+                9,
                 130
         );
         this.aScenarioVector2.add(o);
@@ -80,12 +81,12 @@ public class Level11 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                140,
+                170,
                 8,
                 new Vector2(-23, 20),
                 new Vector2(MyGdxGame.width + 5, 45),
                 0.9f,
-                12,
+                9,
                 130
         );
         this.aScenarioVector2.add(o);
@@ -99,7 +100,7 @@ public class Level11 extends ALevel {
                 new Vector2(-10, 50),
                 new Vector2(MyGdxGame.width + 5, 0),
                 0.9f,
-                11,
+                9,
                 110
         );
         this.aScenarioVector2.add(o);
@@ -112,7 +113,7 @@ public class Level11 extends ALevel {
                 new Vector2(10, 50),
                 new Vector2(-5, 0),
                 0.9f,
-                11,
+                9,
                 110
         );
         this.aScenarioVector2.add(o);
@@ -123,7 +124,7 @@ public class Level11 extends ALevel {
                 this,
                 new Vector2(-5, MyGdxGame.height -5),
                 new Vector2(10, -5),
-                230,
+                260,
                 0,
                 4,
                 1,
@@ -137,7 +138,7 @@ public class Level11 extends ALevel {
                     this,
                     new Vector2((i % 2 == 1) ? -5 : MyGdxGame.width + 5, MyGdxGame.height -5),
                     new Vector2((i % 2 == 1) ? 10 : -10, -5),
-                    50,
+                    60,
                     0,
                     4,
                     1,
@@ -185,12 +186,12 @@ public class Level11 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                0,
+                10,
                 4,
                 new Vector2(25, 30),
                 new Vector2(-5, 40),
                 0.9f,
-                11,
+                4,
                 100
         );
         this.aScenarioVector2.add(o);
@@ -204,7 +205,7 @@ public class Level11 extends ALevel {
                 new Vector2(-25, 30),
                 new Vector2(MyGdxGame.width + 5, 40),
                 0.9f,
-                11,
+                4,
                 100
         );
         this.aScenarioVector2.add(o);

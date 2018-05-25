@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.siminenko.artem.Config.Info;
@@ -28,9 +29,9 @@ public class RateLayout implements LayoutInterface {
     float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
     float xd = (float) Gdx.graphics.getWidth() / (float) MyGdxGame.width;
     BitmapFont textFont = Tex.generateFont(Color.DARK_GRAY, (int) (2.2f * yd), "smallfont.ttf");
-    BitmapFont yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (4f * yd), "smallfont.ttf");
-    BitmapFont laterFont = Tex.generateFont(Color.BLACK, (int) (2.7f * yd), "smallfont.ttf");
-    BitmapFont neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (1.9f * yd), "smallfont.ttf");
+    BitmapFont yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
+    BitmapFont laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
+    BitmapFont neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
 
     public RateLayout() {
 
@@ -43,7 +44,17 @@ public class RateLayout implements LayoutInterface {
     @Override
     public void act(float delta) {
         if (Gdx.input.justTouched()) {
-            Info.saveRateChoise(Info.RATE_SHOISE_OK);
+            Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+            if (vector3.x > 0 && vector3.x < 15 && vector3.y > 15 && vector3.y < 22) {
+                Info.saveRateChoise(Info.RATE_SHOISE_NEVER);
+            }
+            if (vector3.x > 15 && vector3.x < 30 && vector3.y > 15 && vector3.y < 22) {
+                Info.saveRateChoise(Info.RATE_SHOISE_LATER);
+            }
+            if (vector3.x > 30 && vector3.x < MyGdxGame.width && vector3.y > 15 && vector3.y < 22) {
+                Info.saveRateChoise(Info.RATE_SHOISE_OK);
+                Gdx.net.openURI("https://play.google.com/store/apps/details?id=com.lisuart.falldown");
+            }
             MyGdxGame.layoutManager.pop();
         }
     }
@@ -68,20 +79,20 @@ public class RateLayout implements LayoutInterface {
         yesFont.draw(
                 MyGdxGame.batchFont,
                 "RATE",
-                30 * xd,
+                32.5f * xd,
                 20 * yd
         );
         laterFont.draw(
                 MyGdxGame.batchFont,
                 "LATER",
-                14f * xd,
-                19.5f * yd
+                17.5f * xd,
+                20 * yd
         );
         neverFont.draw(
                 MyGdxGame.batchFont,
                 "NEVER",
-                4f * xd,
-                19.2f * yd
+                2.5f * xd,
+                20* yd
         );
         MyGdxGame.batchFont.end();
         batch.begin();

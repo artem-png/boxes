@@ -170,8 +170,8 @@ public class Level8 extends ALevel {
                 0,
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 40),
                 new Vector2(0, -10),
-                40,
-                40
+                30,
+                30
         );
         this.aScenarioVector2.add(xz);
 

@@ -36,10 +36,10 @@ public class PowerClock extends APower {
 
     Random random = new Random();
 
-    public PowerClock(int level, World world) {
+    public PowerClock(int level, World world, int time) {
         levelNumber = level;
         this.world = world;
-        delaySetting = 700;
+        delaySetting = time;
     }
 
     public void act() {

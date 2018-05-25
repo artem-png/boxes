@@ -38,10 +38,10 @@ public class PowerShield extends APower {
     boolean shieldUp = false;
     boolean shieldDown = false;
 
-    public PowerShield(int level, World world) {
+    public PowerShield(int level, World world, int time) {
         levelNumber = level;
         this.world = world;
-        delaySetting = 700;
+        delaySetting = time;
 
         // shape
         PolygonShape shape = new PolygonShape();

@@ -125,13 +125,14 @@ public class MyGdxGame extends ApplicationAdapter {
         batchDynamic.end();
         batchDynamic.setColor(batchDynamic.getColor().r, batchDynamic.getColor().g, batchDynamic.getColor().b, 1);
 
-        rateL--;
-        if (rateL < 0 && layoutManager.vector.size() == 1) {
-            if (Info.rateChoise == Info.RATE_SHOISE_NOT_YET && Info.runNumber > 2 && Info.rateChoiseRunLast == 0) {
+        if (Info.needRateLayout()) {
+            rateL--;
+            if (rateL == 0 && layoutManager.vector.size() == 1) {
                 layoutManager.push(new RateLayout());
             }
         }
     }
+
     @Override
     public void dispose() {
         layoutManager.dispose();

@@ -49,14 +49,13 @@ public class Player extends AObject {
 
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
+        sprite = new Sprite(new Texture("player.png"));
 
         toNormal(position);
         this.body.setUserData(new UserData(this));
         this.body.setGravityScale(0);
         ballon = new Ballon(world, new Vector2(position.x, 6), level);
         this.body.setActive(true);
-        sprite = new Sprite(new Texture("player.png"));
-        sprite.setOrigin(x2, -y2);
     }
 
     @Override
@@ -195,7 +194,7 @@ public class Player extends AObject {
         this.body.setActive(true);
         Tex.createParticles(30, 1, body.getPosition());
 
-        Tex.player1.setOrigin(x2 * bigMultiplier, -y2 * bigMultiplier);
+        sprite.setOrigin(x2 * bigMultiplier, -y2 * bigMultiplier);
     }
 
     public void toNormal(Vector2 position) {
@@ -212,6 +211,6 @@ public class Player extends AObject {
         this.body.setActive(true);
         Tex.createParticles(30, 1, body.getPosition());
 
-        Tex.player1.setOrigin(x2, -y2);
+        sprite.setOrigin(x2, -y2);
     }
 }
