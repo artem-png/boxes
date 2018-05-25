@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.Config.Info;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.MyGdxGame;
 
@@ -13,12 +15,16 @@ import com.siminenko.artem.MyGdxGame;
 
 public class LevelText {
     static BitmapFont font;
+    static BitmapFont font2;
     static float xd;
     static float yd;
     int level;
 
+    public boolean isMenu = false;
+
     public LevelText(int level, Color color) {
         this.font.setColor(color);
+        this.font2.setColor(color);
         this.level = level;
     }
 
@@ -26,6 +32,7 @@ public class LevelText {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width - 2;
         font = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
+        font2 = Tex.generateFont(Color.WHITE, (int) (2.5f * xd), "smallfont.ttf");
     }
 
     public void act() {
@@ -35,15 +42,48 @@ public class LevelText {
     public void render(SpriteBatch batch) {
         batch.end();
         MyGdxGame.batchFont.begin();
-        font.draw(
-                MyGdxGame.batchFont,
-                "LEVEL: " + level,
-                5,
-                Tex.y * 455,
-                Gdx.graphics.getWidth(),
-                1,
-                false
-        );
+        if (isMenu) {
+            font.draw(
+                    MyGdxGame.batchFont,
+                    "LEVEL: " + level,
+                    5,
+                    Tex.y * 463,
+                    Gdx.graphics.getWidth(),
+                    1,
+                    false
+            );
+            font2.draw(
+                    MyGdxGame.batchFont,
+                    "BEST SCORE: " + Progress.maxScore,
+                    5,
+                    Tex.y * 435,
+                    Gdx.graphics.getWidth(),
+                    1,
+                    false
+            );
+        } else {
+            if (level == 0) {
+                font2.draw(
+                        MyGdxGame.batchFont,
+                        "BEST SCORE: " + Progress.maxScore,
+                        5,
+                        Tex.y * 455,
+                        Gdx.graphics.getWidth(),
+                        1,
+                        false
+                );
+            } else {
+                font.draw(
+                        MyGdxGame.batchFont,
+                        "LEVEL: " + level,
+                        5,
+                        Tex.y * 455,
+                        Gdx.graphics.getWidth(),
+                        1,
+                        false
+                );
+            }
+        }
         MyGdxGame.batchFont.end();
         batch.begin();
     }

@@ -34,6 +34,7 @@ public class MenuLayout implements LayoutInterface {
         background = new BackgroundCircle(1);
         playButton = new PlayButton();
         levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
+        levelText.isMenu = true;
         levelButton = new LevelButton();
         infiniteButton = new InfiniteButton();
         MyGdxGame.setUp(15, false);

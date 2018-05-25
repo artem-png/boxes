@@ -18,11 +18,13 @@ public class LevelLoop extends ALevel {
     Score score;
 
     public LevelLoop() {
+        this.level = 0;
         this.hasTimePower = true;
         this.hasBlockPower = true;
         this.blockTime = 900;
         this.clockTime = 900;
         score = new Score();
+        Score.score = 0;
     }
 
     public static void initStatic() {
@@ -55,7 +57,11 @@ public class LevelLoop extends ALevel {
     }
 
     public void afterWin() {
-        Progress.saveScore(score.score);
+
+    }
+
+    public void dispose() {
+        super.dispose();
     }
 
 }

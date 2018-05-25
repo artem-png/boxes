@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
+import com.siminenko.artem.Model.Infinite.Score;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
@@ -29,12 +30,18 @@ public class LostLayout implements LayoutInterface {
     LevelText levelText;
     int level;
 
+    boolean record = false;
+
     public LostLayout(int level) {
         modelPicker = new ModelPicker();
-        background = new BackgroundCircle(2);
+        if (level == 0 && Progress.saveScore(Score.score)) {
+            record = true;
+        }
+        background = new BackgroundCircle(record ? 3 : 2);
         menuIcon = new MenuIcon();
         restartText = new RestartText(level);
-        failedText = new FailedText();
+        failedText = new FailedText(record);
+        failedText.record = true;
         levelText = new LevelText(level, Color.DARK_GRAY);
         this.level = level;
         MyGdxGame.setUp(15, false);

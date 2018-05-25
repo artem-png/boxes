@@ -13,7 +13,7 @@ import com.siminenko.artem.MyGdxGame;
  */
 
 public class Score {
-    public int score = 1;
+    public static int score = 1;
     int timePauseSetting = 30;
     int timePause = timePauseSetting;
     float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;

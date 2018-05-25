@@ -11,7 +11,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
+import com.siminenko.artem.Model.Infinite.Score;
 import com.siminenko.artem.MyGdxGame;
+
+import java.util.Random;
 
 /**
  * Created by User on 22.04.2018.
@@ -21,9 +24,14 @@ public class FailedText {
     static BitmapFont font;
     static float xd;
     static float yd;
+    public boolean record = false;
+
+    String string;
 
 
-    public FailedText() {
+    public FailedText(boolean record) {
+        this.record = record;
+        string = getText();
     }
 
     public static void init() {
@@ -41,7 +49,7 @@ public class FailedText {
         MyGdxGame.batchFont.begin();
         font.draw(
                 MyGdxGame.batchFont,
-                "FAILED",
+                string,
                 0,
                 Tex.y * 400,
                 Gdx.graphics.getWidth(),
@@ -50,6 +58,23 @@ public class FailedText {
         );
         MyGdxGame.batchFont.end();
         batch.begin();
+    }
+
+    public String getText() {
+        if (record) {
+            return "new result!";
+        }
+        Random random = new Random();
+        int result = random.nextInt(4);
+        if (result == 0) {
+            return "FAILED";
+        } else if (result == 1) {
+            return "OOPS..";
+        } else if (result == 2) {
+            return "YOU LOST";
+        } else {
+            return "TRY AGAIN";
+        }
     }
 
     public void dispose() {
