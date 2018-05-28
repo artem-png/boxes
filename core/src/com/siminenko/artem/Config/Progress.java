@@ -9,6 +9,7 @@ import com.siminenko.artem.Model.Level.Levels.Level1;
 import com.siminenko.artem.Model.Level.Levels.Level10;
 import com.siminenko.artem.Model.Level.Levels.Level11;
 import com.siminenko.artem.Model.Level.Levels.Level12;
+import com.siminenko.artem.Model.Level.Levels.Level13;
 import com.siminenko.artem.Model.Level.Levels.Level2;
 import com.siminenko.artem.Model.Level.Levels.Level3;
 import com.siminenko.artem.Model.Level.Levels.Level4;
@@ -26,7 +27,7 @@ import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 public class Progress {
     public static final String progress = "progressLevel4";
     public static final String maxScoreSetting = "maxScore6";
-    public static int[] levels = new int[12];
+    public static int[] levels = new int[13];
     public static int maxScore = 0;
 
     public void init() {
@@ -118,6 +119,8 @@ public class Progress {
             level = new Level11();
         } else if (index == 12) {
             level = new Level12();
+        } else if (index == 13) {
+            level = new Level13();
         } else {
             return new LevelLoop();
         }

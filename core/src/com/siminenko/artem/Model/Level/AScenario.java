@@ -23,6 +23,8 @@ public abstract class AScenario {
     public float gravityScale = 1;
     public Vector<AObject> objects = new Vector<AObject>();
 
+    public boolean isKinematic = false;
+
 
     public void act() {
         doDelay -= 1f * ((float)GameLayout.speedSetting / (float)GameLayout.speed);

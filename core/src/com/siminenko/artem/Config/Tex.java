@@ -23,6 +23,7 @@ public class Tex {
     public static Sprite circleDestroyable;
     public static Sprite circle2;
     public static Sprite rectangle1;
+    public static Sprite rectangleGrey;
     public static Sprite triangle1;
     public static Sprite present1;
     public static Sprite crest1;
@@ -46,6 +47,7 @@ public class Tex {
         circle1 = new Sprite(new Texture("circle.png"));
         circle2 = new Sprite(new Texture("circleRed.png"));
         rectangle1 = new Sprite(new Texture("rectanble.png"));
+        rectangleGrey = new Sprite(new Texture("rectangleGrey.png"));
         triangle1 = new Sprite(new Texture("triangle.png"));
         crest1 = new Sprite(new Texture("crest.png"));
         circleDestroyable = new Sprite(new Texture("circleDestroyable.png"));

@@ -20,11 +20,6 @@ import com.siminenko.artem.Model.Player;
 public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
-        if (!Player.isTouch && (contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData)) {
-            Player.isTouch = true;
-        }
-
-
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusBigData) {
             ((BonusBigData) contact.getFixtureA().getBody().getUserData()).bonusBig.handlePlayer(((UserData) contact.getFixtureB().getBody().getUserData()).player);
         }
@@ -53,6 +48,9 @@ public class DestroyableListener implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
+        if (!Player.isTouch && (contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData)) {
+            Player.isTouch = true;
+        }
 
     }
 

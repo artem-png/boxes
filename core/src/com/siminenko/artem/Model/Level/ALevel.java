@@ -33,8 +33,7 @@ public abstract class ALevel {
 
     public abstract void init();
 
-    public void afterInit()
-    {
+    public void afterInit() {
         this.bar = new ProgressBar(this);
         this.particles = new Particles();
 
@@ -98,13 +97,13 @@ public abstract class ALevel {
         bar.render(b);
     }
 
-    public void renderBG(SpriteBatch batch){
+    public void renderBG(SpriteBatch batch) {
         particles.render(batch);
 
     }
 
     public void dispose() {
-        for (int i = 0; i < aScenarioVector2.size(); i ++) {
+        for (int i = 0; i < aScenarioVector2.size(); i++) {
             aScenarioVector2.get(i).dispose();
         }
         for (int i = 0; i < aObjectVector2.size(); i++) {
@@ -113,7 +112,13 @@ public abstract class ALevel {
     }
 
     public boolean isComplete() {
-        boolean result = this.aScenarioVector2.size() == 0 && this.aObjectVector2.size() == 0;
+        int kinematicCount = 0;
+        for (int i = this.aObjectVector2.size() - 1; i >= 0; i--) {
+            if (this.aObjectVector2.get(i).isKinematic) {
+                kinematicCount++;
+            }
+        }
+        boolean result = this.aScenarioVector2.size() == 0 && (this.aObjectVector2.size() == 0 || kinematicCount == this.aObjectVector2.size());
         if (result) {
             afterWin();
         }

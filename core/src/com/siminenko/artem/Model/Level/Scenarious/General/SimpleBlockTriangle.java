@@ -27,6 +27,17 @@ public class SimpleBlockTriangle extends AScenario {
         this.doDelay = delay;
     }
 
+    public SimpleBlockTriangle(World world, Player player, ALevel level, int delay, float rotation, float initRotation, Vector2 position, Vector2 speed, float mass, int size) {
+        this.level = level;
+        this.world = world;
+        this.player = player;
+        ObstacleTriangle o = new ObstacleTriangle(world, position, size, speed, initRotation, rotation, mass);
+        o.setAngularVelocity(rotation);
+        o.setVelocity(speed);
+        this.objects.add(o);
+        this.doDelay = delay;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
 

@@ -23,7 +23,7 @@ public class Level12 extends ALevel {
         this.hasTimePower = true;
         this.hasBlockPower = true;
         this.blockTime = 700;
-        this.clockTime = 450;
+        this.clockTime = 650;
     }
 
     @Override

@@ -25,6 +25,8 @@ public abstract class AObject {
     World world;
     ALevel level;
 
+    public boolean isKinematic = false;
+
     public boolean isNeedParticles = true;
 
     boolean isDestroyed = false;
