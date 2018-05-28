@@ -28,7 +28,7 @@ public class StaticVerticalPanel extends AObject {
         bodyDef.position.set(position.x, position.y);
         body = world.createBody(bodyDef);
         body.setTransform(position.x, position.y, initRotation);
-        setShapeToFixture(shape, 1, 1, 0);
+        setShapeToFixture(shape, 1, 1, 0.3f);
         this.body.setLinearVelocity(speed);
         this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, initRotation);
         this.body.setAngularVelocity(rotation);

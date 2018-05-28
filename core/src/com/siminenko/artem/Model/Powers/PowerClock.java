@@ -86,12 +86,14 @@ public class PowerClock extends APower {
 
     public void input() {
         if (delay == 0 && !shieldUp && !shieldDown) {
-            if (Gdx.input.justTouched()) {
-                Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-                if (vector3.x < 5 && vector3.y > 28 && vector3.y < 38) {
-                    isActive = true;
-                    GameLayout.borderEffects.setFreezUp();
-                    shieldUp = true;
+            for (int i = 0; i <= 1; i++) {
+                if (Gdx.input.isTouched(i)) {
+                    Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0));
+                    if (vector3.x < 5 && vector3.y > 28 && vector3.y < 38) {
+                        isActive = true;
+                        GameLayout.borderEffects.setFreezUp();
+                        shieldUp = true;
+                    }
                 }
             }
         }
