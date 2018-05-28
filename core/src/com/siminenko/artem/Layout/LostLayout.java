@@ -41,7 +41,6 @@ public class LostLayout implements LayoutInterface {
         menuIcon = new MenuIcon();
         restartText = new RestartText(level);
         failedText = new FailedText(record);
-        failedText.record = true;
         levelText = new LevelText(level, Color.DARK_GRAY);
         this.level = level;
         MyGdxGame.setUp(15, false);

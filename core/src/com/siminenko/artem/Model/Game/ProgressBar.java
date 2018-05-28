@@ -30,8 +30,10 @@ public class ProgressBar {
     }
 
     public void render(SpriteBatch batch) {
-        currentScenario = scenarioCount - level.aScenarioVector2.size();
-        batch.draw(this.bar, -1, 0, xPerScenario * currentScenario + 1, 0.7f);
+        if (level.level != 0) {
+            currentScenario = scenarioCount - level.aScenarioVector2.size();
+            batch.draw(this.bar, -1, 0, xPerScenario * currentScenario + 1, 0.7f);
+        }
     }
 
 }

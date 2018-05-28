@@ -25,7 +25,7 @@ import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 
 public class Progress {
     public static final String progress = "progressLevel4";
-    public static final String maxScoreSetting = "maxScore5";
+    public static final String maxScoreSetting = "maxScore6";
     public static int[] levels = new int[12];
     public static int maxScore = 0;
 
@@ -78,6 +78,10 @@ public class Progress {
             if (levels[i] == 1) {
                 index = i + 2;
             }
+        }
+
+        if (index > levels.length) {
+            return levels.length;
         }
 
         return index;

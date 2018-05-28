@@ -36,33 +36,35 @@ public class LevelsLayout implements LayoutInterface {
 
     int level;
 
-    BitmapFont font;
-    BitmapFont font1;
+    static  BitmapFont font;
+    static BitmapFont font1;
 
-    float xd;
-    float yd;
+    static float xd;
+    static float yd;
 
     public LevelsLayout() {
         background = new Background();
         backIcon = new BackIcon();
         topPanel = new TopPanel();
-        this.level = 1;
+        this.level = (int)((((Progress.getNextLevelInt() - 1) / 12)) * 12) + 1;
         levelGenerator = new LevelGenerator(level);
         levelsCount = Progress.levels.length;
+        System.out.println(levelsCount);
         MyGdxGame.setUp(15, false);
-        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
-        yd = Gdx.graphics.getHeight() / MyGdxGame.height;
-        font = Tex.generateFont(Color.ORANGE, (int) (3.5f * xd), "bigfont.ttf");
-        font1 = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
+
     }
 
     public void setLevel(int level) {
-        this.level = level / 12 + 1;
+        this.level = (int)((((Progress.getNextLevelInt() - 1) / 12)) * 12) + 1;
         levelGenerator.setLevel(this.level);
     }
 
     public static void init() {
         arrow = new Sprite(new Texture("menu/backIcon.png"));
+        xd = Gdx.graphics.getWidth() / MyGdxGame.width;
+        yd = Gdx.graphics.getHeight() / MyGdxGame.height;
+        font = Tex.generateFont(Color.ORANGE, (int) (3.5f * xd), "bigfont.ttf");
+        font1 = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
     }
 
     @Override
@@ -83,7 +85,7 @@ public class LevelsLayout implements LayoutInterface {
                     }
                 }
             }
-            if (level + 12 < levelsCount) {
+            if (level + 12 <= levelsCount) {
                 if (vector3.x > MyGdxGame.width - 6 - 5 && vector3.x < MyGdxGame.width - 6 + 7) {
                     if (vector3.y > 9 && vector3.y < 17) {
                         this.level += 12;
@@ -101,33 +103,27 @@ public class LevelsLayout implements LayoutInterface {
         background.render(MyGdxGame.batchDynamic);
         topPanel.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
-        MyGdxGame.batchFont.begin();
-        font1.draw(MyGdxGame.batchFont, "TUTORIAL", 0, 78 * yd, Gdx.graphics.getWidth(), 1, false);
-        MyGdxGame.batchFont.end();
         MyGdxGame.batchDynamic.begin();
         levelGenerator.render(MyGdxGame.batchDynamic);
         backIcon.render(MyGdxGame.batchDynamic);
-//        if (level > 12) {
-//            MyGdxGame.batchDynamic.draw(arrow, 0 + 6, 10, 6, 6);
-//        }
-//        if (level + 12 < levelsCount) {
-//            MyGdxGame.batchDynamic.draw(
-//                    arrow,
-//                    MyGdxGame.width - 6 - 6,
-//                    10,
-//                    3,
-//                    3,
-//                    6,
-//                    6,
-//                    arrow.getScaleX(),
-//                    arrow.getScaleY(),
-//                    180
-//            );
-//        }
+        if (level > 12) {
+            MyGdxGame.batchDynamic.draw(arrow, 0 + 6, 10, 6, 6);
+        }
+        if (level + 12 <= levelsCount) {
+            MyGdxGame.batchDynamic.draw(
+                    arrow,
+                    MyGdxGame.width - 6 - 6,
+                    10,
+                    3,
+                    3,
+                    6,
+                    6,
+                    arrow.getScaleX(),
+                    arrow.getScaleY(),
+                    180
+            );
+        }
         MyGdxGame.batchDynamic.end();
-        MyGdxGame.batchFont.begin();
-        font.draw(MyGdxGame.batchFont, "COMING SOON", 0, 16 * yd, Gdx.graphics.getWidth(), 1, false);
-        MyGdxGame.batchFont.end();
         batch.begin();
     }
 

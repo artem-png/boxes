@@ -56,6 +56,10 @@ public class LevelLoop extends ALevel {
         score.render(b);
     }
 
+    public boolean isComplete() {
+        return false;
+    }
+
     public void afterWin() {
 
     }

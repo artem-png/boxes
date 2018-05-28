@@ -132,7 +132,7 @@ public class GameLayout implements LayoutInterface {
         borderEffects.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
-        dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        //dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {

@@ -72,7 +72,7 @@ public class PlayButton {
         font.draw(
                 MyGdxGame.batchFont,
                 "PLAY",
-                Tex.x * 365,
+                Tex.x * 388,
                 Tex.y * 174
         );
         MyGdxGame.batchFont.end();

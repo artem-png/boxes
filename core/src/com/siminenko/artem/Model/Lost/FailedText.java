@@ -28,10 +28,17 @@ public class FailedText {
 
     String string;
 
+    float a = 0.05f;
+    float da = 0.1f;
+
+    float size = 0.7f;
 
     public FailedText(boolean record) {
         this.record = record;
         string = getText();
+        if (record) {
+            font.getData().setScale(size, size);
+        }
     }
 
     public static void init() {
@@ -41,10 +48,15 @@ public class FailedText {
     }
 
     public void act() {
-
+        if (this.record) {
+            a += da;
+            size += Math.sin(a) / 60;
+            font.getData().setScale(size, size);
+        }
     }
 
     public void render(SpriteBatch batch) {
+        act();
         batch.end();
         MyGdxGame.batchFont.begin();
         font.draw(
@@ -62,7 +74,15 @@ public class FailedText {
 
     public String getText() {
         if (record) {
-            return "new result!";
+            Random random = new Random();
+            int result = random.nextInt(3);
+            if (result == 0) {
+                return "GOOD JOB!";
+            } else if (result == 1) {
+                return "new result!";
+            } else if (result == 2) {
+                return "NEW RECORD";
+            }
         }
         Random random = new Random();
         int result = random.nextInt(4);
