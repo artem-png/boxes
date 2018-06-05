@@ -92,7 +92,7 @@ public class Level5 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                90,
+                100,
                 20,
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 10),
                 new Vector2(0, 0)
@@ -101,7 +101,7 @@ public class Level5 extends ALevel {
                 GameLayout.world,
                 this.player,
                 this,
-                90,
+                100,
                 20,
                 new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height + 10),
                 new Vector2(0, 0)

@@ -50,12 +50,12 @@ public class Level13 extends ALevel {
                 2,
                 MyGdxGame.height + 5
         ));
-        for (int i = -8; i <= 0; i++) {
+        for (int i = -5; i <= 0; i++) {
             this.aScenarioVector2.add(new SimpleBlockTriangle(
                     GameLayout.world,
                     player,
                     this,
-                    17,
+                    25,
                     4,
                     180,
                     new Vector2(MyGdxGame.width / 2 - i * 2, MyGdxGame.height + 5),
@@ -80,12 +80,12 @@ public class Level13 extends ALevel {
         }
 
 
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i <= 6; i++) {
             this.aScenarioVector2.add(new SimpleBlockCircle(
                     GameLayout.world,
                     player,
                     this,
-                    i == 0 ? 160 : 35,
+                    i == 0 ? 180 : 40,
                     4,
                     new Vector2(i % 2 == 1 ? -30 : 30, -8),
                     new Vector2(i % 2 == 1 ? MyGdxGame.width : 0, MyGdxGame.height + 5)

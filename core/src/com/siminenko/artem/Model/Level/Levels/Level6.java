@@ -36,7 +36,7 @@ public class Level6 extends ALevel {
                 new Vector2(0, -5),
                 new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 5),
                 0.9f,
-                20,
+                14,
                 140
         );
         o.gravityScale = 0.5f;
@@ -51,7 +51,7 @@ public class Level6 extends ALevel {
                 new Vector2(0, -3),
                 new Vector2(MyGdxGame.width / 2 - 5, MyGdxGame.height + 5),
                 0.9f,
-                10,
+                9,
                 120
         );
         o.gravityScale = 0.3f;
@@ -66,7 +66,7 @@ public class Level6 extends ALevel {
                 new Vector2(0, -3),
                 new Vector2(MyGdxGame.width / 2 + 5, MyGdxGame.height + 5),
                 0.9f,
-                10,
+                9,
                 120
         );
         o.gravityScale = 0.3f;

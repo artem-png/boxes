@@ -103,7 +103,7 @@ public class Level7 extends ALevel {
                 this,
                 120,
                 5,
-                new Vector2(15, 0),
+                new Vector2(7, 0),
                 new Vector2(-10, MyGdxGame.height + 10)
         ));
         this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -112,7 +112,7 @@ public class Level7 extends ALevel {
                 this,
                 0,
                 5,
-                new Vector2(-15, 0),
+                new Vector2(-7, 0),
                 new Vector2(MyGdxGame.width + 10, MyGdxGame.height + 10)
         ));
         this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -121,7 +121,7 @@ public class Level7 extends ALevel {
                 this,
                 60,
                 5,
-                new Vector2(15, 0),
+                new Vector2(7, 0),
                 new Vector2(-10, MyGdxGame.height)
         ));
         this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -130,7 +130,7 @@ public class Level7 extends ALevel {
                 this,
                 0,
                 5,
-                new Vector2(-15, 0),
+                new Vector2(-7, 0),
                 new Vector2(MyGdxGame.width + 10, MyGdxGame.height)
         ));
         this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -139,7 +139,7 @@ public class Level7 extends ALevel {
                 this,
                 60,
                 5,
-                new Vector2(15, 0),
+                new Vector2(7, 0),
                 new Vector2(-10, MyGdxGame.height - 10)
         ));
         this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -148,7 +148,7 @@ public class Level7 extends ALevel {
                 this,
                 0,
                 5,
-                new Vector2(-15, 0),
+                new Vector2(-7, 0),
                 new Vector2(MyGdxGame.width + 10, MyGdxGame.height - 10)
         ));
         ///////

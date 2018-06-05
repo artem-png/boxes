@@ -26,12 +26,12 @@ public class Level10 extends ALevel {
 
     @Override
     public void init() {
-        for (int i = -2; i < 2; i++) {
+        for (int i = -3; i < 3; i++) {
             this.aScenarioVector2.add(new SimpleBlockHorizontal(
                     GameLayout.world,
                     this.player,
                     this,
-                    8,
+                    10,
                     0,
                     new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 4),
                     new Vector2(0, 0),
@@ -39,12 +39,12 @@ public class Level10 extends ALevel {
                     5
             ));
         }
-        for (int i = 2; i >= -2; i--) {
+        for (int i = 3; i >= -3; i--) {
             this.aScenarioVector2.add(new SimpleBlockHorizontal(
                     GameLayout.world,
                     this.player,
                     this,
-                    8,
+                    10,
                     0,
                     new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 4),
                     new Vector2(0, 0),
@@ -93,7 +93,7 @@ public class Level10 extends ALevel {
                     GameLayout.world,
                     this.player,
                     this,
-                    8,
+                    10,
                     0,
                     new Vector2(MyGdxGame.width/2 + i * 4, MyGdxGame.height + 2),
                     new Vector2(0, -20),

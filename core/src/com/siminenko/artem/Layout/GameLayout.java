@@ -47,7 +47,7 @@ public class GameLayout implements LayoutInterface {
     public static ALevel level;
 
     public static int speedSetting = 60;
-    public static int speed = 60;
+    public static int speed = speedSetting;
 
     public boolean isInfinite = false;
 
@@ -66,7 +66,7 @@ public class GameLayout implements LayoutInterface {
     }
 
     public static void init() {
-        world = new World(new Vector2(0, -15f), true);
+        world = new World(new Vector2(0, -10f), true);
         world.setContactListener(new DestroyableListener());
         rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
