@@ -34,6 +34,29 @@ public class StaticVerticalPanel extends AObject {
         this.body.setAngularVelocity(rotation);
         this.body.setUserData(this);
         isKinematic = true;
+        isNeedParticles = false;
+    }
+
+    public StaticVerticalPanel(World world, Vector2 position, Vector2 speed, float initRotation, float rotation, int sizeX, int sizeY, float restitution) {
+        this.world = world;
+        PolygonShape shape = new PolygonShape();
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        shape.setAsBox(sizeX/2, sizeY/2);
+
+        this.shape = shape;
+        bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.position.set(position.x, position.y);
+        body = world.createBody(bodyDef);
+        body.setTransform(position.x, position.y, initRotation);
+        setShapeToFixture(shape, 1, 1, restitution);
+        this.body.setLinearVelocity(speed);
+        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, initRotation);
+        this.body.setAngularVelocity(rotation);
+        this.body.setUserData(this);
+        isKinematic = true;
+        isNeedParticles = false;
     }
 
     @Override

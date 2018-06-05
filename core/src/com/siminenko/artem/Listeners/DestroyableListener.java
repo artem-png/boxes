@@ -43,7 +43,9 @@ public class DestroyableListener implements ContactListener {
 
     @Override
     public void endContact(Contact contact) {
-
+        if ((contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData)) {
+            contact.setRestitution(0);
+        }
     }
 
     @Override

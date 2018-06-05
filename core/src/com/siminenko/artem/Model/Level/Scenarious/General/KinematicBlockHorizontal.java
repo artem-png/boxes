@@ -26,6 +26,16 @@ public class KinematicBlockHorizontal extends AScenario {
         this.isKinematic = true;
     }
 
+    public KinematicBlockHorizontal(World world, Player player, ALevel level, int delay, float initRotation, float rotation, Vector2 position, Vector2 speed, int x, int y, float r) {
+        this.level = level;
+        this.world = world;
+        this.player = player;
+        this.objects.add(new StaticVerticalPanel(world, position, speed, initRotation, rotation, x, y, r));
+        this.doDelay = delay;
+
+        this.isKinematic = true;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
 
