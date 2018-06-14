@@ -19,6 +19,8 @@ public class BonusBig extends ABonus {
     float sizeX = 5;
     float sizeY = 5;
 
+    int time = 550;
+
     public BonusBig(World world, Vector2 position) {
         this.world = world;
         PolygonShape shape = new PolygonShape();
@@ -26,6 +28,16 @@ public class BonusBig extends ABonus {
         this.shape = shape;
         this.createObject(position, shape, world, 0.9f, 1f, 0);
         this.body.setUserData(new BonusBigData(this));
+    }
+
+    public BonusBig(World world, Vector2 position, int time) {
+        this.world = world;
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(sizeX / 2, sizeY / 2);
+        this.shape = shape;
+        this.createObject(position, shape, world, 0.9f, 1f, 0);
+        this.body.setUserData(new BonusBigData(this));
+        this.time = time;
     }
 
     @Override
@@ -62,7 +74,7 @@ public class BonusBig extends ABonus {
 
     public void handlePlayer(Player player) {
         isBonusGiven = true;
-        player.makeBigger(1.5f, 550);
+        player.makeBigger(1.5f, time);
         int count = 60;
     }
 

@@ -26,6 +26,16 @@ public class SimpleBonusBig extends AScenario {
         this.doDelay = delay;
     }
 
+    public SimpleBonusBig(World world, Player player, ALevel level, int delay, Vector2 position, float rotation, int time) {
+        this.level = level;
+        this.world = world;
+        this.player = player;
+        BonusBig bonusBig = new BonusBig(world, position, time);
+        bonusBig.getBody().setAngularVelocity(rotation);
+        this.objects.add(bonusBig);
+        this.doDelay = delay;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
 
