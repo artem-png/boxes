@@ -137,6 +137,14 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     @Override
+    public void pause() {
+        super.pause();
+        if (MyGdxGame.layoutManager.vector.lastElement() instanceof GameLayout) {
+            MyGdxGame.layoutManager.push(new PauseLayout(GameLayout.level.level));
+        }
+    }
+
+    @Override
     public void dispose() {
         layoutManager.dispose();
     }

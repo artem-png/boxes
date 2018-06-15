@@ -26,6 +26,10 @@ public class ObstacleTriangle extends AObject {
             vector2[0] = new Vector2(0f, 2f);
             vector2[1] = new Vector2(-1.5f, -1f);
             vector2[2] = new Vector2(1.5f, -1f);
+        } else if (size == 3) {
+            vector2[0] = new Vector2(0f, 1f);
+            vector2[1] = new Vector2(-0.75f, -0.5f);
+            vector2[2] = new Vector2(0.75f, -0.5f);
         }
         shape.set(vector2);
         this.shape = shape;
@@ -56,7 +60,7 @@ public class ObstacleTriangle extends AObject {
                     Tex.rectangle1.getScaleY(),
                     (float) Math.toDegrees(this.body.getAngle())
             );
-        } else {
+        } else if (size == 2) {
             batch.draw(
                     Tex.triangle1,
                     this.body.getPosition().x - 1.5f,
@@ -65,6 +69,19 @@ public class ObstacleTriangle extends AObject {
                     1,
                     3f,
                     3,
+                    Tex.rectangle1.getScaleX(),
+                    Tex.rectangle1.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else {
+            batch.draw(
+                    Tex.triangle1,
+                    this.body.getPosition().x - 0.75f,
+                    this.body.getPosition().y - 0.5f,
+                    0.75f,
+                    0.5f,
+                    1.5f,
+                    1.5f,
                     Tex.rectangle1.getScaleX(),
                     Tex.rectangle1.getScaleY(),
                     (float) Math.toDegrees(this.body.getAngle())
