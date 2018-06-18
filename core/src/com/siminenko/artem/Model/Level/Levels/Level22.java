@@ -43,7 +43,7 @@ public class Level22 extends ALevel {
             ));
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             int f = random.nextInt(4);
             Vector2 position = new Vector2();
             Vector2 speed = new Vector2();
