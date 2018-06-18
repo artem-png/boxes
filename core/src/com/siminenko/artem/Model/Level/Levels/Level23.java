@@ -16,10 +16,10 @@ import java.util.Random;
 public class Level23 extends ALevel {
 
     public Level23() {
-        // this.hasTimePower = true;
+        this.hasTimePower = true;
         this.hasBlockPower = true;
         this.blockTime = 1700;
-        // this.clockTime = 1700;
+        this.clockTime = 1700;
     }
 
     @Override
@@ -219,17 +219,5 @@ public class Level23 extends ALevel {
                 ));
             }
         }
-
-
-
-        this.aScenarioVector2.add(new SimpleBlockCircle(
-                GameLayout.world,
-                player,
-                this,
-                6757656,
-                random.nextInt(3) + 2,
-                new Vector2(random.nextInt(10) - 5, -5),
-                new Vector2(random.nextInt(20) - 10 + MyGdxGame.width/2, MyGdxGame.height + 10)
-        ));
     }
 }
