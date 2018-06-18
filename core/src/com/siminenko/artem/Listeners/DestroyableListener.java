@@ -20,6 +20,7 @@ import com.siminenko.artem.Model.Player;
 public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
+
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusBigData) {
             ((BonusBigData) contact.getFixtureA().getBody().getUserData()).bonusBig.handlePlayer(((UserData) contact.getFixtureB().getBody().getUserData()).player);
         }

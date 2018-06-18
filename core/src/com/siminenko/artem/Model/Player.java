@@ -195,6 +195,7 @@ public class Player extends AObject {
         Tex.createParticles(30, 1, body.getPosition());
 
         sprite.setOrigin(x2 * bigMultiplier, -y2 * bigMultiplier);
+        this.body.setUserData(new UserData(this));
     }
 
     public void toNormal(Vector2 position) {
@@ -212,5 +213,6 @@ public class Player extends AObject {
         Tex.createParticles(30, 1, body.getPosition());
 
         sprite.setOrigin(x2, -y2);
+        this.body.setUserData(new UserData(this));
     }
 }
