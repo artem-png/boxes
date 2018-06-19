@@ -81,6 +81,7 @@ public class MenuLayout implements LayoutInterface {
         levelText.dispose();
         levelButton.dispose();
         infiniteButton.dispose();
+        background.dispose();
     }
 
     @Override

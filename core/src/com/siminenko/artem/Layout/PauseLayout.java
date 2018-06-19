@@ -75,7 +75,12 @@ public class PauseLayout implements LayoutInterface {
 
     @Override
     public void dispose() {
-
+        backgroundCircle.dispose();
+        modelPicker.dispose();
+        pausedText.dispose();
+        levelText.dispose();
+        menuIcon.dispose();
+        continueButton.dispose();
     }
 
     @Override

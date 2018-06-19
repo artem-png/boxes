@@ -19,6 +19,8 @@ import com.siminenko.artem.Layout.PauseLayout;
 import com.siminenko.artem.Layout.RateLayout;
 import com.siminenko.artem.Layout.WinLayout;
 import com.siminenko.artem.Model.Game.PauseIcon;
+import com.siminenko.artem.Model.Level.Levels.Level1;
+import com.siminenko.artem.Model.Level.Levels.Level19;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
 import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
@@ -93,8 +95,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
-
-
     }
 
     public static void setUp(int time, boolean isUp) {

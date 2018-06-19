@@ -71,6 +71,8 @@ public class WinLayout implements LayoutInterface {
         modelPicker.dispose();
         successText.dispose();
         menuIcon.dispose();
+        background.dispose();
+        levelText.dispose();
     }
 
     @Override

@@ -136,6 +136,7 @@ public class Player extends AObject {
     public void dispose() {
         ballon.dispose();
         shape.dispose();
+        this.sprite.getTexture().dispose();
         this.world.destroyBody(body);
     }
 

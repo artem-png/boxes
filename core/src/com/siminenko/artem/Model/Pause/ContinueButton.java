@@ -85,7 +85,6 @@ public class ContinueButton {
     }
 
     public void dispose() {
-        button.getTexture().dispose();
-        font.dispose();
+
     }
 }

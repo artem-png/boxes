@@ -62,6 +62,6 @@ public class ModelPicker {
     }
 
     public void dispose() {
-
+        effects.dispose();
     }
 }

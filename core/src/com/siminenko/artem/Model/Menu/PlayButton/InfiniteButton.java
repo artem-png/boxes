@@ -85,6 +85,7 @@ public class InfiniteButton {
 
     public void dispose() {
         button.getTexture().dispose();
+        buttonPressed.getTexture().dispose();
         whitebg.getTexture().dispose();
         font.dispose();
     }

@@ -29,7 +29,6 @@ public class GameLayout implements LayoutInterface {
     public static BorderEffects borderEffects;
     Player player;
     Background background;
-    Sprite whitebg;
     PauseIcon pauseIcon;
     int timeBeforeDeath = 60;
     int timelapse = 0;
@@ -52,9 +51,14 @@ public class GameLayout implements LayoutInterface {
     public boolean isInfinite = false;
 
     public GameLayout(ALevel level) {
+        world = new World(new Vector2(0, -10f), true);
+        world.setContactListener(new DestroyableListener());
+        rayHandler = new RayHandler(world);
         player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
         background = new Background();
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
+        if (this.level != null) {
+            level.dispose();
+        }
         this.level = level;
         this.level.setPlayer(player);
         this.level.init();
@@ -62,13 +66,12 @@ public class GameLayout implements LayoutInterface {
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
-        effects = new Effects();
     }
 
     public static void init() {
-        world = new World(new Vector2(0, -10f), true);
-        world.setContactListener(new DestroyableListener());
-        rayHandler = new RayHandler(world);
+        //world = new World(new Vector2(0, -10f), true);
+        //world.setContactListener(new DestroyableListener());
+        //rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
         effects = new Effects();
         borderEffects = new BorderEffects();
@@ -132,7 +135,7 @@ public class GameLayout implements LayoutInterface {
         borderEffects.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
-        dDebugRenderer.render(world, MyGdxGame.camera.combined);
+       // dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {
@@ -161,6 +164,10 @@ public class GameLayout implements LayoutInterface {
         level.dispose();
         effects.dispose();
         borderEffects.dispose();
+        background.dispose();
+        pauseIcon.dispose();
+        world.dispose();
+        rayHandler.dispose();
         GameLayout.isWin = false;
         GameLayout.isDispose = false;
     }

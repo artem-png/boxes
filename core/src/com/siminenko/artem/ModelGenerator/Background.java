@@ -36,6 +36,12 @@ public class Background {
     Vector2 sprite1Position = new Vector2(-5, 0);
     Vector2 sprite2Position = new Vector2(-5, MyGdxGame.height);
 
+    public void dispose()
+    {
+        sprite1.getTexture().dispose();
+        sprite2.getTexture().dispose();
+    }
+
     public Background() {
         sa = this.getNewNumber(10000);
         sb = this.getNewNumber(sa);

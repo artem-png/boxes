@@ -85,6 +85,7 @@ public class PlayButton {
 
     public void dispose() {
         button.getTexture().dispose();
+        buttonPressed.getTexture().dispose();
         whitebg.getTexture().dispose();
         font.dispose();
     }

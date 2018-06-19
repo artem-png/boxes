@@ -82,4 +82,10 @@ public class BackgroundCircle {
             isPair = !isPair;
         }
     }
+
+    public void  dispose()
+    {
+        white.getTexture().dispose();
+        grey.getTexture().dispose();
+    }
 }

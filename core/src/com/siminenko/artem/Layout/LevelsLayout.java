@@ -132,6 +132,7 @@ public class LevelsLayout implements LayoutInterface {
         backIcon.dispose();
         topPanel.dispose();
         levelGenerator.dispose();
+        background.dispose();
     }
 
     @Override

@@ -76,7 +76,7 @@ public class LostLayout implements LayoutInterface {
     @Override
     public void dispose() {
         restartText.dispose();
-        modelPicker.dispose();
+        background.dispose();
         failedText.dispose();
         menuIcon.dispose();
         levelText.dispose();
