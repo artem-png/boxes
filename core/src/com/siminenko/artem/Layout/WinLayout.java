@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Win.CompletedText;
@@ -25,6 +26,7 @@ public class WinLayout implements LayoutInterface {
     CompletedText successText;
     MenuIcon menuIcon;
     LevelText levelText;
+    DiamondDisplay diamondDisplay;
     int level;
 
     public WinLayout(int level) {
@@ -33,6 +35,7 @@ public class WinLayout implements LayoutInterface {
         menuIcon = new MenuIcon();
         continueText = new NextLevelText(level);
         successText = new CompletedText();
+        diamondDisplay = new DiamondDisplay();
         levelText = new LevelText(level - 1, Color.DARK_GRAY);
         this.level = level;
         MyGdxGame.setUp(15, false);
@@ -49,6 +52,7 @@ public class WinLayout implements LayoutInterface {
         continueText.act();
         menuIcon.act();
         levelText.act();
+        diamondDisplay.act();
     }
 
     @Override
@@ -61,6 +65,7 @@ public class WinLayout implements LayoutInterface {
         levelText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
         continueText.render(MyGdxGame.batchDynamic);
+        diamondDisplay.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -73,6 +78,7 @@ public class WinLayout implements LayoutInterface {
         menuIcon.dispose();
         background.dispose();
         levelText.dispose();
+        diamondDisplay.dispose();
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.InfiniteButton;
@@ -28,6 +29,7 @@ public class MenuLayout implements LayoutInterface {
     LevelText levelText;
     LevelButton levelButton;
     InfiniteButton infiniteButton;
+    DiamondDisplay diamondDisplay;
 
     public MenuLayout() {
         modelPicker = new ModelPicker();
@@ -37,6 +39,7 @@ public class MenuLayout implements LayoutInterface {
         levelText.isMenu = true;
         levelButton = new LevelButton();
         infiniteButton = new InfiniteButton();
+        diamondDisplay = new DiamondDisplay();
         MyGdxGame.setUp(15, false);
     }
 
@@ -52,6 +55,7 @@ public class MenuLayout implements LayoutInterface {
         levelText.act();
         levelButton.act();
         infiniteButton.act();
+        diamondDisplay.act();
         if (playButton.isReady()) {
             MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
         }
@@ -70,6 +74,7 @@ public class MenuLayout implements LayoutInterface {
         levelButton.render(MyGdxGame.batchDynamic);
         playButton.render(MyGdxGame.batchDynamic);
         infiniteButton.render(MyGdxGame.batchDynamic);
+        diamondDisplay.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -82,6 +87,7 @@ public class MenuLayout implements LayoutInterface {
         levelButton.dispose();
         infiniteButton.dispose();
         background.dispose();
+        diamondDisplay.dispose();
     }
 
     @Override

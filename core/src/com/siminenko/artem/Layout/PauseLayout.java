@@ -11,6 +11,7 @@ import com.siminenko.artem.Model.LevelLayout.BackIcon;
 import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
 import com.siminenko.artem.Model.LevelLayout.TopPanel;
 import com.siminenko.artem.Model.Lost.MenuIcon;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Pause.ContinueButton;
@@ -30,6 +31,7 @@ public class PauseLayout implements LayoutInterface {
     ContinueButton continueButton;
     PausedText pausedText;
     LevelText levelText;
+    DiamondDisplay diamondDisplay;
 
     int level;
 
@@ -40,6 +42,7 @@ public class PauseLayout implements LayoutInterface {
         menuIcon.disposeAll = true;
         pausedText = new PausedText();
         continueButton = new ContinueButton();
+        diamondDisplay = new DiamondDisplay();
         this.level = level;
         levelText = new LevelText(level, Color.DARK_GRAY);
         MyGdxGame.setUp(15, false);
@@ -56,6 +59,7 @@ public class PauseLayout implements LayoutInterface {
         menuIcon.act();
         continueButton.act();
         pausedText.act();
+        diamondDisplay.act();
         levelText.act();
     }
 
@@ -69,6 +73,7 @@ public class PauseLayout implements LayoutInterface {
         levelText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
         continueButton.render(MyGdxGame.batchDynamic);
+        diamondDisplay.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -81,6 +86,7 @@ public class PauseLayout implements LayoutInterface {
         levelText.dispose();
         menuIcon.dispose();
         continueButton.dispose();
+        diamondDisplay.dispose();
     }
 
     @Override

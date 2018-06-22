@@ -10,6 +10,7 @@ import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
@@ -28,6 +29,7 @@ public class LostLayout implements LayoutInterface {
     FailedText failedText;
     MenuIcon menuIcon;
     LevelText levelText;
+    DiamondDisplay diamondDisplay;
     int level;
 
     boolean record = false;
@@ -42,6 +44,7 @@ public class LostLayout implements LayoutInterface {
         restartText = new RestartText(level);
         failedText = new FailedText(record);
         levelText = new LevelText(level, Color.DARK_GRAY);
+        diamondDisplay = new DiamondDisplay();
         this.level = level;
         MyGdxGame.setUp(15, false);
     }
@@ -57,6 +60,7 @@ public class LostLayout implements LayoutInterface {
         restartText.act();
         menuIcon.act();
         levelText.act();
+        diamondDisplay.act();
     }
 
     @Override
@@ -69,6 +73,7 @@ public class LostLayout implements LayoutInterface {
         levelText.render(MyGdxGame.batchDynamic);
         menuIcon.render(MyGdxGame.batchDynamic);
         restartText.render(MyGdxGame.batchDynamic);
+        diamondDisplay.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -80,6 +85,7 @@ public class LostLayout implements LayoutInterface {
         failedText.dispose();
         menuIcon.dispose();
         levelText.dispose();
+        diamondDisplay.dispose();
     }
 
     @Override

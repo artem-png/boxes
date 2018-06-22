@@ -28,6 +28,7 @@ import com.siminenko.artem.Model.LevelLayout.TopPanel;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Pause.ContinueButton;
@@ -92,6 +93,7 @@ public class MyGdxGame extends ApplicationAdapter {
         Info.init();
         LevelLoop.initStatic();
         Info.addRunNumber();
+        DiamondDisplay.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());

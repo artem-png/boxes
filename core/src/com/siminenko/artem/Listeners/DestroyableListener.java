@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Ballon;
+import com.siminenko.artem.Model.BonusCoin;
 import com.siminenko.artem.Model.Data.BallonData;
 import com.siminenko.artem.Model.Data.BonusBigData;
 import com.siminenko.artem.Model.Data.UserData;
@@ -26,6 +27,13 @@ public class DestroyableListener implements ContactListener {
         }
         if (contact.getFixtureB().getBody().getUserData() instanceof BonusBigData && contact.getFixtureA().getBody().getUserData() instanceof UserData) {
             ((BonusBigData) contact.getFixtureB().getBody().getUserData()).bonusBig.handlePlayer(((UserData) contact.getFixtureA().getBody().getUserData()).player);
+        }
+
+        if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusCoin) {
+            ((BonusCoin) contact.getFixtureA().getBody().getUserData()).handlePlayer(((UserData) contact.getFixtureB().getBody().getUserData()).player);
+        }
+        if (contact.getFixtureB().getBody().getUserData() instanceof BonusCoin && contact.getFixtureA().getBody().getUserData() instanceof UserData) {
+            ((BonusCoin) contact.getFixtureB().getBody().getUserData()).handlePlayer(((UserData) contact.getFixtureA().getBody().getUserData()).player);
         }
 
         if (contact.getFixtureB().getBody().getUserData() instanceof Destroyable && contact.getFixtureA().getBody().getUserData() instanceof UserData) {

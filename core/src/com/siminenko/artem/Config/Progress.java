@@ -38,15 +38,18 @@ import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 public class Progress {
     public static final String progress = "progressLevel4";
     public static final String maxScoreSetting = "maxScore6";
+    public static final String diamondCount = "diamondCount";
     public static int[] levels = new int[24];
     public static int maxScore = 0;
+    public static int diamonds = 0;
 
     public void init() {
         Preferences prefs = Gdx.app.getPreferences(progress);
-        for (int i = 0; i < levels.length; i ++) {
+        for (int i = 0; i < levels.length; i++) {
             levels[i] = prefs.getInteger("level" + (i + 1), 0);
         }
         maxScore = prefs.getInteger(maxScoreSetting, 0);
+        diamonds = prefs.getInteger(diamondCount, 0);
     }
 
     public static int getMaxLevel() {
@@ -66,6 +69,17 @@ public class Progress {
         return false;
     }
 
+    public static void addDiamond() {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        diamonds += 1;
+        prefs.putInteger(diamondCount, diamonds);
+        prefs.flush();
+    }
+
+    public static int getDiamonds() {
+        return diamonds;
+    }
+
     public static void saveLevelProgress(int level) {
         Preferences prefs = Gdx.app.getPreferences(progress);
         prefs.putInteger("level" + level, 1);
@@ -75,7 +89,7 @@ public class Progress {
 
     public static ALevel getNextLevel() {
         int index = 1;
-        for (int i = 0; i < levels.length; i ++) {
+        for (int i = 0; i < levels.length; i++) {
             if (levels[i] == 1) {
                 index = i + 2;
             }
@@ -86,7 +100,7 @@ public class Progress {
 
     public static int getNextLevelInt() {
         int index = 1;
-        for (int i = 0; i < levels.length; i ++) {
+        for (int i = 0; i < levels.length; i++) {
             if (levels[i] == 1) {
                 index = i + 2;
             }

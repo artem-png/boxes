@@ -1,16 +1,20 @@
 package com.siminenko.artem.Model.Level;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Game.Particles;
 import com.siminenko.artem.Model.Game.ProgressBar;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBonusCoin;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.Model.Powers.APower;
 import com.siminenko.artem.Model.Powers.PowerClock;
 import com.siminenko.artem.Model.Powers.PowerShield;
+import com.siminenko.artem.MyGdxGame;
 
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -36,12 +40,44 @@ public abstract class ALevel {
     public void afterInit() {
         this.bar = new ProgressBar(this);
         this.particles = new Particles();
+        generateCoins();
 
         if (hasBlockPower) {
             aPowerVector.add(new PowerShield(level, GameLayout.world, blockTime));
         }
         if (hasTimePower) {
             aPowerVector.add(new PowerClock(level, GameLayout.world, clockTime));
+        }
+    }
+
+    public void generateCoins() {
+        if (this.level == 0) {
+            return;
+        }
+        boolean a = true;
+        Random random = new Random();
+        int chance = (int) (this.aScenarioVector2.size() * 1.5);
+        if (chance > 70) {
+            chance = 70;
+        }
+
+        while (a) {
+            int result = random.nextInt(100);
+            if (result <= chance) {
+                System.out.println("Add");
+                this.aScenarioVector2.add(
+                        random.nextInt(this.aScenarioVector2.size()),
+                        new SimpleBonusCoin(
+                                GameLayout.world,
+                                player,
+                                this,
+                                0,
+                                new Vector2(random.nextInt(MyGdxGame.width - 20) + 10, MyGdxGame.height + 5),
+                                random.nextInt(5)
+                        ));
+            } else {
+                a = false;
+            }
         }
     }
 
