@@ -64,7 +64,6 @@ public abstract class ALevel {
         while (a) {
             int result = random.nextInt(100);
             if (result <= chance) {
-                System.out.println("Add");
                 this.aScenarioVector2.add(
                         random.nextInt(this.aScenarioVector2.size()),
                         new SimpleBonusCoin(
