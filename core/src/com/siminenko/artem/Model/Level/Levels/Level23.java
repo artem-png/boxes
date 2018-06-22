@@ -163,14 +163,14 @@ public class Level23 extends ALevel {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-        for (int i = 0; i < 25; i ++) {
+        for (int i = 0; i < 17; i ++) {
             int f = random.nextInt(5);
             if (f == 0) {
                 this.aScenarioVector2.add(new SimpleBlockCircle(
                         GameLayout.world,
                         player,
                         this,
-                        40,
+                        45,
                         4,
                         new Vector2(14, -45),
                         new Vector2(0.5f, 85)
@@ -180,7 +180,7 @@ public class Level23 extends ALevel {
                         GameLayout.world,
                         player,
                         this,
-                        40,
+                        45,
                         4,
                         new Vector2(0, -45),
                         new Vector2(MyGdxGame.width/2, MyGdxGame.height + 2)
@@ -191,7 +191,7 @@ public class Level23 extends ALevel {
                         GameLayout.world,
                         player,
                         this,
-                        40,
+                        45,
                         4,
                         new Vector2(-15, -45),
                         new Vector2(MyGdxGame.width - 1.5f, 85)
@@ -202,7 +202,7 @@ public class Level23 extends ALevel {
                         GameLayout.world,
                         player,
                         this,
-                        50,
+                        60,
                         4,
                         new Vector2(24, -45),
                         new Vector2(-1, 50)
@@ -212,7 +212,7 @@ public class Level23 extends ALevel {
                         GameLayout.world,
                         player,
                         this,
-                        50,
+                        60,
                         4,
                         new Vector2(-24, -45),
                         new Vector2(MyGdxGame.width , 50)

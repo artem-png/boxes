@@ -34,7 +34,7 @@ public class Level21 extends ALevel {
     public void init() {
         Random random = new Random();
 
-        for (int i = 0; i < 90; i++) {
+        for (int i = 0; i < 80; i++) {
             if (i % 10 == 0) {
                 this.aScenarioVector2.add(new SimpleBonusBig(
                                 GameLayout.world,
@@ -43,7 +43,7 @@ public class Level21 extends ALevel {
                                 20,
                                 new Vector2(random.nextInt(MyGdxGame.width - 10) + 5, MyGdxGame.height + 5),
                                 random.nextInt(5),
-                                140
+                                200
                         )
                 );
             }

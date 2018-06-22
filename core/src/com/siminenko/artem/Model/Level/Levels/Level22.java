@@ -65,7 +65,7 @@ public class Level22 extends ALevel {
                         GameLayout.world,
                         player,
                         this,
-                        j == 0 ? 80 : 8,
+                        j == 0 ? 90 : 8,
                         2,
                         speed,
                         position

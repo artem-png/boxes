@@ -104,7 +104,7 @@ public class Level24 extends ALevel {
                     random.nextInt(20),
                     0,
                     new Vector2(-5, MyGdxGame.height - i * 4),
-                    new Vector2(70, 5),
+                    new Vector2(60, 5),
                     1,
                     1
             ));
@@ -116,13 +116,13 @@ public class Level24 extends ALevel {
                     random.nextInt(20),
                     0,
                     new Vector2(MyGdxGame.width + 5, MyGdxGame.height - i * 4),
-                    new Vector2(-70, 5),
+                    new Vector2(-60, 5),
                     1,
                     1
             ));
         }
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 35; i++) {
             if (i % 10 == 0) {
                 this.aScenarioVector2.add(new SimpleBonusBig(
                                 GameLayout.world,
@@ -131,7 +131,7 @@ public class Level24 extends ALevel {
                                 20,
                                 new Vector2(random.nextInt(MyGdxGame.width - 10) + 5, MyGdxGame.height + 5),
                                 random.nextInt(5),
-                                140
+                                180
                         )
                 );
             }

@@ -49,7 +49,6 @@ public class LevelsLayout implements LayoutInterface {
         this.level = (int)((((Progress.getNextLevelInt() - 1) / 12)) * 12) + 1;
         levelGenerator = new LevelGenerator(level);
         levelsCount = Progress.levels.length;
-        System.out.println(levelsCount);
         MyGdxGame.setUp(15, false);
 
     }

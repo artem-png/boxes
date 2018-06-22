@@ -74,7 +74,7 @@ public class Level18 extends ALevel {
                 1000
         ));
 
-        for (int i = 0; i < 32; i ++) {
+        for (int i = 0; i < 24; i ++) {
             int result = random.nextInt(3);
             if (result == 0) {
                 this.aScenarioVector2.add(new SimpleBlockCircle(
@@ -163,32 +163,6 @@ public class Level18 extends ALevel {
                 new Vector2(MyGdxGame.width + 5, MyGdxGame.height/2),
                 1,
                 10,
-                100
-        ));
-
-        this.aScenarioVector2.add(new SimpleBlockCircleBomb(
-                GameLayout.world,
-                player,
-                this,
-                200,
-                5,
-                new Vector2(random.nextInt(10) - 5, -5),
-                new Vector2(random.nextInt(20) - 10 + MyGdxGame.width / 2, MyGdxGame.height + 10),
-                1,
-                11,
-                100
-        ));
-
-        this.aScenarioVector2.add(new SimpleBlockCircleBomb(
-                GameLayout.world,
-                player,
-                this,
-                200,
-                5,
-                new Vector2(random.nextInt(10) - 5, -5),
-                new Vector2(random.nextInt(20) - 10 + MyGdxGame.width / 2, MyGdxGame.height + 10),
-                1,
-                11,
                 100
         ));
     }
