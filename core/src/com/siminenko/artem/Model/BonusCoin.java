@@ -73,6 +73,7 @@ public class BonusCoin extends ABonus {
         if (isBonusGiven) {
             return;
         }
+        Tex.createParticles(30, 1, this.body.getPosition());
         isBonusGiven = true;
         Progress.addDiamond();
     }
