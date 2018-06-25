@@ -13,6 +13,7 @@ import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleBomb;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleDestroyable;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockHorizontal;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockTriangle;
+import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockVertical;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockX;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBonusBig;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBonusCoin;
@@ -135,7 +136,7 @@ public class LevelLoop extends ALevel {
     {
         Vector<AScenario> scenarios = new Vector<AScenario>();
 
-        int result = random.nextInt(3);
+        int result = random.nextInt(7);
         if (result == 0) {
             int f = random.nextInt(4);
             Vector2 position = new Vector2();
@@ -203,6 +204,122 @@ public class LevelLoop extends ALevel {
                         1,
                         1
                 ));
+            }
+        } else if (result == 3) {
+            for (int i = 0; i < 20; i ++) {
+                scenarios.add(new SimpleBlockX(
+                        GameLayout.world,
+                        player,
+                        this,
+                        new Vector2(i % 2 == 0 ? -10 : MyGdxGame.width + 10, 0),
+                        new Vector2(i % 2 == 0 ? 9 : -9, 30),
+                        i == 0 ? 120 : 15,
+                        0,
+                        random.nextInt(15),
+                        1,
+                        1,
+                        0.8f
+                ));
+            }
+        } else if (result == 4) {
+            for (int i = 0; i < 10; i ++) {
+                int f = random.nextInt(5);
+                if (f == 0) {
+                    scenarios.add(new SimpleBlockCircle(
+                            GameLayout.world,
+                            player,
+                            this,
+                            i == 0 ? 120 : 40,
+                            4,
+                            new Vector2(12, -35),
+                            new Vector2(0.5f, 85)
+                    ));
+                } else if (f == 1) {
+                    scenarios.add(new SimpleBlockCircle(
+                            GameLayout.world,
+                            player,
+                            this,
+                            i == 0 ? 120 : 40,
+                            4,
+                            new Vector2(0, -35),
+                            new Vector2(MyGdxGame.width/2, MyGdxGame.height + 2)
+                    ));
+
+                } else if (f == 2) {
+                    scenarios.add(new SimpleBlockCircle(
+                            GameLayout.world,
+                            player,
+                            this,
+                            i == 0 ? 120 : 40,
+                            4,
+                            new Vector2(-12, -35),
+                            new Vector2(MyGdxGame.width - 1.5f, 85)
+                    ));
+
+                } else if (f == 3) {
+                    scenarios.add(new SimpleBlockCircle(
+                            GameLayout.world,
+                            player,
+                            this,
+                            i == 0 ? 120 : 50,
+                            4,
+                            new Vector2(17, -25),
+                            new Vector2(-1, 50)
+                    ));
+                } else if (f == 4) {
+                    scenarios.add(new SimpleBlockCircle(
+                            GameLayout.world,
+                            player,
+                            this,
+                            i == 0 ? 120 : 50,
+                            4,
+                            new Vector2(-17, -25),
+                            new Vector2(MyGdxGame.width , 50)
+                    ));
+                }
+            }
+        } else if (result == 5) {
+            for (int i = 0; i < 5; i ++) {
+                for (int j = 0; j < 6; j ++) {
+                    scenarios.add(new SimpleBlockVertical(
+                            GameLayout.world,
+                            this.player,
+                            this,
+                            j == 0 ? 90 : 0,
+                            0,
+                            new Vector2(MyGdxGame.width / 2 - 12 + j * 5, MyGdxGame.height + 10),
+                            new Vector2(0, -15)
+                    ));
+                }
+            }
+        } else if (result == 6) {
+            for (int j = 0; j < 2; j ++) {
+                for (int i = -3; i < 3; i++) {
+                    scenarios.add(new SimpleBlockHorizontal(
+                            GameLayout.world,
+                            this.player,
+                            this,
+                            i == -3 ? 120 : 5,
+                            0,
+                            new Vector2(MyGdxGame.width / 2 + i * 4, MyGdxGame.height + 5),
+                            new Vector2(0, -10),
+                            2,
+                            7
+                    ));
+                }
+                for (int i = 3; i >= -3; i--) {
+                    scenarios.add(new SimpleBlockHorizontal(
+                            GameLayout.world,
+                            this.player,
+                            this,
+                            i == 2 ? 25 : 5,
+                            0,
+                            new Vector2(MyGdxGame.width / 2 + i * 4, MyGdxGame.height + 5),
+                            new Vector2(0, -10),
+                            2,
+                            7
+                    ));
+                }
             }
         }
 
