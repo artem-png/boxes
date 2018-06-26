@@ -37,8 +37,8 @@ public class LevelLoop extends ALevel {
 
     int maxChance = 10000;
     int complexScenarioChance = 1500;
-    int kinematicScenarioChance = 500;
-    int coinChance = 5;
+    int kinematicScenarioChance = 400;
+    int coinChance = 6;
     int bigChance = 2;
 
     int kineticType = 0;
@@ -198,7 +198,7 @@ public class LevelLoop extends ALevel {
     public Vector<AScenario> getComplexScenario() {
         Vector<AScenario> scenarios = new Vector<AScenario>();
 
-        int maxInt = 8;
+        int maxInt = 9;
         int result = random.nextInt(maxInt);
 
         // kineticType = 1 bottom panels
@@ -417,6 +417,28 @@ public class LevelLoop extends ALevel {
                         4,
                         30,
                         1
+                ));
+            }
+        } else if (result == 8) {
+            int f = random.nextInt(2);
+            Vector2 position = new Vector2();
+            Vector2 speed = new Vector2();
+            if (f == 0) {
+                position.set(-5, random.nextInt(15) + 30);
+                speed.set(random.nextInt(10) + 30, 14 + random.nextInt(5));
+            } else {
+                position.set(MyGdxGame.width + 5, random.nextInt(15) + 30);
+                speed.set(- (random.nextInt(10) + 30), 14 + random.nextInt(5));
+            }
+            for (int i = 0; i < 10; i ++) {
+                scenarios.add(new SimpleBonusCoin(
+                        GameLayout.world,
+                        player,
+                        this,
+                        i == 0 ? 120 : 8,
+                        position,
+                        speed,
+                        random.nextInt(5)
                 ));
             }
         }

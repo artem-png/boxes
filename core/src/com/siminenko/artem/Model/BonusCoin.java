@@ -36,6 +36,23 @@ public class BonusCoin extends ABonus {
         random = new Random();
     }
 
+    public BonusCoin(World world, Vector2 position, Vector2 speed) {
+        this.world = world;
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vector2 = new Vector2[4];
+        vector2[0] = new Vector2(0, -sizeY/2);
+        vector2[1] = new Vector2(-sizeX/2, 0);
+        vector2[2] = new Vector2(0, sizeY/2);
+        vector2[3] = new Vector2(sizeX/2, 0);
+        shape.set(vector2);
+        this.shape = shape;
+        this.createObject(position, shape, world, 0.9f, 1f, 0);
+        this.body.setUserData(this);
+        this.body.setLinearVelocity(speed);
+        timeExpire = 15;
+        random = new Random();
+    }
+
     @Override
     public void act() {
         Tex.createParticles(1, 0.5f, new Vector2(this.body.getPosition().x + random.nextInt(4) - 2, this.body.getPosition().y + random.nextInt(4) - 2));

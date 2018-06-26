@@ -26,6 +26,16 @@ public class SimpleBonusCoin extends AScenario {
         this.doDelay = delay;
     }
 
+    public SimpleBonusCoin(World world, Player player, ALevel level, int delay, Vector2 position, Vector2 speed, float rotation) {
+        this.level = level;
+        this.world = world;
+        this.player = player;
+        BonusCoin bonusBig = new BonusCoin(world, position, speed);
+        bonusBig.getBody().setAngularVelocity(rotation);
+        this.objects.add(bonusBig);
+        this.doDelay = delay;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
 
