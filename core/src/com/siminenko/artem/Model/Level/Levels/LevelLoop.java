@@ -7,6 +7,7 @@ import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Infinite.Score;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Level.AScenario;
+import com.siminenko.artem.Model.Level.Scenarious.General.KinematicBlockHorizontalMovable;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockBig;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircle;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBlockCircleBomb;
@@ -35,9 +36,12 @@ public class LevelLoop extends ALevel {
     int delayComplexScenario = 0;
 
     int maxChance = 10000;
-    int complexScenarioChance = 1400;
-    int coinChance = 4;
+    int complexScenarioChance = 1500;
+    int kinematicScenarioChance = 500;
+    int coinChance = 5;
     int bigChance = 2;
+
+    int kineticType = 0;
 
     public LevelLoop() {
         this.level = 0;
@@ -55,6 +59,12 @@ public class LevelLoop extends ALevel {
     }
 
     @Override
+    public void afterInit() {
+        super.afterInit();
+        GameLayout.world.setGravity(new Vector2(0, -10f));
+    }
+
+    @Override
     public void init() {
 
     }
@@ -66,12 +76,24 @@ public class LevelLoop extends ALevel {
         if (delaySimpleScenario > 0) {
             delaySimpleScenario--;
         }
+
+        if (this.kinematicCount() == 0) {
+            this.kineticType = 0;
+        }
+
         if (this.aScenarioVector2.size() == 0) {
             int result = random.nextInt(this.maxChance);
-            if (result < this.complexScenarioChance) {
+            if (this.kinematicCount() == 0 && result <= this.kinematicScenarioChance) {
+                System.out.println("KINETIC");
+                Vector<AScenario> scenarios = this.getKinematicScenario();
+                for (int i = 0; i < scenarios.size(); i++) {
+                    this.aScenarioVector2.add(scenarios.get(i));
+                }
+
+            } else if (result > this.kinematicScenarioChance && result < this.complexScenarioChance + this.kinematicScenarioChance) {
                 System.out.println("COMPLEX");
                 Vector<AScenario> scenarios = this.getComplexScenario();
-                for (int i = 0; i < scenarios.size(); i ++) {
+                for (int i = 0; i < scenarios.size(); i++) {
                     this.aScenarioVector2.add(scenarios.get(i));
                 }
             } else {
@@ -127,16 +149,65 @@ public class LevelLoop extends ALevel {
         }
     }
 
-    public int getComplexScenarioDelay()
-    {
+    public int getComplexScenarioDelay() {
         return 120 + delayComplexScenario;
     }
 
-    public Vector<AScenario> getComplexScenario()
-    {
+
+    public Vector<AScenario> getKinematicScenario() {
+        Vector<AScenario> scenarios = new Vector<AScenario>();
+        int result = random.nextInt(1);
+        int time = 200 + random.nextInt(1000);
+        if (result == 0) {
+            scenarios.add(new KinematicBlockHorizontalMovable(
+                    GameLayout.world,
+                    player,
+                    this,
+                    30,
+                    (float) Math.toRadians(-20),
+                    0,
+                    new Vector2(-10, 4),
+                    new Vector2(8, 4),
+                    new Vector2(1, 0),
+                    25,
+                    2,
+                    0.7f,
+                    time
+            ));
+            scenarios.add(new KinematicBlockHorizontalMovable(
+                    GameLayout.world,
+                    player,
+                    this,
+                    0,
+                    (float) Math.toRadians(20),
+                    0,
+                    new Vector2(MyGdxGame.width + 10, 4),
+                    new Vector2(MyGdxGame.width - 7, 4),
+                    new Vector2(-1, 0),
+                    25,
+                    2,
+                    0.7f,
+                    time
+            ));
+            kineticType = 1;
+        }
+        return scenarios;
+    }
+
+
+    public Vector<AScenario> getComplexScenario() {
         Vector<AScenario> scenarios = new Vector<AScenario>();
 
-        int result = random.nextInt(7);
+        int maxInt = 8;
+        int result = random.nextInt(maxInt);
+
+        // kineticType = 1 bottom panels
+        if (result == 3 && kineticType == 1) {
+            while (result == 3) {
+                result = random.nextInt(maxInt);
+            }
+        }
+
         if (result == 0) {
             int f = random.nextInt(4);
             Vector2 position = new Vector2();
@@ -154,7 +225,7 @@ public class LevelLoop extends ALevel {
                 position.set(MyGdxGame.width + 4, MyGdxGame.height);
                 speed.set(-13, -22);
             }
-            for (int j = 0 ; j < 15; j ++) {
+            for (int j = 0; j < 15; j++) {
                 scenarios.add(new SimpleBlockCircle(
                         GameLayout.world,
                         player,
@@ -167,7 +238,7 @@ public class LevelLoop extends ALevel {
             }
         } else if (result == 1) {
             scenarios.add(new SimpleBlockBig(GameLayout.world, this.player, this, this.getComplexScenarioDelay(), 0));
-            for (int i = 0; i < 25; i ++) {
+            for (int i = 0; i < 25; i++) {
                 scenarios.add(new SimpleBlockCircle(
                         GameLayout.world,
                         this.player,
@@ -179,7 +250,7 @@ public class LevelLoop extends ALevel {
                 );
             }
         } else if (result == 2) {
-            for (int i = 0; i < 9; i ++) {
+            for (int i = 0; i < 9; i++) {
                 scenarios.add(new SimpleBlockTriangle(
                         GameLayout.world,
                         player,
@@ -206,7 +277,7 @@ public class LevelLoop extends ALevel {
                 ));
             }
         } else if (result == 3) {
-            for (int i = 0; i < 20; i ++) {
+            for (int i = 0; i < 20; i++) {
                 scenarios.add(new SimpleBlockX(
                         GameLayout.world,
                         player,
@@ -222,14 +293,14 @@ public class LevelLoop extends ALevel {
                 ));
             }
         } else if (result == 4) {
-            for (int i = 0; i < 10; i ++) {
+            for (int i = 0; i < 10; i++) {
                 int f = random.nextInt(5);
                 if (f == 0) {
                     scenarios.add(new SimpleBlockCircle(
                             GameLayout.world,
                             player,
                             this,
-                            i == 0 ? 120 : 40,
+                            i == 0 ? 140 : 40,
                             4,
                             new Vector2(12, -35),
                             new Vector2(0.5f, 85)
@@ -239,10 +310,10 @@ public class LevelLoop extends ALevel {
                             GameLayout.world,
                             player,
                             this,
-                            i == 0 ? 120 : 40,
+                            i == 0 ? 140 : 40,
                             4,
                             new Vector2(0, -35),
-                            new Vector2(MyGdxGame.width/2, MyGdxGame.height + 2)
+                            new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 2)
                     ));
 
                 } else if (f == 2) {
@@ -250,7 +321,7 @@ public class LevelLoop extends ALevel {
                             GameLayout.world,
                             player,
                             this,
-                            i == 0 ? 120 : 40,
+                            i == 0 ? 140 : 40,
                             4,
                             new Vector2(-12, -35),
                             new Vector2(MyGdxGame.width - 1.5f, 85)
@@ -261,7 +332,7 @@ public class LevelLoop extends ALevel {
                             GameLayout.world,
                             player,
                             this,
-                            i == 0 ? 120 : 50,
+                            i == 0 ? 140 : 50,
                             4,
                             new Vector2(17, -25),
                             new Vector2(-1, 50)
@@ -271,16 +342,16 @@ public class LevelLoop extends ALevel {
                             GameLayout.world,
                             player,
                             this,
-                            i == 0 ? 120 : 50,
+                            i == 0 ? 140 : 50,
                             4,
                             new Vector2(-17, -25),
-                            new Vector2(MyGdxGame.width , 50)
+                            new Vector2(MyGdxGame.width, 50)
                     ));
                 }
             }
         } else if (result == 5) {
-            for (int i = 0; i < 5; i ++) {
-                for (int j = 0; j < 6; j ++) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 6; j++) {
                     scenarios.add(new SimpleBlockVertical(
                             GameLayout.world,
                             this.player,
@@ -293,7 +364,7 @@ public class LevelLoop extends ALevel {
                 }
             }
         } else if (result == 6) {
-            for (int j = 0; j < 2; j ++) {
+            for (int j = 0; j < 2; j++) {
                 for (int i = -3; i < 3; i++) {
                     scenarios.add(new SimpleBlockHorizontal(
                             GameLayout.world,
@@ -321,14 +392,40 @@ public class LevelLoop extends ALevel {
                     ));
                 }
             }
+        } else if (result == 7) {
+            for (int i = 0; i < 6; i ++) {
+                scenarios.add(new SimpleBlockVertical(
+                        GameLayout.world,
+                        this.player,
+                        this,
+                        i == 0 ? 140 : 60,
+                        0,
+                        new Vector2(-5, MyGdxGame.height / 2 + 12),
+                        new Vector2(40, 5),
+                        4,
+                        30,
+                        1
+                ));
+                scenarios.add(new SimpleBlockVertical(
+                        GameLayout.world,
+                        this.player,
+                        this,
+                        0,
+                        0,
+                        new Vector2(MyGdxGame.width + 5, MyGdxGame.height / 2 + 12),
+                        new Vector2(-40, 5),
+                        4,
+                        30,
+                        1
+                ));
+            }
         }
 
         this.delaySimpleScenario += 60;
         return scenarios;
     }
 
-    public int getSimpleScenarioDelay()
-    {
+    public int getSimpleScenarioDelay() {
         return 80 + delaySimpleScenario;
     }
 

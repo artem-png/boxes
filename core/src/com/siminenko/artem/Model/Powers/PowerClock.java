@@ -89,7 +89,7 @@ public class PowerClock extends APower {
             for (int i = 0; i <= 1; i++) {
                 if (Gdx.input.justTouched() && Gdx.input.isTouched(i)) {
                     Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0));
-                    if (vector3.x < 5 && vector3.y > 28 && vector3.y < 38) {
+                    if (vector3.x < 6 && vector3.y > 27 && vector3.y < 39) {
                         isActive = true;
                         GameLayout.borderEffects.setFreezUp();
                         shieldUp = true;

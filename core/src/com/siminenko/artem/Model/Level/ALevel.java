@@ -48,6 +48,7 @@ public abstract class ALevel {
         if (hasTimePower) {
             aPowerVector.add(new PowerClock(level, GameLayout.world, clockTime));
         }
+        GameLayout.world.setGravity(new Vector2(0, -10f));
     }
 
     public void generateCoins() {
@@ -146,13 +147,19 @@ public abstract class ALevel {
         }
     }
 
-    public boolean isComplete() {
+    public int kinematicCount() {
         int kinematicCount = 0;
         for (int i = this.aObjectVector2.size() - 1; i >= 0; i--) {
             if (this.aObjectVector2.get(i).isKinematic) {
                 kinematicCount++;
             }
         }
+
+        return kinematicCount;
+    }
+
+    public boolean isComplete() {
+        int kinematicCount = this.kinematicCount();
         boolean result = this.aScenarioVector2.size() == 0 && (this.aObjectVector2.size() == 0 || kinematicCount == this.aObjectVector2.size());
         if (result) {
             afterWin();

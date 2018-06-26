@@ -27,6 +27,17 @@ public class SimpleBlockVertical extends AScenario {
         this.doDelay = delay;
     }
 
+    public SimpleBlockVertical(World world, Player player, ALevel level, int delay, float rotation, Vector2 position, Vector2 speed, int x, int y, float mass) {
+        this.level = level;
+        this.world = world;
+        this.player = player;
+        ObstacleVerticalPanel o = new ObstacleVerticalPanel(world, position, x, y, mass);
+        o.setAngularVelocity(rotation);
+        o.setVelocity(speed);
+        this.objects.add(o);
+        this.doDelay = delay;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
 

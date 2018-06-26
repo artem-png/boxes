@@ -19,6 +19,8 @@ public class ObstacleVerticalPanel extends AObject {
         PolygonShape shape = new PolygonShape();
         if (sizeX != 0) {
             shape.setAsBox(sizeX/2, sizeY/2);
+            this.sizeX = sizeX;
+            this.sizeY = sizeY;
         } else {
             shape.setAsBox(this.sizeX/2, this.sizeY/2);
         }
@@ -33,6 +35,8 @@ public class ObstacleVerticalPanel extends AObject {
         PolygonShape shape = new PolygonShape();
         if (sizeX != 0) {
             shape.setAsBox(sizeX/2, sizeY/2);
+            this.sizeX = sizeX;
+            this.sizeY = sizeY;
         } else {
             shape.setAsBox(this.sizeX/2, this.sizeY/2);
         }
