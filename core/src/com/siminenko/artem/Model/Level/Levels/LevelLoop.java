@@ -43,12 +43,14 @@ public class LevelLoop extends ALevel {
 
     int kineticType = 0;
 
+    int time = 0;
+
     public LevelLoop() {
         this.level = 0;
         this.hasTimePower = true;
         this.hasBlockPower = true;
-        this.blockTime = 2800;
-        this.clockTime = 2800;
+        this.blockTime = 3000;
+        this.clockTime = 3000;
         score = new Score();
         Score.score = 0;
         random = new Random();
@@ -72,6 +74,12 @@ public class LevelLoop extends ALevel {
     public void act() {
         super.act();
         score.act();
+
+        time += 1;
+        if (time % 3600 == 0) {
+            GameLayout.world.setGravity(new Vector2(0, GameLayout.world.getGravity().y - 1));
+        }
+
 
         if (delaySimpleScenario > 0) {
             delaySimpleScenario--;
