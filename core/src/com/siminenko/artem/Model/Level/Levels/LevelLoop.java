@@ -77,6 +77,7 @@ public class LevelLoop extends ALevel {
 
         time += 1;
         if (time % 3600 == 0) {
+            System.out.println("GRAVITY DECREASE");
             GameLayout.world.setGravity(new Vector2(0, GameLayout.world.getGravity().y - 1));
         }
 
@@ -206,7 +207,7 @@ public class LevelLoop extends ALevel {
     public Vector<AScenario> getComplexScenario() {
         Vector<AScenario> scenarios = new Vector<AScenario>();
 
-        int maxInt = 9;
+        int maxInt = 11;
         int result = random.nextInt(maxInt);
 
         // kineticType = 1 bottom panels
@@ -401,7 +402,7 @@ public class LevelLoop extends ALevel {
                 }
             }
         } else if (result == 7) {
-            for (int i = 0; i < 6; i ++) {
+            for (int i = 0; i < 6; i++) {
                 scenarios.add(new SimpleBlockVertical(
                         GameLayout.world,
                         this.player,
@@ -436,9 +437,9 @@ public class LevelLoop extends ALevel {
                 speed.set(random.nextInt(10) + 30, 14 + random.nextInt(5));
             } else {
                 position.set(MyGdxGame.width + 5, random.nextInt(15) + 30);
-                speed.set(- (random.nextInt(10) + 30), 14 + random.nextInt(5));
+                speed.set(-(random.nextInt(10) + 30), 14 + random.nextInt(5));
             }
-            for (int i = 0; i < 10; i ++) {
+            for (int i = 0; i < 10; i++) {
                 scenarios.add(new SimpleBonusCoin(
                         GameLayout.world,
                         player,
@@ -449,6 +450,118 @@ public class LevelLoop extends ALevel {
                         random.nextInt(5)
                 ));
             }
+        } else if (result == 9) {
+            for (int i = 0; i < 8; i ++) {
+                scenarios.add(new SimpleBlockBig(GameLayout.world, this.player, this, i == 0 ? 140 : 30, 0));
+            }
+        } else if (result == 10) {
+            SimpleBlockCircleBomb cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    180,
+                    10,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
+                    1,
+                    0,
+                    160
+            );
+            scenarios.add(cb);
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    0,
+                    6,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
+                    1,
+                    14,
+                    160
+            );
+            scenarios.add(cb);
+
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    130,
+                    10,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
+                    1,
+                    0,
+                    160
+            );
+            scenarios.add(cb);
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    0,
+                    6,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
+                    1,
+                    14,
+                    160
+            );
+            scenarios.add(cb);
+
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    130,
+                    6,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
+                    1,
+                    0,
+                    160
+            );
+            scenarios.add(cb);
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    0,
+                    10,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
+                    1,
+                    14,
+                    160
+            );
+            scenarios.add(cb);
+
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    130,
+                    10,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 + 11, MyGdxGame.height + 10),
+                    1,
+                    0,
+                    160
+            );
+            scenarios.add(cb);
+            cb = new SimpleBlockCircleBomb(
+                    GameLayout.world,
+                    this.player,
+                    this,
+                    0,
+                    6,
+                    new Vector2(0, -5),
+                    new Vector2(MyGdxGame.width / 2 - 11, MyGdxGame.height + 10),
+                    1,
+                    14,
+                    160
+            );
+            scenarios.add(cb);
         }
 
         this.delaySimpleScenario += 60;

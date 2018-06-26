@@ -23,6 +23,8 @@ public class Score {
 
     boolean isFontDown = false;
 
+    int time = 0;
+
     public static void init() {
         float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
         font = Tex.generateFont(Color.DARK_GRAY, (int) (12f * yd), "bigfont.ttf");
@@ -39,6 +41,11 @@ public class Score {
     }
 
     public void act() {
+        time ++;
+        if (time % 1200 == 0) {
+            timePauseSetting--;
+            System.out.println("SCORE DECREASE");
+        }
         if (isFontDown) {
             float x = font.getScaleX() - 0.005f;
             float y = font.getScaleY() - 0.005f;
