@@ -36,7 +36,7 @@ public class PlayButton {
         size = new Vector2(22, 6.5f);
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");
+        font = Tex.smallFont28;
     }
 
     public void act() {
@@ -87,6 +87,5 @@ public class PlayButton {
         button.getTexture().dispose();
         buttonPressed.getTexture().dispose();
         whitebg.getTexture().dispose();
-        font.dispose();
     }
 }

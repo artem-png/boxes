@@ -37,7 +37,7 @@ public class ContinueButton {
         buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");
+        font = Tex.smallFont28;
     }
 
     public void act() {

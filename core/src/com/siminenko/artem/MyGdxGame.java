@@ -2,6 +2,7 @@ package com.siminenko.artem;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -57,10 +58,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void create() {
-        tex = new Tex();
-        progress = new Progress();
         width = 45;
         height = 80;
+        tex = new Tex();
+        progress = new Progress();
         camera = new OrthographicCamera(width, height);
         camera.position.x = width / 2;
         camera.position.y = height / 2;
@@ -97,6 +98,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
+        Gdx.input.setCatchBackKey(true);
     }
 
     public static void setUp(int time, boolean isUp) {

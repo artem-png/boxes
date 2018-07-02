@@ -37,7 +37,7 @@ public class LevelLoop extends ALevel {
 
     int maxChance = 10000;
     int complexScenarioChance = 1500;
-    int kinematicScenarioChance = 400;
+    int kinematicScenarioChance = 200;
     int coinChance = 6;
     int bigChance = 2;
 
@@ -63,7 +63,7 @@ public class LevelLoop extends ALevel {
     @Override
     public void afterInit() {
         super.afterInit();
-        GameLayout.world.setGravity(new Vector2(0, -10f));
+        GameLayout.world.setGravity(new Vector2(0, -9.5f));
     }
 
     @Override
@@ -207,7 +207,7 @@ public class LevelLoop extends ALevel {
     public Vector<AScenario> getComplexScenario() {
         Vector<AScenario> scenarios = new Vector<AScenario>();
 
-        int maxInt = 11;
+        int maxInt = 13;
         int result = random.nextInt(maxInt);
 
         // kineticType = 1 bottom panels
@@ -562,6 +562,109 @@ public class LevelLoop extends ALevel {
                     160
             );
             scenarios.add(cb);
+        } else if (result == 11) {
+            for (int i = 0; i < 4; i ++) {
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        i == 0 ? 160 : 100,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2, MyGdxGame.height + 4),
+                        new Vector2(0, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 + 10, MyGdxGame.height + 3.5f),
+                        new Vector2(-3.3f, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 - 10, MyGdxGame.height + 3.5f),
+                        new Vector2(3.3f, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 - 20, MyGdxGame.height + 2.7f),
+                        new Vector2(6.5f, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 + 20, MyGdxGame.height + 2.5f),
+                        new Vector2(-6.5f, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 - 30, MyGdxGame.height + 2f),
+                        new Vector2(10f, -15),
+                        0.5f,
+                        3
+                ));
+                this.aScenarioVector2.add(new SimpleBlockTriangle(
+                        GameLayout.world,
+                        player,
+                        this,
+                        0,
+                        0,
+                        180,
+                        new Vector2(MyGdxGame.width / 2 + 30, MyGdxGame.height + 2f),
+                        new Vector2(-10f, -15),
+                        0.5f,
+                        3
+                ));
+            }
+        } else if (result == 12) {
+            for (int i = 0; i < 40; i++) {
+                scenarios.add(new SimpleBlockX(
+                        GameLayout.world,
+                        player,
+                        this,
+                        new Vector2(-5, MyGdxGame.height - 32 - i * 1.4f),
+                        new Vector2(23, 3.8f),
+                        i == 0 ? 160 : 8,
+                        0,
+                        random.nextInt(15),
+                        1,
+                        1,
+                        0.4f
+                ));
+            }
         }
 
         this.delaySimpleScenario += 60;

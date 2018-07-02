@@ -24,7 +24,7 @@ public class CompletedText {
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
+        font = Tex.failedWinFont;
     }
 
     public void act() {

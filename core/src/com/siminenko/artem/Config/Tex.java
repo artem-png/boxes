@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.EffectSquare;
+import com.siminenko.artem.MyGdxGame;
 
 import java.util.Random;
 
@@ -30,6 +31,10 @@ public class Tex {
     public static Sprite crestDestroyable;
     public static Sprite shield;
     public static Sprite diamond;
+
+    public static BitmapFont failedWinFont;
+    public static BitmapFont smallFont28;
+    public static BitmapFont smallFont3;
 
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
@@ -55,6 +60,10 @@ public class Tex {
         crestDestroyable = new Sprite(new Texture("crestDestroyable.png"));
         shield = new Sprite(new Texture("shield.png"));
         diamond = new Sprite(new Texture("diamond.png"));
+        float xd = Gdx.graphics.getWidth() / MyGdxGame.width;
+        failedWinFont = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
+        smallFont28 = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");
+        smallFont3 = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {

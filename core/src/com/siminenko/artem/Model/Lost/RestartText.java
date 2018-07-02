@@ -40,7 +40,7 @@ public class RestartText {
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
+        font = Tex.smallFont3;
     }
 
     public void act() {
