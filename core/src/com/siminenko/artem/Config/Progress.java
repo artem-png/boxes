@@ -30,6 +30,7 @@ import com.siminenko.artem.Model.Level.Levels.Level7;
 import com.siminenko.artem.Model.Level.Levels.Level8;
 import com.siminenko.artem.Model.Level.Levels.Level9;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
 
 /**
  * Created by User on 22.04.2018.
@@ -39,9 +40,13 @@ public class Progress {
     public static final String progress = "progressLevel4";
     public static final String maxScoreSetting = "maxScore6";
     public static final String diamondCount = "diamondCount";
+    public static final String musicSetting = "music";
+    public static final String soundSetting = "sound";
     public static int[] levels = new int[24];
     public static int maxScore = 0;
     public static int diamonds = 0;
+    public static boolean music = true;
+    public static boolean sound = true;
 
     public void init() {
         Preferences prefs = Gdx.app.getPreferences(progress);
@@ -50,6 +55,24 @@ public class Progress {
         }
         maxScore = prefs.getInteger(maxScoreSetting, 0);
         diamonds = prefs.getInteger(diamondCount, 0);
+        music = prefs.getBoolean(musicSetting, true);
+        sound = prefs.getBoolean(soundSetting, true);
+    }
+
+    public static void setMusic(boolean a)
+    {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        music = a;
+        prefs.putBoolean(musicSetting, a);
+        prefs.flush();
+    }
+
+    public static void setSound(boolean a)
+    {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        sound = a;
+        prefs.putBoolean(soundSetting, a);
+        prefs.flush();
     }
 
     public static int getMaxLevel() {
@@ -74,6 +97,7 @@ public class Progress {
         diamonds += 1;
         prefs.putInteger(diamondCount, diamonds);
         prefs.flush();
+        DiamondDisplay.alpha = 0.7f;
     }
 
     public static int getDiamonds() {

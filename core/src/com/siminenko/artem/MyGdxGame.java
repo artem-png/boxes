@@ -18,6 +18,7 @@ import com.siminenko.artem.Layout.LostLayout;
 import com.siminenko.artem.Layout.MenuLayout;
 import com.siminenko.artem.Layout.PauseLayout;
 import com.siminenko.artem.Layout.RateLayout;
+import com.siminenko.artem.Layout.SettingLayout;
 import com.siminenko.artem.Layout.WinLayout;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.Levels.Level1;
@@ -36,6 +37,7 @@ import com.siminenko.artem.Model.Pause.ContinueButton;
 import com.siminenko.artem.Model.Pause.PausedText;
 import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
+import com.siminenko.artem.Model.Win.PlusDiamondText;
 
 public class MyGdxGame extends ApplicationAdapter {
     public static SpriteBatch batch;
@@ -95,6 +97,8 @@ public class MyGdxGame extends ApplicationAdapter {
         LevelLoop.initStatic();
         Info.addRunNumber();
         DiamondDisplay.init();
+        PlusDiamondText.init();
+        SettingLayout.init();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
@@ -109,6 +113,12 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void render() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
+            if (layoutManager.vector.lastElement() instanceof GameLayout) {
+                layoutManager.push(new PauseLayout(GameLayout.level.level));
+            }
+        }
+
         Gdx.gl.glClearColor(0.9f, 0.9f, 0.9f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();

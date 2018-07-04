@@ -37,7 +37,7 @@ public class LevelLoop extends ALevel {
 
     int maxChance = 10000;
     int complexScenarioChance = 1500;
-    int kinematicScenarioChance = 200;
+    int kinematicScenarioChance = 190;
     int coinChance = 6;
     int bigChance = 2;
 
@@ -63,7 +63,7 @@ public class LevelLoop extends ALevel {
     @Override
     public void afterInit() {
         super.afterInit();
-        GameLayout.world.setGravity(new Vector2(0, -9.5f));
+        GameLayout.world.setGravity(new Vector2(0, -9f));
     }
 
     @Override
@@ -115,8 +115,8 @@ public class LevelLoop extends ALevel {
     }
 
     public void render(SpriteBatch b) {
-        super.render(b);
         score.render(b);
+        super.render(b);
     }
 
     public boolean isComplete() {
@@ -166,7 +166,7 @@ public class LevelLoop extends ALevel {
     public Vector<AScenario> getKinematicScenario() {
         Vector<AScenario> scenarios = new Vector<AScenario>();
         int result = random.nextInt(1);
-        int time = 200 + random.nextInt(1000);
+        int time = 200 + random.nextInt(400);
         if (result == 0) {
             scenarios.add(new KinematicBlockHorizontalMovable(
                     GameLayout.world,
@@ -180,7 +180,7 @@ public class LevelLoop extends ALevel {
                     new Vector2(1, 0),
                     25,
                     2,
-                    0.7f,
+                    1f,
                     time
             ));
             scenarios.add(new KinematicBlockHorizontalMovable(
@@ -195,7 +195,7 @@ public class LevelLoop extends ALevel {
                     new Vector2(-1, 0),
                     25,
                     2,
-                    0.7f,
+                    1f,
                     time
             ));
             kineticType = 1;

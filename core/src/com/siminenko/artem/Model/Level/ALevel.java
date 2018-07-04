@@ -32,6 +32,8 @@ public abstract class ALevel {
     public int blockTime;
     public int clockTime;
 
+    public boolean newVictory = false;
+
     public boolean hasBlockPower = false;
     public boolean hasTimePower = false;
 
@@ -113,6 +115,14 @@ public abstract class ALevel {
     }
 
     public void afterWin() {
+        if (Progress.levels[this.level - 1] == 0) {
+            Progress.addDiamond();
+            Progress.addDiamond();
+            Progress.addDiamond();
+            Progress.addDiamond();
+            Progress.addDiamond();
+            this.newVictory = true;
+        }
         Progress.saveLevelProgress(this.level);
     }
 

@@ -31,6 +31,7 @@ public class Tex {
     public static Sprite crestDestroyable;
     public static Sprite shield;
     public static Sprite diamond;
+    public static Sprite cog;
 
     public static BitmapFont failedWinFont;
     public static BitmapFont smallFont28;
@@ -60,6 +61,7 @@ public class Tex {
         crestDestroyable = new Sprite(new Texture("crestDestroyable.png"));
         shield = new Sprite(new Texture("shield.png"));
         diamond = new Sprite(new Texture("diamond.png"));
+        cog = new Sprite(new Texture("cog.png"));
         float xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         failedWinFont = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
         smallFont28 = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -17,6 +18,8 @@ public class DiamondDisplay {
     static float xd;
     static float yd;
 
+    public static float alpha = 1;
+
     public DiamondDisplay() {
     }
 
@@ -27,13 +30,25 @@ public class DiamondDisplay {
     }
 
     public void act() {
-
+        if (MyGdxGame.layoutManager.vector.lastElement() instanceof GameLayout) {
+            if (alpha != 0) {
+                alpha -= 0.01;
+                if (alpha < 0) {
+                    alpha = 0;
+                }
+            }
+        } else {
+            alpha = 1;
+        }
     }
 
     public void render(SpriteBatch batch) {
+        batch.setColor(1, 1, 1, alpha);
         batch.draw(Tex.diamond, 38.1f, 70.5f, 3f, 4f);
+        batch.setColor(1, 1, 1, 1);
         batch.end();
         MyGdxGame.batchFont.begin();
+        font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, alpha);
         font.draw(
                 MyGdxGame.batchFont,
                 "" + Progress.getDiamonds(),

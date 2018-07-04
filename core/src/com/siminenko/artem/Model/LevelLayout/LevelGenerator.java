@@ -20,6 +20,7 @@ public class LevelGenerator {
     int firstLevel;
     int levelCount;
     static Sprite level;
+    static Sprite crown;
     static BitmapFont font;
     static float xd;
     static float yd;
@@ -38,9 +39,10 @@ public class LevelGenerator {
 
     public static void init() {
         level = new Sprite(new Texture("levels/levelPreview.png"));
-        xd = (float)Gdx.graphics.getWidth() / (float)MyGdxGame.width;
-        yd = (float)Gdx.graphics.getHeight() / (float)MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int)(2.6 * xd), "smallfont.ttf");
+        crown = new Sprite(new Texture("crown.png"));
+        xd = (float) Gdx.graphics.getWidth() / (float) MyGdxGame.width;
+        yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.width;
+        font = Tex.generateFont(Color.WHITE, (int) (2.6 * xd), "smallfont.ttf");
     }
 
     public void setLevel(int beginLevel) {
@@ -69,6 +71,21 @@ public class LevelGenerator {
                             8,
                             8
                     );
+                    batch.setColor(c);
+                    if (Progress.levels[a - 1] == 1) {
+                        batch.draw(
+                                crown,
+                                j * 13 + 10f,
+                                i * 11 + 18,
+                                3f,
+                                3f,
+                                6,
+                                6,
+                                crown.getScaleX(),
+                                crown.getScaleY(),
+                                -37
+                        );
+                    }
                     batch.end();
                     MyGdxGame.batchFont.begin();
                     font.draw(
@@ -84,14 +101,13 @@ public class LevelGenerator {
                     batch.begin();
                     a++;
                 }
-                batch.setColor(c);
             }
         }
     }
 
     public void act() {
         if (isPressed) {
-            timePressed --;
+            timePressed--;
             if (timePressed <= 0) {
                 MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(chosenlevel)));
             }

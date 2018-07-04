@@ -11,6 +11,8 @@ import com.siminenko.artem.Model.Game.BorderEffects;
 import com.siminenko.artem.Model.Game.Effects;
 import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
+import com.siminenko.artem.Model.Menu.DiamondDisplay;
+import com.siminenko.artem.Model.Menu.PlayButton.SettingButton;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.MyGdxGame;
@@ -27,6 +29,7 @@ public class GameLayout implements LayoutInterface {
     public static Box2DDebugRenderer dDebugRenderer;
     public static Effects effects;
     public static BorderEffects borderEffects;
+    public static DiamondDisplay diamondDisplay;
     Player player;
     Background background;
     PauseIcon pauseIcon;
@@ -56,6 +59,7 @@ public class GameLayout implements LayoutInterface {
         rayHandler = new RayHandler(world);
         player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
         background = new Background();
+        diamondDisplay = new DiamondDisplay();
         if (this.level != null) {
             level.dispose();
         }
@@ -82,6 +86,7 @@ public class GameLayout implements LayoutInterface {
     public void act(float delta) {
         background.act();
         effects.act();
+        diamondDisplay.act();
         if (GameLayout.isDispose) {
             if (!isDisposeAnimation) {
                 MyGdxGame.setUp(60, true);
@@ -116,7 +121,7 @@ public class GameLayout implements LayoutInterface {
                 isWin = false;
                 speed = speedSetting;
                 borderEffects.reset();
-                MyGdxGame.layoutManager.set(new WinLayout(level.level + 1));
+                MyGdxGame.layoutManager.set(new WinLayout(level.level + 1, level.newVictory));
             }
         }
         borderEffects.act();
@@ -131,6 +136,7 @@ public class GameLayout implements LayoutInterface {
         effects.render(MyGdxGame.batchDynamic);
         player.render(MyGdxGame.batchDynamic);
         level.render(MyGdxGame.batchDynamic);
+        diamondDisplay.render(MyGdxGame.batchDynamic);
         pauseIcon.render(MyGdxGame.batchDynamic);
         borderEffects.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();

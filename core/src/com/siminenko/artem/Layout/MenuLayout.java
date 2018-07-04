@@ -14,6 +14,7 @@ import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.InfiniteButton;
 import com.siminenko.artem.Model.Menu.PlayButton.LevelButton;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
+import com.siminenko.artem.Model.Menu.PlayButton.SettingButton;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
@@ -30,11 +31,14 @@ public class MenuLayout implements LayoutInterface {
     LevelButton levelButton;
     InfiniteButton infiniteButton;
     DiamondDisplay diamondDisplay;
+    SettingButton settingButton;
+
 
     public MenuLayout() {
         modelPicker = new ModelPicker();
         background = new BackgroundCircle(1);
         playButton = new PlayButton();
+        settingButton = new SettingButton();
         levelText = new LevelText(Progress.getNextLevel().level, Color.ORANGE);
         levelText.isMenu = true;
         levelButton = new LevelButton();
@@ -56,6 +60,7 @@ public class MenuLayout implements LayoutInterface {
         levelButton.act();
         infiniteButton.act();
         diamondDisplay.act();
+        settingButton.act();
         if (playButton.isReady()) {
             MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
         }
@@ -72,6 +77,7 @@ public class MenuLayout implements LayoutInterface {
         modelPicker.render(MyGdxGame.batchDynamic);
         levelText.render(MyGdxGame.batchDynamic);
         levelButton.render(MyGdxGame.batchDynamic);
+        settingButton.render(MyGdxGame.batchDynamic);
         playButton.render(MyGdxGame.batchDynamic);
         infiniteButton.render(MyGdxGame.batchDynamic);
         diamondDisplay.render(MyGdxGame.batchDynamic);
@@ -88,6 +94,7 @@ public class MenuLayout implements LayoutInterface {
         infiniteButton.dispose();
         background.dispose();
         diamondDisplay.dispose();
+        settingButton.dispose();
     }
 
     @Override
