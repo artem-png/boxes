@@ -12,13 +12,7 @@ import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
 import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
 import com.siminenko.artem.Model.LevelLayout.TopPanel;
-import com.siminenko.artem.Model.Lost.MenuIcon;
-import com.siminenko.artem.Model.Menu.LevelText;
-import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
-import com.siminenko.artem.Model.Win.CompletedText;
-import com.siminenko.artem.Model.Win.NextLevelText;
 import com.siminenko.artem.ModelGenerator.Background;
-import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -37,10 +31,11 @@ public class LevelsLayout implements LayoutInterface {
     int level;
 
     static  BitmapFont font;
-    static BitmapFont font1;
 
     static float xd;
     static float yd;
+
+    int successCount = 0;
 
     public LevelsLayout() {
         background = new Background();
@@ -50,6 +45,12 @@ public class LevelsLayout implements LayoutInterface {
         levelGenerator = new LevelGenerator(level);
         levelsCount = Progress.levels.length;
         MyGdxGame.setUp(15, false);
+
+        for (int i = 0; i < Progress.levels.length; i ++) {
+            if (Progress.levels[i] == 1) {
+                successCount++;
+            }
+        }
 
     }
 
@@ -62,8 +63,7 @@ public class LevelsLayout implements LayoutInterface {
         arrow = new Sprite(new Texture("menu/backIcon.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.height;
-        font = Tex.generateFont(Color.ORANGE, (int) (3.5f * xd), "bigfont.ttf");
-        font1 = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
+        font = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
     }
 
     @Override
@@ -102,6 +102,9 @@ public class LevelsLayout implements LayoutInterface {
         background.render(MyGdxGame.batchDynamic);
         topPanel.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
+        MyGdxGame.batchFont.begin();
+        font.draw(MyGdxGame.batchFont, successCount + "/" + Progress.levels.length, 0, Gdx.graphics.getHeight() - 18 * Tex.y, Gdx.graphics.getWidth(), 1, true);
+        MyGdxGame.batchFont.end();
         MyGdxGame.batchDynamic.begin();
         levelGenerator.render(MyGdxGame.batchDynamic);
         backIcon.render(MyGdxGame.batchDynamic);

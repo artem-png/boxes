@@ -75,8 +75,8 @@ public class LevelGenerator {
                     if (Progress.levels[a - 1] == 1) {
                         batch.draw(
                                 crown,
-                                j * 13 + 10f,
-                                i * 11 + 18,
+                                j * 13 + 9.5f,
+                                i * 11 + 17.5f,
                                 3f,
                                 3f,
                                 6,

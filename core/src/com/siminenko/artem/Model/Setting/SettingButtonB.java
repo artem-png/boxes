@@ -18,7 +18,7 @@ import com.siminenko.artem.MyGdxGame;
 public class SettingButtonB {
     boolean isReady = false;
     public boolean isPressed = false;
-    int timeSetting = 20;
+    int timeSetting = 0;
     int timePressed = timeSetting;
     Sprite button;
     Sprite buttonPressed;
