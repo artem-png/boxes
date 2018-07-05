@@ -1,6 +1,7 @@
 package com.siminenko.artem.Model.Menu.ModelPickerModels;
 
 import com.badlogic.gdx.math.Vector2;
+import com.siminenko.artem.Config.Progress;
 
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class Scenarious {
 
     boolean isBigger = true;
 
-    float bigAmountSetting = 0.09f;
+    float bigAmountSetting = 0.12f;
     float bigAmount = bigAmountSetting;
 
     public Scenarious(Vector2 s, float r) {
@@ -66,10 +67,18 @@ public class Scenarious {
             isBigger = true;
         }
         if (v > 0 && isBigger) {
-            size.add(bigAmount, bigAmount);
+            if (Progress.theme == 2) {
+                size.add(bigAmount, bigAmount / 3);
+            } else {
+                size.add(bigAmount, bigAmount);
+            }
         }
         if (v < 0 && !isBigger) {
-            size.add(-bigAmount, -bigAmount);
+            if (Progress.theme == 2) {
+                size.add(-bigAmount, -bigAmount / 3);
+            } else {
+                size.add(-bigAmount, -bigAmount);
+            }
         }
         return size;
     }

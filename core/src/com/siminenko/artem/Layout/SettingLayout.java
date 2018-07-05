@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.model.data.ModelMaterial;
 import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Info;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.Setting.SettingButtonA;
 import com.siminenko.artem.Model.Setting.SettingButtonB;
@@ -31,6 +32,7 @@ public class SettingLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         settingButtonLeft = new SettingButtonB();
         settingButtonRight = new SettingButtonA();
+        Progress.setTheme(Progress.theme + 1 > 2 ? 0 : Progress.theme + 1);
     }
 
     public static void init() {

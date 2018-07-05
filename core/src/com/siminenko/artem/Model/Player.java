@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Data.UserData;
@@ -35,6 +37,11 @@ public class Player extends AObject {
     float x2 = 2.9f;
     float y2 = -1.8f;
 
+    float ballRadius = 2.8f;
+
+    float prymoX = 5.5f;
+    float prymoY = 1.8f;
+
     // triangle big
     float bigMultiplier = 2.0f;
 
@@ -49,7 +56,13 @@ public class Player extends AObject {
 
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
-        sprite = new Sprite(new Texture("player.png"));
+        if (Progress.theme == 0) {
+            sprite = Tex.player1;
+        } else if (Progress.theme == 1) {
+            sprite = Tex.player2;
+        } else if (Progress.theme == 2) {
+            sprite = Tex.player3;
+        }
 
         toNormal(position);
         this.body.setUserData(new UserData(this));
@@ -119,24 +132,51 @@ public class Player extends AObject {
         if (isBig) {
             multi = bigMultiplier;
         }
-        batch.draw(
-                sprite,
-                this.body.getPosition().x + x1 * multi,
-                this.body.getPosition().y + y1 * multi,
-                sprite.getOriginX(),
-                sprite.getOriginY(),
-                -x1 * multi + x2 * multi,
-                y0 * 2 * multi,
-                sprite.getScaleX(),
-                sprite.getScaleY(),
-                (float) Math.toDegrees(this.body.getAngle())
-        );
+        if (Progress.theme == 0) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x + x1 * multi,
+                    this.body.getPosition().y + y1 * multi,
+                    sprite.getOriginX(),
+                    sprite.getOriginY(),
+                    -x1 * multi + x2 * multi,
+                    y0 * 2 * multi,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else if (Progress.theme == 1) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - ballRadius * multi,
+                    this.body.getPosition().y - ballRadius * multi,
+                    ballRadius * multi,
+                    ballRadius * multi,
+                    ballRadius * multi * 2,
+                    ballRadius * multi * 2,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else if (Progress.theme == 2) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - prymoX * multi,
+                    this.body.getPosition().y - prymoY * multi,
+                    prymoX * multi,
+                    prymoY * multi,
+                    prymoX * multi * 2,
+                    prymoY * multi * 2,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        }
     }
 
     public void dispose() {
         ballon.dispose();
         shape.dispose();
-        this.sprite.getTexture().dispose();
         this.world.destroyBody(body);
     }
 
@@ -182,13 +222,23 @@ public class Player extends AObject {
     }
 
     public void toBig() {
-        PolygonShape shape = new PolygonShape();
-        Vector2[] vector2 = new Vector2[3];
-        vector2[0] = new Vector2(x0 * bigMultiplier, y0 * bigMultiplier);
-        vector2[1] = new Vector2(x1 * bigMultiplier, y1 * bigMultiplier);
-        vector2[2] = new Vector2(x2 * bigMultiplier, y2 * bigMultiplier);
-        shape.set(vector2);
-        this.shape = shape;
+        if (Progress.theme == 0) {
+            PolygonShape shape = new PolygonShape();
+            Vector2[] vector2 = new Vector2[3];
+            vector2[0] = new Vector2(x0 * bigMultiplier, y0 * bigMultiplier);
+            vector2[1] = new Vector2(x1 * bigMultiplier, y1 * bigMultiplier);
+            vector2[2] = new Vector2(x2 * bigMultiplier, y2 * bigMultiplier);
+            shape.set(vector2);
+            this.shape = shape;
+        } else if (Progress.theme == 1) {
+            CircleShape shape = new CircleShape();
+            shape.setRadius(ballRadius * bigMultiplier);
+            this.shape = shape;
+        } else if (Progress.theme == 2) {
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(prymoX * bigMultiplier, prymoY * bigMultiplier);
+            this.shape = shape;
+        }
         isBig = true;
 
         this.createObject(body.getPosition(), this.shape, GameLayout.world, 0.30f, 0.5f, 0f);
@@ -200,13 +250,23 @@ public class Player extends AObject {
     }
 
     public void toNormal(Vector2 position) {
-        PolygonShape shape = new PolygonShape();
-        Vector2[] vector2 = new Vector2[3];
-        vector2[0] = new Vector2(x0, y0);
-        vector2[1] = new Vector2(x1, y1);
-        vector2[2] = new Vector2(x2, y2);
-        shape.set(vector2);
-        this.shape = shape;
+        if (Progress.theme == 0) {
+            PolygonShape shape = new PolygonShape();
+            Vector2[] vector2 = new Vector2[3];
+            vector2[0] = new Vector2(x0, y0);
+            vector2[1] = new Vector2(x1, y1);
+            vector2[2] = new Vector2(x2, y2);
+            shape.set(vector2);
+            this.shape = shape;
+        } else if (Progress.theme == 1) {
+            CircleShape shape = new CircleShape();
+            shape.setRadius(ballRadius);
+            this.shape = shape;
+        } else if (Progress.theme == 2) {
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(prymoX, prymoY);
+            this.shape = shape;
+        }
         isBig = false;
 
         this.createObject(position, this.shape, GameLayout.world, 0.2f, 0.3f, 0.0f);

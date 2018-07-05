@@ -1,9 +1,11 @@
 package com.siminenko.artem.Model;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Data.BallonData;
@@ -21,6 +23,8 @@ public class Ballon extends AObject {
 
     float count = 30;
 
+    Sprite sprite;
+
     public Ballon(World world, Vector2 position, ALevel level) {
         this.world = world;
         shape = new CircleShape();
@@ -31,6 +35,14 @@ public class Ballon extends AObject {
         Tex.baloon1.setOrigin(6, 6);
         this.body.setActive(true);
         this.level = level;
+
+        if (Progress.theme == 0) {
+            sprite = Tex.baloon1;
+        } else if (Progress.theme == 1) {
+            sprite = Tex.baloon2;
+        } else if (Progress.theme == 2) {
+            sprite = Tex.baloon3;
+        }
     }
 
     public void act() {
@@ -45,18 +57,46 @@ public class Ballon extends AObject {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(
-                Tex.baloon1,
-                this.body.getPosition().x - 6f,
-                this.body.getPosition().y - 6f,
-                6,
-                6,
-                12,
-                12,
-                Tex.baloon1.getScaleX(),
-                Tex.baloon1.getScaleY(),
-                (float) Math.toDegrees(this.body.getAngle())
-        );
+        if (Progress.theme == 0) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - 6f,
+                    this.body.getPosition().y - 6f,
+                    6,
+                    6,
+                    12,
+                    12,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else if (Progress.theme == 1) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - 3.5f,
+                    this.body.getPosition().y - 8f,
+                    3.5f,
+                    6,
+                    7,
+                    12,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else if (Progress.theme == 2) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - 4f,
+                    this.body.getPosition().y - 4.5f,
+                    4f,
+                    5,
+                    8,
+                    10,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        }
     }
 
     public void rotation() {

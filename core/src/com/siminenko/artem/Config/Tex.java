@@ -19,7 +19,11 @@ import java.util.Random;
 
 public class Tex {
     public static Sprite baloon1;
+    public static Sprite baloon2;
+    public static Sprite baloon3;
     public static Sprite player1;
+    public static Sprite player2;
+    public static Sprite player3;
     public static Sprite circle1;
     public static Sprite circleDestroyable;
     public static Sprite circle2;
@@ -49,8 +53,12 @@ public class Tex {
 
     public Tex() {
         baloon1 = new Sprite(new Texture("baloon.png"));
+        baloon2 = new Sprite(new Texture("ballonBall.png"));
+        baloon3 = new Sprite(new Texture("baloon3.png"));
         present1 = new Sprite(new Texture("present.png"));
         player1 = new Sprite(new Texture("player.png"));
+        player2 = new Sprite(new Texture("playerBall.png"));
+        player3 = new Sprite(new Texture("player3.png"));
         circle1 = new Sprite(new Texture("circle.png"));
         circle2 = new Sprite(new Texture("circleRed.png"));
         rectangle1 = new Sprite(new Texture("rectanble.png"));

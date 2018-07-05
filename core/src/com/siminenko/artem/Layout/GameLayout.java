@@ -73,9 +73,6 @@ public class GameLayout implements LayoutInterface {
     }
 
     public static void init() {
-        //world = new World(new Vector2(0, -10f), true);
-        //world.setContactListener(new DestroyableListener());
-        //rayHandler = new RayHandler(world);
         dDebugRenderer = new Box2DDebugRenderer();
         effects = new Effects();
         borderEffects = new BorderEffects();
@@ -141,7 +138,7 @@ public class GameLayout implements LayoutInterface {
         borderEffects.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
-       // dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        //dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {

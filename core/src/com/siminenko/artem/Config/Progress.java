@@ -42,9 +42,11 @@ public class Progress {
     public static final String diamondCount = "diamondCount";
     public static final String musicSetting = "music";
     public static final String soundSetting = "sound";
+    public static final String themeSetting = "themeType";
     public static int[] levels = new int[24];
     public static int maxScore = 0;
     public static int diamonds = 0;
+    public static int theme = 0;
     public static boolean music = true;
     public static boolean sound = true;
 
@@ -57,6 +59,15 @@ public class Progress {
         diamonds = prefs.getInteger(diamondCount, 0);
         music = prefs.getBoolean(musicSetting, true);
         sound = prefs.getBoolean(soundSetting, true);
+        theme = prefs.getInteger(themeSetting, 0);
+    }
+
+    public static void setTheme(int themek)
+    {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        theme = themek;
+        prefs.putInteger(themeSetting, themek);
+        prefs.flush();
     }
 
     public static void setMusic(boolean a)
