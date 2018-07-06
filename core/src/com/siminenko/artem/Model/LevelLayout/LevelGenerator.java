@@ -35,6 +35,10 @@ public class LevelGenerator {
     public LevelGenerator(int beginLevel) {
         firstLevel = beginLevel;
         levelCount = Progress.levels.length;
+
+        if (font == null) {
+            font = Tex.generateFont(Color.WHITE, (int) (2.6 * xd), "smallfont.ttf");
+        }
     }
 
     public static void init() {
@@ -42,7 +46,6 @@ public class LevelGenerator {
         crown = new Sprite(new Texture("crown.png"));
         xd = (float) Gdx.graphics.getWidth() / (float) MyGdxGame.width;
         yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.width;
-        font = Tex.generateFont(Color.WHITE, (int) (2.6 * xd), "smallfont.ttf");
     }
 
     public void setLevel(int beginLevel) {

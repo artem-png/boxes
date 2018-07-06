@@ -60,9 +60,12 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void create() {
+        long start = System.currentTimeMillis();
+
         width = 45;
         height = 80;
         tex = new Tex();
+
         progress = new Progress();
         camera = new OrthographicCamera(width, height);
         camera.position.x = width / 2;
@@ -103,6 +106,11 @@ public class MyGdxGame extends ApplicationAdapter {
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
         Gdx.input.setCatchBackKey(true);
+
+
+        long finish = System.currentTimeMillis();
+        long timeConsumedMillis = finish - start;
+        System.out.println(timeConsumedMillis);
     }
 
     public static void setUp(int time, boolean isUp) {

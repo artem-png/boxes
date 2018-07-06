@@ -18,12 +18,14 @@ public class PausedText {
 
 
     public PausedText() {
+        if (font == null) {
+            font = Tex.generateFont(Color.DARK_GRAY, (int) (7 * xd), "bigfont.ttf");
+        }
     }
 
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.DARK_GRAY, (int) (7 * xd), "bigfont.ttf");
     }
 
     public void act() {

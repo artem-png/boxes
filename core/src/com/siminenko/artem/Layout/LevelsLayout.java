@@ -52,6 +52,10 @@ public class LevelsLayout implements LayoutInterface {
             }
         }
 
+        if (font == null) {
+            font = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
+        }
+
     }
 
     public void setLevel(int level) {
@@ -63,7 +67,6 @@ public class LevelsLayout implements LayoutInterface {
         arrow = new Sprite(new Texture("menu/backIcon.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.height;
-        font = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
     }
 
     @Override

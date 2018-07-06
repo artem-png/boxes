@@ -34,15 +34,21 @@ public class RateLayout implements LayoutInterface {
     static BitmapFont neverFont;
 
     public RateLayout() {
-
+        if (textFont == null) {
+            textFont = Tex.generateFont(Color.DARK_GRAY, (int) (2.2f * yd), "smallfont.ttf");
+        }
+        if (yesFont == null) {
+            yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
+        }
+        if (laterFont == null) {
+            laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
+        }
+        if (neverFont == null) {
+            neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
+        }
     }
 
     public static void init() {
-        float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
-        textFont = Tex.generateFont(Color.DARK_GRAY, (int) (2.2f * yd), "smallfont.ttf");
-        yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
-        laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
-        neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
     }
 
     @Override

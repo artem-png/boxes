@@ -30,11 +30,17 @@ public class ContinueButton {
 
     public ContinueButton() {
         size = new Vector2(22, 6.5f);
+
+        if (button == null) {
+            button = new Sprite(new Texture("menu/playButton.png"));
+        }
+
+        if (buttonPressed == null) {
+            buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
+        }
     }
 
     public static void init() {
-        button = new Sprite(new Texture("menu/playButton.png"));
-        buttonPressed = new Sprite(new Texture("menu/playButtonPressed.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
         font = Tex.smallFont28;

@@ -34,12 +34,14 @@ public class NextLevelText {
 
     public NextLevelText(int level) {
         this.level = level;
+        if  (font == null) {
+            font = Tex.generateFont(Color.DARK_GRAY, (int) (3 * xd), "smallfont.ttf");
+        }
     }
 
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.generateFont(Color.DARK_GRAY, (int) (3 * xd), "smallfont.ttf");
     }
 
     public void act() {

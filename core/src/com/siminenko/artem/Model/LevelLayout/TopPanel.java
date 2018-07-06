@@ -19,8 +19,13 @@ public class TopPanel {
     Vector2 position = new Vector2(-1, MyGdxGame.height - 12);
     static Sprite panel;
 
+    public TopPanel() {
+        if (panel == null) {
+            panel = new Sprite(new Texture("menu/topPanel.png"));
+        }
+    }
+
     public static void init() {
-        panel = new Sprite(new Texture("menu/topPanel.png"));
     }
 
     public void act() {
