@@ -52,9 +52,7 @@ public class LevelsLayout implements LayoutInterface {
             }
         }
 
-        if (font == null) {
-            font = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
-        }
+        font = Tex.smallFont35;
 
     }
 

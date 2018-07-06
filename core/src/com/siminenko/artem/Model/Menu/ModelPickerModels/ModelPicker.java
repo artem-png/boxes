@@ -39,7 +39,7 @@ public class ModelPicker {
             size = new Vector2(14, 14);
         } else if (Progress.theme == 2) {
             currentModel = Tex.player3;
-            size = new Vector2(20, 8);
+            size = new Vector2(22, 8);
         }
     }
 

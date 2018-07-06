@@ -30,8 +30,8 @@ public class SettingButton {
     Vector2 position = new Vector2(4f, MyGdxGame.height - size.y / 2 - 2);
 
     public SettingButton() {
-        button = new Sprite(new Texture("menu/circleOrangeLight.png"));
-        buttonPressed = new Sprite(new Texture("menu/circleOrangeDark.png"));
+        button = Tex.button;
+        buttonPressed = Tex.buttonPressed;
         icon = Tex.cog;
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
@@ -77,7 +77,6 @@ public class SettingButton {
     }
 
     public void dispose() {
-        button.getTexture().dispose();
-        buttonPressed.getTexture().dispose();
+
     }
 }

@@ -32,7 +32,6 @@ public class SettingLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         settingButtonLeft = new SettingButtonB();
         settingButtonRight = new SettingButtonA();
-        Progress.setTheme(Progress.theme + 1 > 2 ? 0 : Progress.theme + 1);
 
         if (textFont == null) {
             textFont = Tex.generateFont(Color.DARK_GRAY, (int) (3f * yd), "smallfont.ttf");

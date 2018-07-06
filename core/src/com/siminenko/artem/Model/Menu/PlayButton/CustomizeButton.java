@@ -1,22 +1,21 @@
 package com.siminenko.artem.Model.Menu.PlayButton;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Tex;
-import com.siminenko.artem.Layout.LevelsLayout;
+import com.siminenko.artem.Layout.CustomizeLayout;
+import com.siminenko.artem.Layout.SettingLayout;
 import com.siminenko.artem.MyGdxGame;
 
 /**
  * Created by User on 21.04.2018.
  */
 
-public class LevelButton {
+public class CustomizeButton {
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
@@ -28,12 +27,12 @@ public class LevelButton {
     float xd;
     float yd;
 
-    Vector2 position = new Vector2(38.4f, MyGdxGame.height / 2 - 3.7f - size.y / 2 - 5);
+    Vector2 position = new Vector2(5.6f, MyGdxGame.height / 2 - 3.7f - size.y / 2 - 5);
 
-    public LevelButton() {
+    public CustomizeButton() {
         button = Tex.button;
         buttonPressed = Tex.buttonPressed;
-        icon = new Sprite(new Texture("menu/levels.png"));
+        icon = new Sprite(new Texture("customize.png"));
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
     }
@@ -42,7 +41,9 @@ public class LevelButton {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
-                MyGdxGame.layoutManager.set(new LevelsLayout());
+                MyGdxGame.layoutManager.push(new CustomizeLayout());
+                isPressed = false;
+                timePressed = timeSetting;
             }
         } else {
             if (Gdx.input.justTouched()) {
@@ -66,7 +67,7 @@ public class LevelButton {
                 size.x,
                 size.y
         );
-        batch.draw(icon, position.x - 3.25f, position.y - 3.25f, size.x, size.y);
+        batch.draw(icon, position.x - size.x/2 + 1, position.y - size.y/2 + 1, size.x - 2f, size.y - 2f);
         batch.end();
         batch.begin();
     }

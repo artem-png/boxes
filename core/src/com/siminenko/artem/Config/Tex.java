@@ -37,9 +37,13 @@ public class Tex {
     public static Sprite diamond;
     public static Sprite cog;
 
+    public static Sprite button;
+    public static Sprite buttonPressed;
+
     public static BitmapFont failedWinFont;
     public static BitmapFont smallFont28;
     public static BitmapFont smallFont3;
+    public static BitmapFont smallFont35;
 
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
@@ -70,21 +74,23 @@ public class Tex {
         shield = new Sprite(new Texture("shield.png"));
         diamond = new Sprite(new Texture("diamond.png"));
         cog = new Sprite(new Texture("cog.png"));
+        button = new Sprite(new Texture("menu/circleOrangeLight.png"));
+        buttonPressed = new Sprite(new Texture("menu/circleOrangeDark.png"));
         float xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         failedWinFont = Tex.generateFont(Color.WHITE, (int) (7 * xd), "bigfont.ttf");
         smallFont28 = Tex.generateFont(Color.WHITE, (int) (2.8f * xd), "smallfont.ttf");
         smallFont3 = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
+        smallFont35 = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
+
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {
-        FreeTypeFontGenerator.setMaxTextureSize(2048);
+        FreeTypeFontGenerator.setMaxTextureSize(1024);
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(name));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;
         parameter.color = color;
-        BitmapFont font20 = generator.generateFont(parameter);
-
-        return font20;
+        return generator.generateFont(parameter);
     }
 
     public static int negativeOrPositive() {
