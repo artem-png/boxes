@@ -42,8 +42,9 @@ public class Progress {
     public static final String diamondCount = "diamondCount";
     public static final String musicSetting = "music";
     public static final String soundSetting = "sound";
-    public static final String themeSetting = "themeType";
+    public static final String themeSetting = "themeType3";
     public static int[] levels = new int[24];
+    public static int[] themes = new int[2];
     public static int maxScore = 0;
     public static int diamonds = 0;
     public static int theme = 0;
@@ -55,11 +56,21 @@ public class Progress {
         for (int i = 0; i < levels.length; i++) {
             levels[i] = prefs.getInteger("level" + (i + 1), 0);
         }
+        for (int i = 0; i < themes.length; i++) {
+            themes[i] = prefs.getInteger("gameTheme" + (i + 1), 0);
+        }
         maxScore = prefs.getInteger(maxScoreSetting, 0);
         diamonds = prefs.getInteger(diamondCount, 0);
         music = prefs.getBoolean(musicSetting, true);
         sound = prefs.getBoolean(soundSetting, true);
         theme = prefs.getInteger(themeSetting, 0);
+    }
+
+    public static void purchase(int themek) {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        prefs.putInteger("gameTheme" + themek, 1);
+        themes[themek - 1] = 1;
+        prefs.flush();
     }
 
     public static void setTheme(int themek)
@@ -109,6 +120,13 @@ public class Progress {
         prefs.putInteger(diamondCount, diamonds);
         prefs.flush();
         DiamondDisplay.alpha = 0.7f;
+    }
+
+    public static void minusDiamond(int count) {
+        Preferences prefs = Gdx.app.getPreferences(progress);
+        diamonds -= count;
+        prefs.putInteger(diamondCount, diamonds);
+        prefs.flush();
     }
 
     public static int getDiamonds() {

@@ -3,6 +3,7 @@ package com.siminenko.artem.Model.Customize;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 
 /**
@@ -12,18 +13,14 @@ import com.siminenko.artem.Config.Tex;
 public class PurchaseTV extends APurchaseModel {
 
     public PurchaseTV() {
-        position = new Vector2(-4, 37);
-        System.out.println(123);
-        bg = new Sprite(new Texture("bg/" + "lightpink" + "-" + "lightgreen" + ".png"));
+        position = new Vector2(-4, 20);
         player = Tex.player3;
         baloon = Tex.baloon3;
-        playerSize.set(13, 5);
-        baloonSize = new Vector2(11, 12);
-
+        playerSize.set(11, 4);
+        baloonSize = new Vector2(11, 13);
+        purchased = Progress.themes[2 - 1] == 1;
         playerRotation = 45;
-    }
-
-    public void act() {
-
+        theme = 2;
+        price = 150;
     }
 }

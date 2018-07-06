@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Model.Customize.PurchaseCommon;
 import com.siminenko.artem.Model.Customize.PurchaseFootbal;
 import com.siminenko.artem.Model.Customize.PurchaseTV;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
@@ -27,6 +28,7 @@ public class CustomizeLayout implements LayoutInterface {
 
     PurchaseFootbal purchaseFootbal;
     PurchaseTV purchaseTV;
+    PurchaseCommon purchaseCommon;
 
     public CustomizeLayout() {
         backIcon = new BackIcon();
@@ -35,8 +37,7 @@ public class CustomizeLayout implements LayoutInterface {
 
         purchaseFootbal = new PurchaseFootbal();
         purchaseTV = new PurchaseTV();
-
-        Progress.setTheme(Progress.theme + 1 > 2 ? 0 : Progress.theme + 1);
+        purchaseCommon = new PurchaseCommon();
     }
 
     public void setLevel(int level) {
@@ -53,6 +54,7 @@ public class CustomizeLayout implements LayoutInterface {
         topPanel.act();
         purchaseFootbal.act();
         purchaseTV.act();
+        purchaseCommon.act();
     }
 
     @Override
@@ -63,6 +65,7 @@ public class CustomizeLayout implements LayoutInterface {
         backIcon.render(MyGdxGame.batchDynamic);
         purchaseFootbal.render(MyGdxGame.batchDynamic);
         purchaseTV.render(MyGdxGame.batchDynamic);
+        purchaseCommon.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         MyGdxGame.batchFont.begin();
         Tex.smallFont35.draw(MyGdxGame.batchFont, "" + Progress.diamonds, 0, Gdx.graphics.getHeight() - 18 * Tex.y, Gdx.graphics.getWidth(), 1, true);
