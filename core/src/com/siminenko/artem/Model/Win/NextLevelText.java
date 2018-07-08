@@ -35,7 +35,7 @@ public class NextLevelText {
     public NextLevelText(int level) {
         this.level = level;
         if  (font == null) {
-            font = Tex.generateFont(Color.DARK_GRAY, (int) (3 * xd), "smallfont.ttf");
+            font = Tex.smallFont3;
         }
     }
 
@@ -80,6 +80,7 @@ public class NextLevelText {
     public void render(SpriteBatch batch) {
         batch.end();
         MyGdxGame.batchFont.begin();
+        font.setColor(Color.DARK_GRAY);
         font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, alpha);
         font.draw(
                 MyGdxGame.batchFont,
@@ -90,6 +91,8 @@ public class NextLevelText {
                 1,
                 false
         );
+        font.setColor(Color.WHITE);
+        font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, 1);
         MyGdxGame.batchFont.end();
         batch.begin();
     }

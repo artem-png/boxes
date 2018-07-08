@@ -32,14 +32,10 @@ public class SettingLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         settingButtonLeft = new SettingButtonB();
         settingButtonRight = new SettingButtonA();
-
-        if (textFont == null) {
-            textFont = Tex.generateFont(Color.DARK_GRAY, (int) (3f * yd), "smallfont.ttf");
-        }
     }
 
     public static void init() {
-        float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
+        textFont = Tex.smallFont3;
     }
 
     @Override
@@ -61,6 +57,7 @@ public class SettingLayout implements LayoutInterface {
         settingButtonLeft.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         MyGdxGame.batchFont.begin();
+        textFont.setColor(Color.DARK_GRAY);
         textFont.draw(
                 MyGdxGame.batchFont,
                 "MUSIC",

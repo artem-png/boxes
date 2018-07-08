@@ -11,12 +11,13 @@ import com.siminenko.artem.Config.Tex;
 public class PurchaseCommon extends APurchaseModel {
 
     public PurchaseCommon() {
-        position = new Vector2(-4, 54);
+        position = new Vector2(-12, 54);
         player = Tex.player1;
         baloon = Tex.baloon1;
         purchased = true;
-        playerSize = new Vector2(9, 10);
-        baloonSize = new Vector2(13f, 13);
+        playerSize = new Vector2(10, 11);
+        baloonSize = new Vector2(14, 14);
         theme = 0;
+        fontPosition.set(position.x + 12, position.y + 7);
     }
 }

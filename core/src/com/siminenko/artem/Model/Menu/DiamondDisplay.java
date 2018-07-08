@@ -26,7 +26,7 @@ public class DiamondDisplay {
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width - 2;
-        font = Tex.generateFont(Color.BLACK, (int) (2.7f * xd), "smallfont.ttf");
+        font = Tex.smallFont28;
     }
 
     public void act() {
@@ -48,6 +48,7 @@ public class DiamondDisplay {
         batch.setColor(1, 1, 1, 1);
         batch.end();
         MyGdxGame.batchFont.begin();
+        font.setColor(Color.BLACK);
         font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, alpha);
         font.draw(
                 MyGdxGame.batchFont,
@@ -58,6 +59,7 @@ public class DiamondDisplay {
                 1,
                 true
         );
+        font.setColor(Color.WHITE);
         MyGdxGame.batchFont.end();
         batch.begin();
 }

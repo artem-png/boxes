@@ -13,14 +13,15 @@ import com.siminenko.artem.Config.Tex;
 public class PurchaseTV extends APurchaseModel {
 
     public PurchaseTV() {
-        position = new Vector2(-4, 20);
+        position = new Vector2(-12, 22);
         player = Tex.player3;
         baloon = Tex.baloon3;
-        playerSize.set(11, 4);
-        baloonSize = new Vector2(11, 13);
+        playerSize.set(12, 4.5f);
+        baloonSize = new Vector2(12, 14);
         purchased = Progress.themes[2 - 1] == 1;
         playerRotation = 45;
         theme = 2;
-        price = 150;
+        price = 100;
+        fontPosition.set((position.x + 14), (position.y + 7.5f));
     }
 }

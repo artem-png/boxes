@@ -7,8 +7,8 @@ import com.siminenko.artem.MyGdxGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.height = 900;
-		config.width = 500;  // iphone 7 / 2
+		config.height = (int)(900f * 0.8f);
+		config.width = (int)(500f * 0.8f);  // iphone 7 / 2
 //		config.height = 600;
 //		config.width = 330;
 		new LwjglApplication(new MyGdxGame(), config);

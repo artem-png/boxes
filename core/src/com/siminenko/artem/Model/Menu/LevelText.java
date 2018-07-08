@@ -32,7 +32,7 @@ public class LevelText {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width - 2;
         font = Tex.smallFont3;
-        font2 = Tex.generateFont(Color.WHITE, (int) (2.5f * xd), "smallfont.ttf");
+        font2 = Tex.smallFont28;
     }
 
     public void act() {
@@ -43,6 +43,8 @@ public class LevelText {
         batch.end();
         MyGdxGame.batchFont.begin();
         if (isMenu) {
+            font.setColor(Color.ORANGE);
+            font2.setColor(Color.ORANGE);
             font.draw(
                     MyGdxGame.batchFont,
                     "LEVEL: " + level,
@@ -62,6 +64,8 @@ public class LevelText {
                     false
             );
         } else {
+            font.setColor(Color.DARK_GRAY);
+            font2.setColor(Color.DARK_GRAY);
             if (level == 0) {
                 font2.draw(
                         MyGdxGame.batchFont,
@@ -85,6 +89,8 @@ public class LevelText {
                 );
             }
         }
+        font.setColor(Color.WHITE);
+        font2.setColor(Color.WHITE);
         MyGdxGame.batchFont.end();
         batch.begin();
     }

@@ -37,7 +37,7 @@ public class LevelGenerator {
         levelCount = Progress.levels.length;
 
         if (font == null) {
-            font = Tex.generateFont(Color.WHITE, (int) (2.6 * xd), "smallfont.ttf");
+            font = Tex.smallFont28;
         }
     }
 
@@ -91,6 +91,7 @@ public class LevelGenerator {
                     }
                     batch.end();
                     MyGdxGame.batchFont.begin();
+                    font.setColor(Color.WHITE);
                     font.draw(
                             MyGdxGame.batchFont,
                             a + "",

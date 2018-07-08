@@ -30,8 +30,6 @@ public class RateLayout implements LayoutInterface {
     float xd = (float) Gdx.graphics.getWidth() / (float) MyGdxGame.width;
     static BitmapFont textFont;
     static BitmapFont yesFont;
-    static BitmapFont laterFont;
-    static BitmapFont neverFont;
 
     public RateLayout() {
         if (textFont == null) {
@@ -39,12 +37,6 @@ public class RateLayout implements LayoutInterface {
         }
         if (yesFont == null) {
             yesFont = Tex.generateFont(new Color(0.05f, 0.468f, 0, 1), (int) (3.5f * yd), "smallfont.ttf");
-        }
-        if (laterFont == null) {
-            laterFont = Tex.generateFont(Color.BLACK, (int) (3.5f * yd), "smallfont.ttf");
-        }
-        if (neverFont == null) {
-            neverFont = Tex.generateFont(Color.LIGHT_GRAY, (int) (3.5f * yd), "smallfont.ttf");
         }
     }
 
@@ -86,24 +78,27 @@ public class RateLayout implements LayoutInterface {
                 1,
                 true
         );
+        yesFont.setColor(new Color(0.05f, 0.468f, 0, 1));
         yesFont.draw(
                 MyGdxGame.batchFont,
                 "RATE",
                 32.5f * xd,
                 20 * yd
         );
-        laterFont.draw(
+        yesFont.setColor(Color.BLACK);
+        yesFont.draw(
                 MyGdxGame.batchFont,
                 "LATER",
                 17.5f * xd,
                 20 * yd
         );
-        neverFont.draw(
+        yesFont.draw(
                 MyGdxGame.batchFont,
                 "NEVER",
                 2.5f * xd,
                 20 * yd
         );
+        MyGdxGame.batchFont.setColor(1, 1, 1, 1);
         MyGdxGame.batchFont.end();
         batch.begin();
     }

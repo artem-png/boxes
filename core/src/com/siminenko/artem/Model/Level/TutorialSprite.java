@@ -71,6 +71,6 @@ public class TutorialSprite {
 
     public void dispose()
     {
-        this.sprite.getTexture().dispose();
+       // this.sprite.getTexture().dispose();
     }
 }

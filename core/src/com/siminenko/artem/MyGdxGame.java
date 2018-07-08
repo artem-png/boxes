@@ -108,9 +108,9 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.input.setCatchBackKey(true);
 
 
-//        long finish = System.currentTimeMillis();
-//        long timeConsumedMillis = finish - start;
-//        System.out.println(timeConsumedMillis);
+        long finish = System.currentTimeMillis();
+        long timeConsumedMillis = finish - start;
+        System.out.println(timeConsumedMillis);
     }
 
     public static void setUp(int time, boolean isUp) {
