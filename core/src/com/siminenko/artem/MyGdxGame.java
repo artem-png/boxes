@@ -33,6 +33,7 @@ import com.siminenko.artem.Model.Lost.RestartText;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.Model.Pause.ContinueButton;
 import com.siminenko.artem.Model.Pause.PausedText;
 import com.siminenko.artem.Model.Win.CompletedText;
@@ -98,10 +99,13 @@ public class MyGdxGame extends ApplicationAdapter {
         RateLayout.init();
         Info.init();
         LevelLoop.initStatic();
-        Info.addRunNumber();
         DiamondDisplay.init();
         PlusDiamondText.init();
         SettingLayout.init();
+        Music.init();
+        Music.music();
+
+        Info.addRunNumber();
 
         layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());

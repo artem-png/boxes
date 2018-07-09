@@ -31,6 +31,7 @@ import com.siminenko.artem.Model.Level.Levels.Level8;
 import com.siminenko.artem.Model.Level.Levels.Level9;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
+import com.siminenko.artem.Model.Music.Music;
 
 /**
  * Created by User on 22.04.2018.
@@ -87,6 +88,13 @@ public class Progress {
         music = a;
         prefs.putBoolean(musicSetting, a);
         prefs.flush();
+
+//        if (!a) {
+//            Music.music.stop(Music.id);
+//        }
+//        if (a) {
+//            Music.music();
+//        }
     }
 
     public static void setSound(boolean a)
