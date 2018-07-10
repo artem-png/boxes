@@ -48,6 +48,8 @@ public class PauseLayout implements LayoutInterface {
         levelText = new LevelText(level, Color.DARK_GRAY);
         MyGdxGame.setUp(15, false);
         Music.music();
+        Music.stopMusicGame();
+
 
     }
 

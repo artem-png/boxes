@@ -47,6 +47,7 @@ public class WinLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         this.newVictory = newVictory;
         Music.music();
+        Music.stopMusicGame();
 
     }
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -49,6 +50,7 @@ public class ContinueButton {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
+                Music.musicGame();
                 MyGdxGame.layoutManager.pop();
             }
         } else {

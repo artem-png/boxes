@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.Data.BonusBigData;
+import com.siminenko.artem.Model.Music.Music;
 
 import java.util.Random;
 
@@ -90,6 +91,7 @@ public class BonusCoin extends ABonus {
         if (isBonusGiven) {
             return;
         }
+        Music.coin();
         Tex.createParticles(30, 1, this.body.getPosition());
         isBonusGiven = true;
         Progress.addDiamond();

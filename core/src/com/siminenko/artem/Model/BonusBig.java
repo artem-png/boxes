@@ -9,6 +9,7 @@ import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Data.BonusBigData;
 import com.siminenko.artem.Model.Data.ObstacleBigPanelData;
+import com.siminenko.artem.Model.Music.Music;
 
 import java.util.Random;
 
@@ -73,6 +74,10 @@ public class BonusBig extends ABonus {
     }
 
     public void handlePlayer(Player player) {
+        if(!isBonusGiven) {
+            Music.big();
+        }
+
         isBonusGiven = true;
         player.makeBigger(1.5f, time);
         int count = 60;

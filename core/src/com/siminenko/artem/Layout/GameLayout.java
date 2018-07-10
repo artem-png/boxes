@@ -72,6 +72,7 @@ public class GameLayout implements LayoutInterface {
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
         Music.stopMusic();
+        Music.musicGame();
     }
 
     public static void init() {

@@ -25,7 +25,14 @@ public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData) {
-            if (contact.getFixtureB().getBody().getUserData() instanceof BallonData || contact.getFixtureA().getBody().getUserData() instanceof BallonData) {
+            if (
+                    contact.getFixtureB().getBody().getUserData() instanceof BallonData
+                    || contact.getFixtureA().getBody().getUserData() instanceof BallonData
+                    || contact.getFixtureB().getBody().getUserData() instanceof BonusCoin
+                    || contact.getFixtureA().getBody().getUserData() instanceof BonusCoin
+                    || contact.getFixtureA().getBody().getUserData() instanceof BonusBigData
+                    || contact.getFixtureB().getBody().getUserData() instanceof BonusBigData
+                    ) {
 
             } else {
                 if (GameLayout.isDispose || GameLayout.isWin) {
