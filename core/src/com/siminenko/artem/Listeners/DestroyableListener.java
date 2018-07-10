@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Ballon;
 import com.siminenko.artem.Model.BonusCoin;
@@ -24,7 +25,15 @@ public class DestroyableListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData || contact.getFixtureA().getBody().getUserData() instanceof UserData) {
-            Music.touch();
+            if (contact.getFixtureB().getBody().getUserData() instanceof BallonData || contact.getFixtureA().getBody().getUserData() instanceof BallonData) {
+
+            } else {
+                if (GameLayout.isDispose || GameLayout.isWin) {
+
+                } else {
+                    Music.touch();
+                }
+            }
         }
 
         if (contact.getFixtureB().getBody().getUserData() instanceof UserData && contact.getFixtureA().getBody().getUserData() instanceof BonusBigData) {

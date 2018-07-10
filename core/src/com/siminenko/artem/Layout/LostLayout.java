@@ -14,6 +14,7 @@ import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
@@ -47,6 +48,7 @@ public class LostLayout implements LayoutInterface {
         diamondDisplay = new DiamondDisplay();
         this.level = level;
         MyGdxGame.setUp(15, false);
+        Music.music();
     }
 
     public static void init() {

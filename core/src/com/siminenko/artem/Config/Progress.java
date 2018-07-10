@@ -39,7 +39,7 @@ import com.siminenko.artem.Model.Music.Music;
 
 public class Progress {
     public static final String progress = "progressLevel4";
-    public static final String maxScoreSetting = "maxScore6";
+    public static final String maxScoreSetting = "maxScore7";
     public static final String diamondCount = "diamondCount";
     public static final String musicSetting = "music";
     public static final String soundSetting = "sound";
@@ -84,17 +84,18 @@ public class Progress {
 
     public static void setMusic(boolean a)
     {
+        if (!a) {
+            Music.stopMusic();
+        }
+
         Preferences prefs = Gdx.app.getPreferences(progress);
         music = a;
         prefs.putBoolean(musicSetting, a);
         prefs.flush();
 
-//        if (!a) {
-//            Music.music.stop(Music.id);
-//        }
-//        if (a) {
-//            Music.music();
-//        }
+        if (a) {
+            Music.music();
+        }
     }
 
     public static void setSound(boolean a)

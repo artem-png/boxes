@@ -16,6 +16,7 @@ import com.siminenko.artem.Model.Menu.PlayButton.InfiniteButton;
 import com.siminenko.artem.Model.Menu.PlayButton.LevelButton;
 import com.siminenko.artem.Model.Menu.PlayButton.PlayButton;
 import com.siminenko.artem.Model.Menu.PlayButton.SettingButton;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
@@ -47,6 +48,7 @@ public class MenuLayout implements LayoutInterface {
         infiniteButton = new InfiniteButton();
         diamondDisplay = new DiamondDisplay();
         customizeButton = new CustomizeButton();
+        Music.music();
         MyGdxGame.setUp(15, false);
     }
 

@@ -12,6 +12,7 @@ import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Infinite.Score;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.MyGdxGame;
 
 import java.util.Random;
@@ -37,6 +38,8 @@ public class FailedText {
         this.record = record;
         string = getText();
         if (record) {
+            Music.win();
+
             font.getData().setScale(size, size);
         }
     }

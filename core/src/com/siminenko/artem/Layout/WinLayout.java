@@ -10,6 +10,7 @@ import com.siminenko.artem.Model.Lost.RestartText;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
 import com.siminenko.artem.Model.Win.PlusDiamondText;
@@ -45,6 +46,8 @@ public class WinLayout implements LayoutInterface {
         this.level = level;
         MyGdxGame.setUp(15, false);
         this.newVictory = newVictory;
+        Music.music();
+
     }
 
     public static void init() {

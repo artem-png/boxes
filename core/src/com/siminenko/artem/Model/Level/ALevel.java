@@ -8,6 +8,7 @@ import com.siminenko.artem.Model.AObject;
 import com.siminenko.artem.Model.Game.Particles;
 import com.siminenko.artem.Model.Game.ProgressBar;
 import com.siminenko.artem.Model.Level.Scenarious.General.SimpleBonusCoin;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.Model.Powers.APower;
 import com.siminenko.artem.Model.Powers.PowerClock;

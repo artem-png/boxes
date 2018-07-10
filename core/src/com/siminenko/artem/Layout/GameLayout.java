@@ -13,6 +13,7 @@ import com.siminenko.artem.Model.Game.PauseIcon;
 import com.siminenko.artem.Model.Level.ALevel;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.PlayButton.SettingButton;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.Model.Player;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.MyGdxGame;
@@ -70,6 +71,7 @@ public class GameLayout implements LayoutInterface {
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
+        Music.stopMusic();
     }
 
     public static void init() {
@@ -118,6 +120,8 @@ public class GameLayout implements LayoutInterface {
                 isWin = false;
                 speed = speedSetting;
                 borderEffects.reset();
+                Music.win();
+
                 MyGdxGame.layoutManager.set(new WinLayout(level.level + 1, level.newVictory));
             }
         }

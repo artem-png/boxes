@@ -14,6 +14,7 @@ import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.Model.Pause.ContinueButton;
 import com.siminenko.artem.Model.Pause.PausedText;
 import com.siminenko.artem.ModelGenerator.Background;
@@ -46,6 +47,8 @@ public class PauseLayout implements LayoutInterface {
         this.level = level;
         levelText = new LevelText(level, Color.DARK_GRAY);
         MyGdxGame.setUp(15, false);
+        Music.music();
+
     }
 
     public static void init() {
@@ -87,6 +90,8 @@ public class PauseLayout implements LayoutInterface {
         menuIcon.dispose();
         continueButton.dispose();
         diamondDisplay.dispose();
+
+        Music.stopMusic();
     }
 
     @Override

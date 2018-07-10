@@ -10,6 +10,7 @@ import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Data.BallonData;
 import com.siminenko.artem.Model.Level.ALevel;
+import com.siminenko.artem.Model.Music.Music;
 
 import java.util.Random;
 
@@ -105,6 +106,7 @@ public class Ballon extends AObject {
     }
 
     public void setDispose(boolean d) {
+        Music.lost();
         this.body.applyLinearImpulse(new Vector2(1000, 1000), new Vector2(body.getPosition().x, body.getPosition().y), true);
         Random random = new Random();
         for (int i = 1; i < this.count; i++) {

@@ -103,7 +103,6 @@ public class MyGdxGame extends ApplicationAdapter {
         PlusDiamondText.init();
         SettingLayout.init();
         Music.init();
-        Music.music();
 
         Info.addRunNumber();
 
@@ -130,7 +129,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 layoutManager.push(new PauseLayout(GameLayout.level.level));
             }
         }
-
+        Music.act();
         Gdx.gl.glClearColor(1f, 1f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
