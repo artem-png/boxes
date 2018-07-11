@@ -31,6 +31,8 @@ public class Music {
     static float volumeGame = 0;
     static float max = 1f;
 
+    static int iteration = 0;
+
 
     public static void init() {
         touch1 = Gdx.audio.newSound(Gdx.files.internal("music/touch1.ogg"));
@@ -42,8 +44,6 @@ public class Music {
         lost = Gdx.audio.newSound(Gdx.files.internal("music/lost.ogg"));
         music = Gdx.audio.newSound(Gdx.files.internal("music/music.ogg"));
         gameMusic = Gdx.audio.newSound(Gdx.files.internal("music/gameMusic.ogg"));
-        id = music.loop(0);
-        gameId = gameMusic.loop(0);
     }
 
     public static void touch() {
@@ -91,34 +91,42 @@ public class Music {
     }
 
     public static void musicGame() {
-        System.out.println("START");
         if (Progress.music) {
             isPlayGame = true;
         }
     }
 
     public static void act() {
-        if (isPlay) {
-            if (volume < max) {
-                volume += 0.01f;
-                music.setVolume(id, volume);
-            }
-        } else {
-            if (volume > 0) {
-                volume -= 0.01f;
-                music.setVolume(id, volume);
-            }
+        if (iteration < 30) {
+            iteration++;
+        } else if (iteration == 30) {
+            iteration++;
+            id = music.loop(0);
+            gameId = gameMusic.loop(0);
         }
-
-        if (isPlayGame) {
-            if (volumeGame < 0.3f) {
-                volumeGame += 0.01f;
-                gameMusic.setVolume(gameId, volumeGame);
+        if (iteration > 30) {
+            if (isPlay) {
+                if (volume < max) {
+                    volume += 0.01f;
+                    music.setVolume(id, volume);
+                }
+            } else {
+                if (volume > 0) {
+                    volume -= 0.01f;
+                    music.setVolume(id, volume);
+                }
             }
-        } else {
-            if (volumeGame > 0) {
-                volumeGame -= 0.01f;
-                gameMusic.setVolume(gameId, volumeGame);
+
+            if (isPlayGame) {
+                if (volumeGame < 0.3f) {
+                    volumeGame += 0.01f;
+                    gameMusic.setVolume(gameId, volumeGame);
+                }
+            } else {
+                if (volumeGame > 0) {
+                    volumeGame -= 0.01f;
+                    gameMusic.setVolume(gameId, volumeGame);
+                }
             }
         }
     }
