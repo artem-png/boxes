@@ -41,6 +41,8 @@ public class GameLayout implements LayoutInterface {
 
     int timeSettingEnd = 60;
 
+    public static int restartCount = 0;
+
     public static boolean isDispose = false;
 
     public static boolean isDisposeAnimation = false;
@@ -68,6 +70,7 @@ public class GameLayout implements LayoutInterface {
         this.level.setPlayer(player);
         this.level.init();
         this.level.afterInit();
+        GameLayout.restartCount = 0;
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);

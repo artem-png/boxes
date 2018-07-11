@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
+import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
@@ -20,6 +21,8 @@ import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.ModelGenerator.Background;
 import com.siminenko.artem.ModelGenerator.BackgroundCircle;
 import com.siminenko.artem.MyGdxGame;
+
+import java.util.Random;
 
 /**
  * Created by artem on 3/21/18.
@@ -89,6 +92,13 @@ public class MenuLayout implements LayoutInterface {
         diamondDisplay.render(MyGdxGame.batchDynamic);
         customizeButton.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
+        MyGdxGame.batchFont.begin();
+        Tex.loadingFont.setColor(Color.DARK_GRAY);
+        Tex.loadingFont.getData().setScale(0.7f, 0.7f);
+        Tex.loadingFont.draw(MyGdxGame.batchFont, "FALLING", - 50 / Tex.x, Gdx.graphics.getHeight()/1.22f, Gdx.graphics.getWidth(), 1, true);
+        Tex.loadingFont.draw(MyGdxGame.batchFont, "BLOCKS",  50 / Tex.x, Gdx.graphics.getHeight()/1.34f, Gdx.graphics.getWidth(), 1, true);
+        Tex.loadingFont.getData().setScale(1, 1);
+        MyGdxGame.batchFont.end();
         batch.begin();
     }
 

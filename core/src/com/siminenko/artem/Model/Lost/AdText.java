@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Tex;
+import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.MyGdxGame;
 
@@ -53,37 +54,40 @@ public class AdText {
     }
 
     public void act() {
-        a += da;
-        size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
-        if (isUpText) {
-            alpha += alphaDelta;
-            if (alpha >= 1) {
-                isUpText = false;
-                alpha = 1;
+        if (GameLayout.restartCount == 0) {
+            a += da;
+            size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
+            if (isUpText) {
+                alpha += alphaDelta;
+                if (alpha >= 1) {
+                    isUpText = false;
+                    alpha = 1;
+                }
+            } else {
+                alpha -= alphaDelta;
+                if (alpha <= 0) {
+                    isUpText = true;
+                    alpha = 0;
+                }
             }
-        } else {
-            alpha -= alphaDelta;
-            if (alpha <= 0) {
-                isUpText = true;
-                alpha = 0;
-            }
-        }
-        if (isPressed) {
-            timePressed--;
-            if (timePressed <= 1) {
-                MyGdxGame.layoutManager.pop();
-                Music.stopMusic();
-                Music.musicGame();
-                isReady = true;
-            }
-        } else {
-            if (Gdx.input.justTouched()) {
-                Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+            if (isPressed) {
+                timePressed--;
+                if (timePressed <= 1) {
+                    MyGdxGame.layoutManager.pop();
+                    Music.stopMusic();
+                    Music.musicGame();
+                    GameLayout.restartCount = 1;
+                    isReady = true;
+                }
+            } else {
+                if (Gdx.input.justTouched()) {
+                    Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-                if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
-                    if (vector3.y < position.y + size.y / 2) {
-                        isPressed = true;
-                        MyGdxGame.setUp(20, true);
+                    if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
+                        if (vector3.y < position.y + size.y / 2) {
+                            isPressed = true;
+                            MyGdxGame.setUp(20, true);
+                        }
                     }
                 }
             }
@@ -91,10 +95,12 @@ public class AdText {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
-        batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
-        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
-        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+        if (GameLayout.restartCount == 0) {
+            batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
+            batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
+            batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+            batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+        }
     }
 
     public void dispose() {

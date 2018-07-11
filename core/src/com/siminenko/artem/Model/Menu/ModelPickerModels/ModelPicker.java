@@ -27,7 +27,7 @@ public class ModelPicker {
 
     public ModelPicker() {
         size = new Vector2(12, 15);
-        position = new Vector2(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 10);
+        position = new Vector2(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 3);
         rotation = 0;
         scenarious = new Scenarious(position, rotation);
         effects = new Effects();
@@ -50,7 +50,7 @@ public class ModelPicker {
     public void act() {
         scenarious.act();
         rotation = scenarious.modifyRotation(rotation);
-        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 5);
+        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2  + 3);
         effects.effects.add(Tex.getParticle(0.8f, new Vector2(this.position.x + this.size.x/2, this.position.y + this.size.y/2), 40));
         effects.act();
 

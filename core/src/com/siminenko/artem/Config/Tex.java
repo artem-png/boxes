@@ -45,6 +45,8 @@ public class Tex {
     public static BitmapFont smallFont3;
     public static BitmapFont smallFont35;
 
+    public static BitmapFont loadingFont;
+
     public static float x = (float) Gdx.graphics.getWidth() / 800;
     public static float y = (float) Gdx.graphics.getHeight() / 480;
 
@@ -82,6 +84,11 @@ public class Tex {
         smallFont3 = Tex.generateFont(Color.WHITE, (int) (3 * xd), "smallfont.ttf");
         smallFont35 = Tex.generateFont(Color.WHITE, (int) (3.5f * xd), "bigfont.ttf");
 
+    }
+
+    public static void initLoading() {
+        float xd = Gdx.graphics.getWidth() / MyGdxGame.width;
+        loadingFont = Tex.generateFont(Color.WHITE, (int) (8 * xd), "menu.ttf");
     }
 
     public static BitmapFont generateFont(Color color, int size, String name) {

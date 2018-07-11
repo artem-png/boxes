@@ -67,7 +67,9 @@ public class MyGdxGame extends ApplicationAdapter {
         height = 80;
         whitebg = new Sprite(new Texture("menu/whitebg.png"));
         batch = new SpriteBatch();
+        batchFont = new SpriteBatch();
         layoutManager = new LayoutManager();
+        Tex.initLoading();
     }
 
     public void init() {
@@ -79,7 +81,6 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.position.y = height / 2;
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
-        batchFont = new SpriteBatch();
 
         progress.init();
         FailedText.init();
@@ -124,25 +125,33 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void render() {
         if (timeLoad == 0) {
+            Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             timeLoad++;
-            batch.begin();
-            batch.draw(whitebg, 50, 50, 200, 200);
-            batch.end();
+            batchFont.begin();
+            Tex.loadingFont.getData().setScale(0.8f, 0.8f);
+            Tex.loadingFont.draw(batchFont, "LuSiArt", 0, Gdx.graphics.getHeight()/1.3f, Gdx.graphics.getWidth(), 1, true);
+            Tex.loadingFont.getData().setScale(0.2f, 0.2f);
+            Tex.loadingFont.draw(batchFont, "gaming", 0, Gdx.graphics.getHeight()/1.55f, Gdx.graphics.getWidth(), 1, true);
+            Tex.loadingFont.getData().setScale(1, 1);
+            Tex.loadingFont.getData().setScale(0.4f, 0.4f);
+            Tex.loadingFont.draw(batchFont, "loading...", 0, Gdx.graphics.getHeight()/5f, Gdx.graphics.getWidth(), 1, true);
+            Tex.loadingFont.getData().setScale(1, 1);
+            batchFont.end();
             return;
         } else if (timeLoad == 1) {
             init();
             timeLoad++;
         }
 
-
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
             if (layoutManager.vector.lastElement() instanceof GameLayout) {
                 layoutManager.push(new PauseLayout(GameLayout.level.level));
             }
         }
         Music.act();
-        Gdx.gl.glClearColor(1f, 1f, 1f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         time--;
 
