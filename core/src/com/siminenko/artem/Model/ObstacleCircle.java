@@ -50,6 +50,20 @@ public class ObstacleCircle extends AObject implements Destroyable {
         this.sprite = sprite;
     }
 
+    public ObstacleCircle(World world, Vector2 position, Vector2 velocity, float size, float restitution, Sprite sprite, boolean ignoreCollision) {
+        this.world = world;
+        CircleShape shape = new CircleShape();
+        shape.setRadius(size / 2);
+        this.shape = shape;
+        this.size = size;
+        this.createObject(position, shape, world, 0.5f, 1f, restitution, ignoreCollision);
+
+        this.body.setUserData(new CircleData(this));
+        this.body.setLinearVelocity(velocity.x, velocity.y);
+        origin = new Vector2(size / 2, size / 2);
+        this.sprite = sprite;
+    }
+
     @Override
     public void act() {
         super.act();

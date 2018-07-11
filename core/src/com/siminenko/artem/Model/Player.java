@@ -54,6 +54,8 @@ public class Player extends AObject {
 
     Sprite sprite;
 
+    int baloonInactive = 0;
+
     public Player(World world, Vector2 position, ALevel level) {
         this.world = world;
         if (Progress.theme == 0) {
@@ -71,9 +73,21 @@ public class Player extends AObject {
         this.body.setActive(true);
     }
 
+    public void setInActive(int time)
+    {
+        baloonInactive = time;
+        this.ballon.body.setActive(false);
+    }
+
     @Override
     public void act() {
         input();
+        if (baloonInactive > 0) {
+            baloonInactive--;
+            if (baloonInactive == 0) {
+                this.ballon.body.setActive(true);
+            }
+        }
         ballon.act();
         if (body.getAngularVelocity() > 0) {
             body.setAngularVelocity(body.getAngularVelocity() - 0.01f);

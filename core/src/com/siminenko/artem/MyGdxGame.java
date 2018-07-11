@@ -59,12 +59,18 @@ public class MyGdxGame extends ApplicationAdapter {
 
     int rateL = 10;
 
+    static int timeLoad = 0;
+
     @Override
     public void create() {
-        long start = System.currentTimeMillis();
-
         width = 45;
         height = 80;
+        whitebg = new Sprite(new Texture("menu/whitebg.png"));
+        batch = new SpriteBatch();
+        layoutManager = new LayoutManager();
+    }
+
+    public void init() {
         tex = new Tex();
 
         progress = new Progress();
@@ -74,7 +80,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
         batchFont = new SpriteBatch();
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
 
         progress.init();
         FailedText.init();
@@ -106,14 +111,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Info.addRunNumber();
 
-        layoutManager = new LayoutManager();
         layoutManager.push(new MenuLayout());
         Gdx.input.setCatchBackKey(true);
-
-
-        long finish = System.currentTimeMillis();
-        long timeConsumedMillis = finish - start;
-        System.out.println(timeConsumedMillis);
     }
 
     public static void setUp(int time, boolean isUp) {
@@ -124,6 +123,18 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void render() {
+        if (timeLoad == 0) {
+            timeLoad++;
+            batch.begin();
+            batch.draw(whitebg, 50, 50, 200, 200);
+            batch.end();
+            return;
+        } else if (timeLoad == 1) {
+            init();
+            timeLoad++;
+        }
+
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
             if (layoutManager.vector.lastElement() instanceof GameLayout) {
                 layoutManager.push(new PauseLayout(GameLayout.level.level));

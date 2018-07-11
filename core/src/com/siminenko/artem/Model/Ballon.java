@@ -58,6 +58,9 @@ public class Ballon extends AObject {
 
     @Override
     public void render(SpriteBatch batch) {
+        if (!this.body.isActive()) {
+            batch.setColor(1, 1, 1, 0.5f);
+        }
         if (Progress.theme == 0) {
             batch.draw(
                     sprite,
@@ -98,6 +101,9 @@ public class Ballon extends AObject {
                     (float) Math.toDegrees(this.body.getAngle())
             );
         }
+        if (!this.body.isActive()) {
+            batch.setColor(1, 1, 1, 1);
+        }
     }
 
     public void rotation() {
@@ -116,10 +122,12 @@ public class Ballon extends AObject {
                     new Vector2(random.nextInt(60) - 30, random.nextInt(60) - 30),
                     1.5f,
                     0.5f,
-                    Tex.circle2
+                    Tex.circle2,
+                    true
             );
             obstacleTriangle.isNeedParticles = false;
             obstacleTriangle.body.setActive(true);
+
             this.level.aObjectVector2.add(obstacleTriangle);
         }
         this.body.setActive(false);

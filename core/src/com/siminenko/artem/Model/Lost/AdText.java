@@ -1,29 +1,25 @@
 package com.siminenko.artem.Model.Lost;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
-import com.siminenko.artem.Layout.GameLayout;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.MyGdxGame;
 
 /**
  * Created by User on 22.04.2018.
  */
 
-public class RestartText {
-    static BitmapFont font;
+public class AdText {
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
     int timePressed = timeSetting;
-    Vector2 size = new Vector2(40, 10);
     static float xd;
     static float yd;
 
@@ -31,19 +27,34 @@ public class RestartText {
     float alpha = 1;
     float alphaDelta = 0.014f;
 
+    Sprite button;
+    Sprite icon;
+    Sprite play;
+
     int level;
 
-    public RestartText(int level) {
+    Vector2 position = new Vector2(MyGdxGame.width / 2, MyGdxGame.height / 2 - 26);
+    Vector2 size = new Vector2(8, 8);
+
+    float a = 0;
+    float da = 0.13f;
+
+    public AdText(int level) {
         this.level = level;
+
+        button = Tex.button;
+        icon = new Sprite(new Texture("menu/cinema.png"));
+        play = new Sprite(new Texture("menu/play.png"));
     }
 
     public static void init() {
         xd = Gdx.graphics.getWidth() / MyGdxGame.width;
         yd = Gdx.graphics.getHeight() / MyGdxGame.width;
-        font = Tex.smallFont3;
     }
 
     public void act() {
+        a += da;
+        size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
         if (isUpText) {
             alpha += alphaDelta;
             if (alpha >= 1) {
@@ -60,7 +71,9 @@ public class RestartText {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
-                MyGdxGame.layoutManager.set(new GameLayout(Progress.getLevelByInt(this.level)));
+                MyGdxGame.layoutManager.pop();
+                Music.stopMusic();
+                Music.musicGame();
                 isReady = true;
             }
         } else {
@@ -68,7 +81,7 @@ public class RestartText {
                 Vector3 vector3 = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
                 if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
-                    if (vector3.y > 21 && vector3.y < MyGdxGame.height / 2 - 10 + size.y / 2) {
+                    if (vector3.y < position.y + size.y / 2) {
                         isPressed = true;
                         MyGdxGame.setUp(20, true);
                     }
@@ -78,20 +91,10 @@ public class RestartText {
     }
 
     public void render(SpriteBatch batch) {
-        batch.end();
-        MyGdxGame.batchFont.begin();
-        font.setColor(font.getColor().r, font.getColor().g, font.getColor().b, alpha);
-        font.draw(
-                MyGdxGame.batchFont,
-                "TAP TO RESTART",
-                0,
-                Tex.y * 180,
-                Gdx.graphics.getWidth(),
-                1,
-                false
-        );
-        MyGdxGame.batchFont.end();
-        batch.begin();
+        batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
+        batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
+        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
     }
 
     public void dispose() {

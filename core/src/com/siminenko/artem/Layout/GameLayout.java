@@ -93,11 +93,21 @@ public class GameLayout implements LayoutInterface {
             }
             isDisposeAnimation = true;
             if (death()) {
+                GameLayout.isDisposeAnimation = false;
                 GameLayout.isDispose = false;
                 GameLayout.isWin = false;
+                timeBeforeDeath = 60;
+                timelapse = 0;
+                timeSetting = 15;
+                timeSettingEnd = 60;
                 speed = speedSetting;
+                player.dispose();
+                player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
+                player.setInActive(120);
+                this.level.setPlayer(player);
                 borderEffects.reset();
-                MyGdxGame.layoutManager.set(new LostLayout(level.level));
+                timelapse = 0;
+                MyGdxGame.layoutManager.push(new LostLayout(level.level));
                 return;
             }
         }

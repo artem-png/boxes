@@ -48,6 +48,32 @@ public abstract class AObject {
         this.body.setActive(false);
     }
 
+    public void createObject(Vector2 position, Shape shape, World world, float density, float friction, float restitution, boolean ignoreCollision) {
+        float rotate = 0;
+        if (body != null) {
+            rotate = body.getAngle();
+            GameLayout.world.destroyBody(body);
+        }
+        bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(position.x, position.y);
+        body = world.createBody(bodyDef);
+        body.setTransform(position.x, position.y, rotate);
+        setShapeToFixture(shape, density, friction, restitution, ignoreCollision);
+        this.body.setActive(false);
+    }
+
+    protected void setShapeToFixture(Shape shape, float density, float friction, float restitution, boolean ignoreCollision) {
+        fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.density = density;
+        fixtureDef.friction = friction;
+        fixtureDef.restitution = restitution;
+        fixtureDef.filter.groupIndex = (short)123;
+        fixture = body.createFixture(fixtureDef);
+        body.resetMassData();
+    }
+
     protected void setShapeToFixture(Shape shape, float density, float friction, float restitution) {
         fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;

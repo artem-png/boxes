@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Model.Infinite.Score;
 import com.siminenko.artem.Model.Level.LevelGetter;
+import com.siminenko.artem.Model.Lost.AdText;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
@@ -27,6 +28,7 @@ public class LostLayout implements LayoutInterface {
     ModelPicker modelPicker;
     BackgroundCircle background;
     RestartText restartText;
+    AdText adText;
     FailedText failedText;
     MenuIcon menuIcon;
     LevelText levelText;
@@ -43,6 +45,7 @@ public class LostLayout implements LayoutInterface {
         background = new BackgroundCircle(record ? 3 : 2);
         menuIcon = new MenuIcon();
         restartText = new RestartText(level);
+        adText = new AdText(level);
         failedText = new FailedText(record);
         levelText = new LevelText(level, Color.DARK_GRAY);
         diamondDisplay = new DiamondDisplay();
@@ -65,6 +68,7 @@ public class LostLayout implements LayoutInterface {
         menuIcon.act();
         levelText.act();
         diamondDisplay.act();
+        adText.act();
     }
 
     @Override
@@ -78,6 +82,7 @@ public class LostLayout implements LayoutInterface {
         menuIcon.render(MyGdxGame.batchDynamic);
         restartText.render(MyGdxGame.batchDynamic);
         diamondDisplay.render(MyGdxGame.batchDynamic);
+        adText.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         batch.begin();
     }
@@ -90,6 +95,7 @@ public class LostLayout implements LayoutInterface {
         menuIcon.dispose();
         levelText.dispose();
         diamondDisplay.dispose();
+        adText.dispose();
     }
 
     @Override
