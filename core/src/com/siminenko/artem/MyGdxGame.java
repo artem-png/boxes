@@ -135,7 +135,7 @@ public class MyGdxGame extends ApplicationAdapter {
             Tex.loadingFont.draw(batchFont, "gaming", 0, Gdx.graphics.getHeight()/1.55f, Gdx.graphics.getWidth(), 1, true);
             Tex.loadingFont.getData().setScale(1, 1);
             Tex.loadingFont.getData().setScale(0.4f, 0.4f);
-            Tex.loadingFont.draw(batchFont, "loading...", 0, Gdx.graphics.getHeight()/5f, Gdx.graphics.getWidth(), 1, true);
+            Tex.loadingFont.draw(batchFont, "loading", 0, Gdx.graphics.getHeight()/5f, Gdx.graphics.getWidth(), 1, true);
             Tex.loadingFont.getData().setScale(1, 1);
             batchFont.end();
             return;
