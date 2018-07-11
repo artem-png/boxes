@@ -10,6 +10,7 @@ import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Model.Level.LevelGetter;
 import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.Menu.DiamondDisplay;
+import com.siminenko.artem.Model.Menu.GameNameText;
 import com.siminenko.artem.Model.Menu.LevelText;
 import com.siminenko.artem.Model.Menu.ModelPickerModels.ModelPicker;
 import com.siminenko.artem.Model.Menu.PlayButton.CustomizeButton;
@@ -38,6 +39,7 @@ public class MenuLayout implements LayoutInterface {
     DiamondDisplay diamondDisplay;
     SettingButton settingButton;
     CustomizeButton customizeButton;
+    GameNameText gameNameText;
 
 
     public MenuLayout() {
@@ -51,6 +53,7 @@ public class MenuLayout implements LayoutInterface {
         infiniteButton = new InfiniteButton();
         diamondDisplay = new DiamondDisplay();
         customizeButton = new CustomizeButton();
+        gameNameText = new GameNameText();
         Music.music();
         MyGdxGame.setUp(15, false);
     }
@@ -70,6 +73,7 @@ public class MenuLayout implements LayoutInterface {
         diamondDisplay.act();
         settingButton.act();
         customizeButton.act();
+        gameNameText.act();
         if (playButton.isReady()) {
             MyGdxGame.layoutManager.set(new GameLayout(LevelGetter.getLevel()));
         }
@@ -91,14 +95,8 @@ public class MenuLayout implements LayoutInterface {
         infiniteButton.render(MyGdxGame.batchDynamic);
         diamondDisplay.render(MyGdxGame.batchDynamic);
         customizeButton.render(MyGdxGame.batchDynamic);
+        gameNameText.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
-        MyGdxGame.batchFont.begin();
-        Tex.loadingFont.setColor(Color.DARK_GRAY);
-        Tex.loadingFont.getData().setScale(0.7f, 0.7f);
-        Tex.loadingFont.draw(MyGdxGame.batchFont, "FALLING", - 50 / Tex.x, Gdx.graphics.getHeight()/1.22f, Gdx.graphics.getWidth(), 1, true);
-        Tex.loadingFont.draw(MyGdxGame.batchFont, "BLOCKS",  50 / Tex.x, Gdx.graphics.getHeight()/1.34f, Gdx.graphics.getWidth(), 1, true);
-        Tex.loadingFont.getData().setScale(1, 1);
-        MyGdxGame.batchFont.end();
         batch.begin();
     }
 
