@@ -39,7 +39,7 @@ import com.siminenko.artem.Model.Music.Music;
 
 public class Progress {
     public static final String progress = "progressLevel4";
-    public static final String maxScoreSetting = "maxScore7";
+    public static final String maxScoreSetting = "maxScore8";
     public static final String diamondCount = "diamondCount";
     public static final String musicSetting = "music";
     public static final String soundSetting = "sound";

@@ -1,6 +1,7 @@
 package com.siminenko.artem.Model.Lost;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -40,8 +41,11 @@ public class AdText {
     float a = 0;
     float da = 0.13f;
 
-    public AdText(int level) {
+    boolean record;
+
+    public AdText(int level, boolean record) {
         this.level = level;
+        this.record = record;
 
         button = Tex.button;
         icon = new Sprite(new Texture("menu/cinema.png"));
@@ -96,7 +100,13 @@ public class AdText {
 
     public void render(SpriteBatch batch) {
         if (GameLayout.restartCount == 0) {
+            if (record) {
+                batch.setColor(Color.CORAL);
+            }
             batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
+            if (record) {
+                batch.setColor(1, 1, 1, 1);
+            }
             batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
             batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
             batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);

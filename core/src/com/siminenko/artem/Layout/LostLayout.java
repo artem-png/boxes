@@ -35,7 +35,7 @@ public class LostLayout implements LayoutInterface {
     DiamondDisplay diamondDisplay;
     int level;
 
-    boolean record = false;
+    public boolean record = false;
 
     public LostLayout(int level) {
         modelPicker = new ModelPicker();
@@ -45,7 +45,7 @@ public class LostLayout implements LayoutInterface {
         background = new BackgroundCircle(record ? 3 : 2);
         menuIcon = new MenuIcon();
         restartText = new RestartText(level);
-        adText = new AdText(level);
+        adText = new AdText(level, record);
         failedText = new FailedText(record);
         levelText = new LevelText(level, Color.DARK_GRAY);
         diamondDisplay = new DiamondDisplay();
