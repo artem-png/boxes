@@ -65,10 +65,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public void create() {
         width = 45;
         height = 80;
-        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         batch = new SpriteBatch();
         batchFont = new SpriteBatch();
         layoutManager = new LayoutManager();
+        Music.init();
         Tex.initLoading();
     }
 
@@ -82,6 +82,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         batchDynamic = new SpriteBatch();
 
+        whitebg = new Sprite(new Texture("menu/whitebg.png"));
         progress.init();
         FailedText.init();
         MenuIcon.init();
@@ -108,7 +109,6 @@ public class MyGdxGame extends ApplicationAdapter {
         DiamondDisplay.init();
         PlusDiamondText.init();
         SettingLayout.init();
-        Music.init();
 
         Info.addRunNumber();
 
