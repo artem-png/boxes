@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
+import com.siminenko.artem.Model.Music.Music;
 
 import java.util.Random;
 
@@ -79,6 +80,7 @@ public class ObstacleCircleBomb extends AObject {
             Tex.createParticles((int)(count * 1.5f), 1, body.getPosition());
             this.body.setActive(false);
             this.body.setTransform(-100, -300, 0);
+            Music.boom();
         }
     }
 

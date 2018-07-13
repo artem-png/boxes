@@ -17,7 +17,9 @@ public class Music {
     static Sound win;
     static Sound lost;
     static Sound coin;
+    static Sound start;
     static Sound big;
+    static Sound boom;
     public static Sound music;
     public static Sound gameMusic;
 
@@ -44,6 +46,8 @@ public class Music {
         lost = Gdx.audio.newSound(Gdx.files.internal("music/lost.ogg"));
         music = Gdx.audio.newSound(Gdx.files.internal("music/music.ogg"));
         gameMusic = Gdx.audio.newSound(Gdx.files.internal("music/gameMusic.ogg"));
+        start = Gdx.audio.newSound(Gdx.files.internal("music/start.ogg"));
+        boom = Gdx.audio.newSound(Gdx.files.internal("music/boom.ogg"));
     }
 
     public static void touch() {
@@ -57,6 +61,18 @@ public class Music {
             } else if (result == 2) {
                 touch3.play(0.6f);
             }
+        }
+    }
+
+    public static void start() {
+        if (Progress.sound) {
+            start.play();
+        }
+    }
+
+    public static void boom() {
+        if (Progress.sound) {
+            boom.play(0.5f);
         }
     }
 
@@ -107,7 +123,7 @@ public class Music {
         if (iteration > 30) {
             if (isPlay) {
                 if (volume < max) {
-                    volume += 0.01f;
+                    volume += 0.0035f;
                     music.setVolume(id, volume);
                 }
             } else {
@@ -118,8 +134,8 @@ public class Music {
             }
 
             if (isPlayGame) {
-                if (volumeGame < 0.3f) {
-                    volumeGame += 0.01f;
+                if (volumeGame < 0.2f) {
+                    volumeGame += 0.001f;
                     gameMusic.setVolume(gameId, volumeGame);
                 }
             } else {

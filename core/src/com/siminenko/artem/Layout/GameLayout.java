@@ -76,6 +76,7 @@ public class GameLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         Music.stopMusic();
         Music.musicGame();
+        Music.start();
     }
 
     public static void init() {
