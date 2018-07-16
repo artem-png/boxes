@@ -44,6 +44,8 @@ import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
 import com.siminenko.artem.Model.Win.PlusDiamondText;
 
+import java.util.Locale;
+
 public class MyGdxGame extends ApplicationAdapter implements VideoEventListener {
     public static SpriteBatch batch;
     public static SpriteBatch batchDynamic;
