@@ -70,10 +70,10 @@ public class CustomizeLayout implements LayoutInterface {
         purchaseCommon.render(MyGdxGame.batchDynamic);
         MyGdxGame.batchDynamic.end();
         MyGdxGame.batchFont.begin();
-        Tex.smallFont35.draw(MyGdxGame.batchFont, "" + Progress.diamonds, -25, Gdx.graphics.getHeight() - 18 * Tex.y, Gdx.graphics.getWidth(), 1, true);
+        Tex.smallFont35.draw(MyGdxGame.batchFont, "" + Progress.diamonds, -.0f, Gdx.graphics.getHeight() - 8 * Tex.y, Gdx.graphics.getWidth(), 1, true);
         MyGdxGame.batchFont.end();
         batch.begin();
-        batch.draw(Tex.diamond, MyGdxGame.width / 2 + 1f, MyGdxGame.height - 6, 3, 4);
+        batch.draw(Tex.diamond, MyGdxGame.width / 2 - 1.5f, MyGdxGame.height - 7.7f, 3, 4);
     }
 
     @Override

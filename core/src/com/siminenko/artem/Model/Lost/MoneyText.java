@@ -3,11 +3,11 @@ package com.siminenko.artem.Model.Lost;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.GameLayout;
 import com.siminenko.artem.Model.Music.Music;
@@ -17,7 +17,7 @@ import com.siminenko.artem.MyGdxGame;
  * Created by User on 22.04.2018.
  */
 
-public class AdText {
+public class MoneyText {
     boolean isReady = false;
     boolean isPressed = false;
     int timeSetting = 20;
@@ -35,7 +35,7 @@ public class AdText {
 
     int level;
 
-    Vector2 position = new Vector2(MyGdxGame.width / 2 - 8, MyGdxGame.height / 2 - 25);
+    Vector2 position = new Vector2(MyGdxGame.width / 2 + 8, MyGdxGame.height / 2 - 25);
     Vector2 size = new Vector2(8, 8);
 
     float a = 0;
@@ -43,16 +43,17 @@ public class AdText {
 
     boolean record;
 
-    public static boolean isViewed = false;
-    public int time = 20;
+    int needDiamonds = 1;
 
-    public AdText(int level, boolean record) {
+    public MoneyText(int level, boolean record) {
         this.level = level;
         this.record = record;
 
         button = Tex.button;
         icon = new Sprite(new Texture("menu/cinema.png"));
         play = new Sprite(new Texture("menu/play.png"));
+        needDiamonds *= GameLayout.restartMoneyCount + 1;
+        init();
     }
 
     public static void init() {
@@ -61,19 +62,7 @@ public class AdText {
     }
 
     public void act() {
-        if (isViewed) {
-            if (time == 20) {
-                MyGdxGame.setUp(20, true);
-            }
-            time--;
-            if (time < 0) {
-                MyGdxGame.layoutManager.pop();
-                GameLayout.restartCount = 1;
-                isReady = true;
-                isViewed = false;
-            }
-        }
-        if (GameLayout.restartCount == 0) {
+        if (Progress.diamonds >= this.needDiamonds) {
             a += da;
             size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
             if (isUpText) {
@@ -93,7 +82,9 @@ public class AdText {
         if (isPressed) {
             timePressed--;
             if (timePressed <= 1) {
-                MyGdxGame.rewardAds.showRewardedVideoAd();
+                MyGdxGame.layoutManager.pop();
+                GameLayout.restartMoneyCount += 1;
+                isReady = true;
                 Music.stopMusic();
                 Music.musicGame();
             }
@@ -103,7 +94,13 @@ public class AdText {
 
                 if (vector3.x > position.x - size.x / 2 - 3 && vector3.x < position.x + size.x / 2 + 3) {
                     if (vector3.y < position.y + size.y / 2) {
+                        if (Progress.diamonds >= this.needDiamonds) {
+                            Progress.minusDiamond(this.needDiamonds);
+                        } else {
+                            return;
+                        }
                         isPressed = true;
+                        MyGdxGame.setUp(20, true);
                     }
                 }
             }
@@ -111,8 +108,9 @@ public class AdText {
     }
 
     public void render(SpriteBatch batch) {
-        if (GameLayout.restartCount == 1) {
+        if (Progress.diamonds < this.needDiamonds) {
             batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+            Tex.smallFont3.setColor(0.4f, 0.4f, 0.4f, 1f);
         }
         if (record) {
             batch.setColor(Color.CORAL);
@@ -121,11 +119,17 @@ public class AdText {
         if (record) {
             batch.setColor(1, 1, 1, 1);
         }
-        batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
-        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
-        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
-        if (GameLayout.restartCount == 1) {
+        batch.end();
+        MyGdxGame.batchFont.begin();
+        Tex.smallFont3.draw(MyGdxGame.batchFont, "" + needDiamonds, 500 * Tex.x, (position.y - 5f) * yd, 80 * Tex.x, 1, true);
+        MyGdxGame.batchFont.end();
+        batch.begin();
+        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 2.3f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+        batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 2.3f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
+        batch.draw(Tex.diamond, position.x - 1f, position.y - 2.8f, 2, 3);
+        if (Progress.diamonds < this.needDiamonds) {
             batch.setColor(1, 1, 1, 1);
+            Tex.smallFont3.setColor(1, 1, 1, 1);
         }
     }
 

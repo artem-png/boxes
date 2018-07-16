@@ -42,6 +42,7 @@ public class GameLayout implements LayoutInterface {
     int timeSettingEnd = 60;
 
     public static int restartCount = 0;
+    public static int restartMoneyCount = 0;
 
     public static boolean isDispose = false;
 
@@ -71,6 +72,7 @@ public class GameLayout implements LayoutInterface {
         this.level.init();
         this.level.afterInit();
         GameLayout.restartCount = 0;
+        restartMoneyCount = 0;
         GameLayout.isDisposeAnimation = false;
         pauseIcon = new PauseIcon(level.level);
         MyGdxGame.setUp(15, false);
@@ -108,7 +110,7 @@ public class GameLayout implements LayoutInterface {
                 speed = speedSetting;
                 player.dispose();
                 player = new Player(world, new Vector2(MyGdxGame.width / 2, 30), level);
-                player.setInActive(120);
+                player.setInActive(150);
                 this.level.setPlayer(player);
                 borderEffects.reset();
                 timelapse = 0;

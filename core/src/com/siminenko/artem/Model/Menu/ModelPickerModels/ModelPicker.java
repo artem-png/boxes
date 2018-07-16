@@ -23,8 +23,6 @@ public class ModelPicker {
     Scenarious scenarious;
     Effects effects;
 
-    Random random = new Random();
-
     public ModelPicker() {
         size = new Vector2(12, 15);
         position = new Vector2(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 3);
@@ -50,8 +48,8 @@ public class ModelPicker {
     public void act() {
         scenarious.act();
         rotation = scenarious.modifyRotation(rotation);
-        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2  + 3);
-        effects.effects.add(Tex.getParticle(0.8f, new Vector2(this.position.x + this.size.x/2, this.position.y + this.size.y/2), 40));
+        position.set(MyGdxGame.width / 2 - size.x / 2, MyGdxGame.height / 2 - size.y / 2 + 3);
+        effects.effects.add(Tex.getParticle(0.8f, new Vector2(this.position.x + this.size.x / 2, this.position.y + this.size.y / 2), 40));
         effects.act();
 
         size = scenarious.modifySize(size);
@@ -85,7 +83,7 @@ public class ModelPicker {
                     currentModel.getScaleY(),
                     rotation
             );
-        }  else if (Progress.theme == 2) {
+        } else if (Progress.theme == 2) {
             batch.draw(
                     currentModel,
                     position.x,
