@@ -43,6 +43,9 @@ public class AdText {
 
     boolean record;
 
+    public static boolean isViewed = false;
+    public int time = 20;
+
     public AdText(int level, boolean record) {
         this.level = level;
         this.record = record;
@@ -58,6 +61,18 @@ public class AdText {
     }
 
     public void act() {
+        if (isViewed) {
+            if (time == 20) {
+                MyGdxGame.setUp(20, true);
+            }
+            time--;
+            if (time < 0) {
+                MyGdxGame.layoutManager.pop();
+                GameLayout.restartCount = 1;
+                isReady = true;
+                isViewed = false;
+            }
+        }
         if (GameLayout.restartCount == 0) {
             a += da;
             size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
@@ -77,11 +92,9 @@ public class AdText {
             if (isPressed) {
                 timePressed--;
                 if (timePressed <= 1) {
-                    MyGdxGame.layoutManager.pop();
+                    MyGdxGame.rewardAds.showRewardedVideoAd();
                     Music.stopMusic();
                     Music.musicGame();
-                    GameLayout.restartCount = 1;
-                    isReady = true;
                 }
             } else {
                 if (Gdx.input.justTouched()) {
@@ -90,7 +103,6 @@ public class AdText {
                     if (vector3.x > MyGdxGame.width / 2 - size.x / 2 - 10 && vector3.x < MyGdxGame.width / 2 + size.x / 2 + 10) {
                         if (vector3.y < position.y + size.y / 2) {
                             isPressed = true;
-                            MyGdxGame.setUp(20, true);
                         }
                     }
                 }

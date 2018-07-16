@@ -10,12 +10,24 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.siminenko.artem.AdMob.AdsController;
-import com.siminenko.artem.MyGdxGame;
+import com.siminenko.artem.AdMob.RewardAds;
+import com.siminenko.artem.AdMob.VideoEventListener;
 
-public class AndroidLauncher extends AndroidApplication implements AdsController {
+public class AndroidLauncher extends AndroidApplication implements AdsController, RewardedVideoAdListener, RewardAds {
 	private static final String BANNER_AD_UNIT_ID = "ca-app-pub-6889819481952202/3851702024";
+	private RewardedVideoAd adRewardedVideoView;
+	private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917";
+	private VideoEventListener vel;
 	AdView bannerAd;
+
+	public MyGdxGame game;
+
+	public boolean is_video_ad_loaded;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -23,7 +35,9 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 
 		// Create a gameView and a bannerAd AdView
-		View gameView = initializeForView(new MyGdxGame(this), config);
+		this.game = new MyGdxGame(this, this);
+		View gameView = initializeForView(game, config);
+		setupRewarded();
 		setupAds();
 
 		// Define the layout
@@ -42,7 +56,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 	public void setupAds() {
 		bannerAd = new AdView(this);
 		bannerAd.setVisibility(View.INVISIBLE);
-		bannerAd.setBackgroundColor(0xff000000); // black
+		bannerAd.setBackgroundColor(0x00000000);
 		bannerAd.setAdUnitId(BANNER_AD_UNIT_ID);
 		bannerAd.setAdSize(AdSize.SMART_BANNER);
 	}
@@ -60,6 +74,10 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		});
 	}
 
+	public void setVideoEventListener (VideoEventListener listener) {
+		this.vel = listener;
+	}
+
 	@Override
 	public void hideBannerAd() {
 		runOnUiThread(new Runnable() {
@@ -68,5 +86,86 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 				bannerAd.setVisibility(View.INVISIBLE);
 			}
 		});
+	}
+
+	public void loadRewardedVideoAd() {
+		adRewardedVideoView.loadAd(REWARDED_VIDEO_AD_UNIT_ID, new AdRequest.Builder().build());
+	}
+
+	public void setupRewarded() {
+		adRewardedVideoView = MobileAds.getRewardedVideoAdInstance(this);
+		adRewardedVideoView.setRewardedVideoAdListener(this);
+		loadRewardedVideoAd();
+	}
+
+	public boolean hasVideoLoaded(){
+		if(is_video_ad_loaded) {
+			return true;
+		}
+		runOnUiThread(new Runnable() {
+			public void run() {
+				if (!adRewardedVideoView.isLoaded()) {
+					loadRewardedVideoAd();
+				}
+			}
+		});
+		return false;
+	}
+
+	public void showRewardedVideoAd(){
+		runOnUiThread(new Runnable() {
+			public void run() {
+				if (adRewardedVideoView.isLoaded()) {
+					adRewardedVideoView.show();
+				} else {
+					loadRewardedVideoAd();
+				}
+			}
+		});
+	}
+
+	@Override
+	public void onRewardedVideoAdLoaded() {
+		if(vel != null) {
+			vel.onRewardedVideoAdLoadedEvent();
+		}
+		is_video_ad_loaded = true;
+	}
+
+	@Override
+	public void onRewardedVideoAdOpened() {
+
+	}
+
+	@Override
+	public void onRewardedVideoStarted() {
+
+	}
+
+	@Override
+	public void onRewardedVideoAdClosed() {
+		is_video_ad_loaded = false;
+		loadRewardedVideoAd();
+		if(vel != null) {
+			vel.onRewardedVideoAdClosedEvent();
+		}
+	}
+
+	@Override
+	public void onRewarded(RewardItem rewardItem) {
+		if(vel != null) {
+			// The type and the amount can be set in your AdMob console
+			vel.onRewardedEvent(rewardItem.getType(), rewardItem.getAmount());
+		}
+	}
+
+	@Override
+	public void onRewardedVideoAdLeftApplication() {
+
+	}
+
+	@Override
+	public void onRewardedVideoAdFailedToLoad(int i) {
+
 	}
 }

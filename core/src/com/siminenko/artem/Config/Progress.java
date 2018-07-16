@@ -61,7 +61,7 @@ public class Progress {
             themes[i] = prefs.getInteger("gameTheme1" + (i + 1), 0);
         }
         maxScore = prefs.getInteger(maxScoreSetting, 0);
-        diamonds = prefs.getInteger(diamondCount, 0) + 100;
+        diamonds = prefs.getInteger(diamondCount, 0);
         music = prefs.getBoolean(musicSetting, true);
         sound = prefs.getBoolean(soundSetting, true);
         theme = prefs.getInteger(themeSetting, 0);

@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.siminenko.artem.AdMob.AdsController;
+import com.siminenko.artem.AdMob.RewardAds;
+import com.siminenko.artem.AdMob.VideoEventListener;
 import com.siminenko.artem.Config.Info;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
@@ -28,6 +30,7 @@ import com.siminenko.artem.Model.Level.Levels.LevelLoop;
 import com.siminenko.artem.Model.LevelLayout.BackIcon;
 import com.siminenko.artem.Model.LevelLayout.LevelGenerator;
 import com.siminenko.artem.Model.LevelLayout.TopPanel;
+import com.siminenko.artem.Model.Lost.AdText;
 import com.siminenko.artem.Model.Lost.FailedText;
 import com.siminenko.artem.Model.Lost.MenuIcon;
 import com.siminenko.artem.Model.Lost.RestartText;
@@ -41,7 +44,7 @@ import com.siminenko.artem.Model.Win.CompletedText;
 import com.siminenko.artem.Model.Win.NextLevelText;
 import com.siminenko.artem.Model.Win.PlusDiamondText;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class MyGdxGame extends ApplicationAdapter implements VideoEventListener {
     public static SpriteBatch batch;
     public static SpriteBatch batchDynamic;
     public static SpriteBatch batchFont;
@@ -64,8 +67,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public static AdsController adsController;
 
-    public MyGdxGame(AdsController adsController) {
+    public static RewardAds rewardAds;
+
+    public MyGdxGame(AdsController adsController, RewardAds rewardAds)
+    {
         this.adsController = adsController;
+        this.rewardAds = rewardAds;
+        this.rewardAds.setVideoEventListener(this);
     }
 
     @Override
@@ -191,6 +199,9 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void pause() {
         super.pause();
+        if (MyGdxGame.layoutManager == null) {
+            return;
+        }
         if (MyGdxGame.layoutManager.vector.lastElement() instanceof GameLayout) {
             MyGdxGame.layoutManager.push(new PauseLayout(GameLayout.level.level));
         }
@@ -205,5 +216,20 @@ public class MyGdxGame extends ApplicationAdapter {
     public void resume() {
         super.resume();
         tex = new Tex();
+    }
+
+    @Override
+    public void onRewardedEvent(String type, int amount) {
+        AdText.isViewed = true;
+    }
+
+    @Override
+    public void onRewardedVideoAdLoadedEvent() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosedEvent() {
+
     }
 }
