@@ -56,6 +56,7 @@ public class MenuLayout implements LayoutInterface {
         gameNameText = new GameNameText();
         Music.music();
         MyGdxGame.setUp(15, false);
+        MyGdxGame.adsController.showBannerAd();
     }
 
     public static void init() {

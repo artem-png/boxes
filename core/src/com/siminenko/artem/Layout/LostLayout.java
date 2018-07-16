@@ -53,7 +53,6 @@ public class LostLayout implements LayoutInterface {
         MyGdxGame.setUp(15, false);
         Music.music();
         Music.stopMusicGame();
-
     }
 
     public static void init() {

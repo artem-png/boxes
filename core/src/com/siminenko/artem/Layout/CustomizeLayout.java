@@ -39,6 +39,7 @@ public class CustomizeLayout implements LayoutInterface {
         purchaseFootbal = new PurchaseFootbal();
         purchaseTV = new PurchaseTV();
         purchaseCommon = new PurchaseCommon();
+        MyGdxGame.adsController.showBannerAd();
     }
 
     public void setLevel(int level) {

@@ -77,6 +77,7 @@ public class GameLayout implements LayoutInterface {
         Music.stopMusic();
         Music.musicGame();
         Music.start();
+        MyGdxGame.adsController.hideBannerAd();
     }
 
     public static void init() {

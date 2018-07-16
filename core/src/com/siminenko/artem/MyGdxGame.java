@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.siminenko.artem.AdMob.AdsController;
 import com.siminenko.artem.Config.Info;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
@@ -60,6 +61,12 @@ public class MyGdxGame extends ApplicationAdapter {
     int rateL = 10;
 
     static int timeLoad = 0;
+
+    public static AdsController adsController;
+
+    public MyGdxGame(AdsController adsController) {
+        this.adsController = adsController;
+    }
 
     @Override
     public void create() {

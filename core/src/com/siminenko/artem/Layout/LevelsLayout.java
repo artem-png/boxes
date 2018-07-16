@@ -53,6 +53,7 @@ public class LevelsLayout implements LayoutInterface {
         }
 
         font = Tex.smallFont35;
+        MyGdxGame.adsController.showBannerAd();
 
     }
 
