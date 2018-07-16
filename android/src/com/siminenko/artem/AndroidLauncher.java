@@ -19,9 +19,9 @@ import com.siminenko.artem.AdMob.RewardAds;
 import com.siminenko.artem.AdMob.VideoEventListener;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController, RewardedVideoAdListener, RewardAds {
-	private static final String BANNER_AD_UNIT_ID = "ca-app-pub-6889819481952202/3851702024";
+	private static final String BANNER_AD_UNIT_ID = "ca-app-pub-9852850210537045/8208198672";
 	private RewardedVideoAd adRewardedVideoView;
-	private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917";
+	private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-9852850210537045/5250862842";
 	private VideoEventListener vel;
 	AdView bannerAd;
 

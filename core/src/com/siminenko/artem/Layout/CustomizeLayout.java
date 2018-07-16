@@ -73,7 +73,7 @@ public class CustomizeLayout implements LayoutInterface {
         Tex.smallFont35.draw(MyGdxGame.batchFont, "" + Progress.diamonds, -.0f, Gdx.graphics.getHeight() - 8 * Tex.y, Gdx.graphics.getWidth(), 1, true);
         MyGdxGame.batchFont.end();
         batch.begin();
-        batch.draw(Tex.diamond, MyGdxGame.width / 2 - 1.5f, MyGdxGame.height - 7.7f, 3, 4);
+        batch.draw(Tex.diamond, MyGdxGame.width / 2 - 1.45f, MyGdxGame.height - 7.7f, 3, 4);
     }
 
     @Override

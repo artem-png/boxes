@@ -108,16 +108,16 @@ public class MoneyText {
     }
 
     public void render(SpriteBatch batch) {
-        if (Progress.diamonds < this.needDiamonds) {
-            batch.setColor(0.4f, 0.4f, 0.4f, 1f);
-            Tex.smallFont3.setColor(0.4f, 0.4f, 0.4f, 1f);
-        }
         if (record) {
             batch.setColor(Color.CORAL);
         }
         batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
         if (record) {
             batch.setColor(1, 1, 1, 1);
+        }
+        if (Progress.diamonds < this.needDiamonds) {
+            batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+            Tex.smallFont3.setColor(0.4f, 0.4f, 0.4f, 1f);
         }
         batch.end();
         MyGdxGame.batchFont.begin();
