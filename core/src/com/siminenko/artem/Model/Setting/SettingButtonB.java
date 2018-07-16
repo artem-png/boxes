@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.siminenko.artem.Config.Progress;
 import com.siminenko.artem.Config.Tex;
 import com.siminenko.artem.Layout.SettingLayout;
+import com.siminenko.artem.Model.Music.Music;
 import com.siminenko.artem.MyGdxGame;
 
 /**
@@ -42,6 +43,11 @@ public class SettingButtonB {
             timePressed--;
             if (timePressed <= 1) {
                 Progress.setMusic(!Progress.music);
+                if (Progress.music) {
+                    Music.music();
+                } else {
+                    Music.stopMusic();
+                }
                 isPressed = false;
                 timePressed = timeSetting;
             }

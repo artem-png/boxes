@@ -124,24 +124,32 @@ public class Music {
             if (isPlay) {
                 if (volume < max) {
                     volume += 0.0035f;
-                    music.setVolume(id, volume);
+                    if (Progress.music) {
+                        music.setVolume(id, volume);
+                    }
                 }
             } else {
                 if (volume > 0) {
                     volume -= 0.01f;
-                    music.setVolume(id, volume);
+                    if (Progress.music) {
+                        music.setVolume(id, volume);
+                    }
                 }
             }
 
             if (isPlayGame) {
                 if (volumeGame < 0.2f) {
                     volumeGame += 0.001f;
-                    gameMusic.setVolume(gameId, volumeGame);
+                    if (Progress.music) {
+                        gameMusic.setVolume(gameId, volumeGame);
+                    }
                 }
             } else {
                 if (volumeGame > 0) {
                     volumeGame -= 0.01f;
-                    gameMusic.setVolume(gameId, volumeGame);
+                    if (Progress.music) {
+                        gameMusic.setVolume(gameId, volumeGame);
+                    }
                 }
             }
         }
@@ -153,7 +161,7 @@ public class Music {
         }
     }
     public static void stopMusicGame() {
-        if (Progress.sound) {
+        if (Progress.music) {
             isPlayGame = false;
         }
     }

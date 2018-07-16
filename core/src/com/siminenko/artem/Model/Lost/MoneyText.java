@@ -43,7 +43,7 @@ public class MoneyText {
 
     boolean record;
 
-    int needDiamonds = 1;
+    int needDiamonds = 60;
 
     public MoneyText(int level, boolean record) {
         this.level = level;
