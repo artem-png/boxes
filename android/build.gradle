@@ -18,7 +18,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.siminenko.artem"
+        applicationId "com.siminenko.falldown"
         minSdkVersion 9
         targetSdkVersion 20
     }
@@ -71,7 +71,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.siminenko.artem/com.siminenko.artem.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.siminenko.falldown/AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.
