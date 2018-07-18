@@ -17,9 +17,9 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.siminenko.falldown.AdMob.AdsController;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController, RewardedVideoAdListener, com.siminenko.falldown.AdMob.RewardAds {
-	private static final String BANNER_AD_UNIT_ID = "ca-app-pub-9852850210537045/8208198672";
+	private static final String BANNER_AD_UNIT_ID = "ca-app-pub-6889819481952202/3851702024";
 	private RewardedVideoAd adRewardedVideoView;
-	private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-9852850210537045/5250862842";
+	private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-6889819481952202/1948002535";
 	private com.siminenko.falldown.AdMob.VideoEventListener vel;
 	AdView bannerAd;
 

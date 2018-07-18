@@ -41,12 +41,11 @@ public class APurchaseModel {
     float yd = (float) Gdx.graphics.getHeight() / (float) MyGdxGame.height;
 
     public void render(SpriteBatch batch) {
-        String text = "321";
         if (!purchased) {
             batch.setColor(0, 0, 0, 1);
         }
         if (purchased && com.siminenko.falldown.Config.Progress.theme != theme) {
-            batch.setColor(0.7f, 0.7f, 0.7f, 0.6f);
+            batch.setColor(0.7f, 0.7f, 0.7f, 0.4f);
         }
         batch.draw(
                 player,

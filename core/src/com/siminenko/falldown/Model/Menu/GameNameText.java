@@ -12,8 +12,10 @@ import com.siminenko.falldown.MyGdxGame;
  */
 
 public class GameNameText {
-    Vector2 positionFirst = new Vector2(-300f / (Gdx.graphics.getWidth() / MyGdxGame.width), Gdx.graphics.getHeight() / 1.22f);
-    Vector2 positionSecond = new Vector2(300f / (Gdx.graphics.getWidth() / MyGdxGame.width), Gdx.graphics.getHeight() / 1.34f);
+    static float xd = Gdx.graphics.getWidth() / MyGdxGame.width;
+
+    Vector2 positionFirst = new Vector2(-5 * GameNameText.xd, Gdx.graphics.getHeight() / 1.22f);
+    Vector2 positionSecond = new Vector2(5 * GameNameText.xd, Gdx.graphics.getHeight() / 1.34f);
 
     float a = 0;
     float da = 0.07f;
