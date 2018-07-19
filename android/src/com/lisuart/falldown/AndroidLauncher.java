@@ -56,7 +56,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 	public void setupAds() {
 		bannerAd = new AdView(this);
 		bannerAd.setVisibility(View.INVISIBLE);
-		bannerAd.setBackgroundColor(0x99000000);
+		bannerAd.setBackgroundColor(0x00000000);
 		bannerAd.setAdUnitId(BANNER_AD_UNIT_ID);
 		bannerAd.setAdSize(AdSize.SMART_BANNER);
 	}
