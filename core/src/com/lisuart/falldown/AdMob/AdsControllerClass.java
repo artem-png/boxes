@@ -11,4 +11,9 @@ public class AdsControllerClass implements AdsController {
     public void hideBannerAd() {
 
     }
+
+    @Override
+    public boolean hasInternet() {
+        return true;
+    }
 }

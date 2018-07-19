@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.lisuart.falldown.Model.Music.Music;
 import com.lisuart.falldown.Layout.GameLayout;
+import com.lisuart.falldown.MyGdxGame;
 
 /**
  * Created by User on 22.04.2018.
@@ -40,6 +41,8 @@ public class AdText {
 
     boolean record;
 
+    boolean hasInternet = false;
+
     public static boolean isViewed = false;
     public int time = 20;
 
@@ -50,6 +53,8 @@ public class AdText {
         button = com.lisuart.falldown.Config.Tex.button;
         icon = new Sprite(new Texture("menu/cinema.png"));
         play = new Sprite(new Texture("menu/play.png"));
+
+        this.hasInternet = MyGdxGame.adsController.hasInternet();
     }
 
     public static void init() {
@@ -70,7 +75,7 @@ public class AdText {
                 isViewed = false;
             }
         }
-        if (GameLayout.restartCount == 0) {
+        if (GameLayout.restartCount == 0 && this.hasInternet) {
             a += da;
             size.add((float) Math.cos(a) / 10f, (float) Math.cos(a) / 10f);
             if (isUpText) {
@@ -109,7 +114,7 @@ public class AdText {
     }
 
     public void render(SpriteBatch batch) {
-        if (GameLayout.restartCount == 1) {
+        if (GameLayout.restartCount == 1 || !this.hasInternet) {
             batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         }
         if (record) {
@@ -122,7 +127,7 @@ public class AdText {
         batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
         batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
         batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 1f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
-        if (GameLayout.restartCount == 1) {
+        if (GameLayout.restartCount == 1 || !this.hasInternet) {
             batch.setColor(1, 1, 1, 1);
         }
     }
