@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -22,8 +23,13 @@ import com.lisuart.falldown.AdMob.VideoEventListener;
 import com.lisuart.falldown.AdMob.AdsController;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController, RewardedVideoAdListener, RewardAds {
+
+    private static final String AD_UNIT_ID = "ca-app-pub-6889819481952202/9400154557";
+    private static final String APP_ID = "ca-app-pub-6889819481952202~8592892812";
+
+
     private static final String BANNER_AD_UNIT_ID = "ca-app-pub-6889819481952202/3851702024";
-    private RewardedVideoAd adRewardedVideoView;
+    private RewardedVideoAd rewardedVideoAd;
     private static final String REWARDED_VIDEO_AD_UNIT_ID = "ca-app-pub-6889819481952202/9400154557";
     private VideoEventListener vel;
     AdView bannerAd;
@@ -37,10 +43,15 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
         super.onCreate(savedInstanceState);
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this, APP_ID);
+
         // Create a gameView and a bannerAd AdView
         this.game = new MyGdxGame(this, this);
         View gameView = initializeForView(game, config);
-        setupRewarded();
+        rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        rewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardedVideoAd();
         setupAds();
 
         // Define the layout
@@ -92,35 +103,21 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
     }
 
     public void loadRewardedVideoAd() {
-        adRewardedVideoView.loadAd(REWARDED_VIDEO_AD_UNIT_ID, new AdRequest.Builder().build());
-    }
-
-    public void setupRewarded() {
-        adRewardedVideoView = MobileAds.getRewardedVideoAdInstance(this);
-        adRewardedVideoView.setRewardedVideoAdListener(this);
-        loadRewardedVideoAd();
+        if (!rewardedVideoAd.isLoaded()) {
+            rewardedVideoAd.loadAd(AD_UNIT_ID, new AdRequest.Builder().build());
+        }
     }
 
     public boolean hasVideoLoaded() {
-        if (is_video_ad_loaded) {
-            return true;
-        }
-        runOnUiThread(new Runnable() {
-            public void run() {
-                if (!adRewardedVideoView.isLoaded()) {
-                    loadRewardedVideoAd();
-                }
-            }
-        });
-        return false;
+        return rewardedVideoAd.isLoaded();
     }
 
 
     public void showRewardedVideoAd() {
         runOnUiThread(new Runnable() {
             public void run() {
-                if (adRewardedVideoView.isLoaded()) {
-                    adRewardedVideoView.show();
+                if (rewardedVideoAd.isLoaded()) {
+                    rewardedVideoAd.show();
                 } else {
                     loadRewardedVideoAd();
                 }
@@ -149,6 +146,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 
     @Override
     public void onRewardedVideoAdLoaded() {
+        Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
         if (vel != null) {
             vel.onRewardedVideoAdLoadedEvent();
         }
@@ -157,12 +155,12 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 
     @Override
     public void onRewardedVideoAdOpened() {
-
+        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoStarted() {
-
+        Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -173,9 +171,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        System.out.println(
-                123123123
-        );
+        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
     }
 
     @Override

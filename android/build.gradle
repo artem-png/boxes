@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "23.0.1"
-    compileSdkVersion 20
+    buildToolsVersion "26.0.1"
+    compileSdkVersion 26
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -19,7 +19,7 @@ android {
     }
     defaultConfig {
         applicationId "com.lusiart.falldown"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 20
     }
 }
