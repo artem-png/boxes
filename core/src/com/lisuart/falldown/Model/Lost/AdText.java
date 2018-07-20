@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.lisuart.falldown.Layout.PauseLayout;
 import com.lisuart.falldown.Model.Music.Music;
 import com.lisuart.falldown.Layout.GameLayout;
 import com.lisuart.falldown.MyGdxGame;
@@ -69,7 +70,8 @@ public class AdText {
             }
             time--;
             if (time < 0) {
-                com.lisuart.falldown.MyGdxGame.layoutManager.pop();
+                MyGdxGame.layoutManager.pop();
+                MyGdxGame.layoutManager.push(new PauseLayout(level));
                 GameLayout.restartCount = 1;
                 isReady = true;
                 isViewed = false;
