@@ -121,7 +121,7 @@ public class PowerShield extends APower {
     public void render(SpriteBatch batch) {
           batch.draw(
                   sprite,
-                  com.lisuart.falldown.MyGdxGame.width - 1,
+                  com.lisuart.falldown.MyGdxGame.width,
                   30,
                   5,
                   -2,
@@ -133,7 +133,7 @@ public class PowerShield extends APower {
           );
         batch.draw(
                 com.lisuart.falldown.Config.Tex.shield,
-                body.getPosition().x - size.x,
+                body.getPosition().x - size.x + 1,
                 body.getPosition().y - size.y,
                 size.x,
                 size.y,

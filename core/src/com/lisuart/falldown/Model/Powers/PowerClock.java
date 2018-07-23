@@ -65,8 +65,12 @@ public class PowerClock extends APower {
         if (isActive && timePower > 0) {
             timePower--;
             com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(1, random.nextInt(com.lisuart.falldown.MyGdxGame.height)));
+            com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(1, random.nextInt(com.lisuart.falldown.MyGdxGame.height)));
+            com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(com.lisuart.falldown.MyGdxGame.width - 1, random.nextInt(com.lisuart.falldown.MyGdxGame.height)));
             com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(com.lisuart.falldown.MyGdxGame.width - 1, random.nextInt(com.lisuart.falldown.MyGdxGame.height)));
             com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(com.lisuart.falldown.MyGdxGame.width), com.lisuart.falldown.MyGdxGame.height - 1));
+            com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(com.lisuart.falldown.MyGdxGame.width), com.lisuart.falldown.MyGdxGame.height - 1));
+            com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(com.lisuart.falldown.MyGdxGame.width), 1));
             com.lisuart.falldown.Config.Tex.createParticles(1, 0.5f, new Vector2(random.nextInt(com.lisuart.falldown.MyGdxGame.width), 1));
             if (timePower == 0) {
                 GameLayout.borderEffects.setFreezDown();
@@ -95,7 +99,7 @@ public class PowerClock extends APower {
     public void render(SpriteBatch batch) {
         batch.draw(
                 sprite,
-                -4,
+                -5,
                 30,
                 0,
                 -1,
