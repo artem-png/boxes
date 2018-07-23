@@ -131,9 +131,7 @@ public class Music {
             } else {
                 if (volume > 0) {
                     volume -= 0.01f;
-                    if (Progress.music) {
-                        music.setVolume(id, volume);
-                    }
+                    music.setVolume(id, volume);
                 }
             }
 
@@ -147,9 +145,7 @@ public class Music {
             } else {
                 if (volumeGame > 0) {
                     volumeGame -= 0.01f;
-                    if (Progress.music) {
-                        gameMusic.setVolume(gameId, volumeGame);
-                    }
+                    gameMusic.setVolume(gameId, volumeGame);
                 }
             }
         }
@@ -160,6 +156,7 @@ public class Music {
             isPlay = false;
         }
     }
+
     public static void stopMusicGame() {
         if (Progress.music) {
             isPlayGame = false;

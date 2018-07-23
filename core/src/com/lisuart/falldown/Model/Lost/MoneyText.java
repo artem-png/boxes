@@ -106,14 +106,11 @@ public class MoneyText {
         if (record) {
             batch.setColor(Color.CORAL);
         }
-        batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
-        if (record) {
-            batch.setColor(1, 1, 1, 1);
-        }
         if (com.lisuart.falldown.Config.Progress.diamonds < this.needDiamonds) {
             batch.setColor(0.4f, 0.4f, 0.4f, 1f);
             com.lisuart.falldown.Config.Tex.smallFont3.setColor(0.4f, 0.4f, 0.4f, 1f);
         }
+        batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
         batch.end();
         com.lisuart.falldown.MyGdxGame.batchFont.begin();
         com.lisuart.falldown.Config.Tex.smallFont3.draw(com.lisuart.falldown.MyGdxGame.batchFont, "" + needDiamonds, 500 * com.lisuart.falldown.Config.Tex.x, (position.y - 5f) * yd, 80 * com.lisuart.falldown.Config.Tex.x, 1, true);
@@ -122,6 +119,9 @@ public class MoneyText {
         batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f + 2.3f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
         batch.draw(play, position.x - size.x * 0.3f / 2 - (float) Math.cos(a) / 7f - 2.3f, position.y - size.y * 0.3f / 2, size.x * 0.3f, size.y * 0.3f);
         batch.draw(com.lisuart.falldown.Config.Tex.diamond, position.x - 1f, position.y - 2.8f, 2, 3);
+        if (record) {
+            batch.setColor(1, 1, 1, 1);
+        }
         if (com.lisuart.falldown.Config.Progress.diamonds < this.needDiamonds) {
             batch.setColor(1, 1, 1, 1);
             com.lisuart.falldown.Config.Tex.smallFont3.setColor(1, 1, 1, 1);

@@ -54,6 +54,8 @@ public class MyGdxGame extends ApplicationAdapter implements VideoEventListener 
     public static Progress progress;
     public static Info info;
 
+    public Sprite logo;
+
     Sprite whitebg;
     static int time;
     static int timeSetting;
@@ -81,6 +83,7 @@ public class MyGdxGame extends ApplicationAdapter implements VideoEventListener 
         batch = new SpriteBatch();
         batchFont = new SpriteBatch();
         layoutManager = new LayoutManager();
+        logo = new Sprite(new Texture("logo.png"));
         Music.init();
         Tex.initLoading();
     }
@@ -138,18 +141,11 @@ public class MyGdxGame extends ApplicationAdapter implements VideoEventListener 
     @Override
     public void render() {
         if (timeLoad == 0) {
-            Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+            Gdx.gl.glClearColor(0f, 0f, 0f, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             timeLoad++;
             batchFont.begin();
-            Tex.loadingFont.getData().setScale(0.8f, 0.8f);
-            Tex.loadingFont.draw(batchFont, "LuSiArt", 0, Gdx.graphics.getHeight()/1.3f, Gdx.graphics.getWidth(), 1, true);
-            Tex.loadingFont.getData().setScale(0.2f, 0.2f);
-            Tex.loadingFont.draw(batchFont, "gaming", 0, Gdx.graphics.getHeight()/1.55f, Gdx.graphics.getWidth(), 1, true);
-            Tex.loadingFont.getData().setScale(1, 1);
-            Tex.loadingFont.getData().setScale(0.4f, 0.4f);
-            Tex.loadingFont.draw(batchFont, "loading", 0, Gdx.graphics.getHeight()/5f, Gdx.graphics.getWidth(), 1, true);
-            Tex.loadingFont.getData().setScale(1, 1);
+            batchFont.draw(logo, (Gdx.graphics.getWidth() - (Gdx.graphics.getHeight() * 0.555f)) / 2, 0, Gdx.graphics.getHeight() * 0.555f, Gdx.graphics.getHeight());
             batchFont.end();
             return;
         } else if (timeLoad == 1) {
@@ -197,7 +193,7 @@ public class MyGdxGame extends ApplicationAdapter implements VideoEventListener 
     @Override
     public void pause() {
         super.pause();
-        if (MyGdxGame.layoutManager == null) {
+        if (MyGdxGame.layoutManager == null || MyGdxGame.layoutManager.vector.size() == 0) {
             return;
         }
         if (MyGdxGame.layoutManager.vector.lastElement() instanceof GameLayout) {
