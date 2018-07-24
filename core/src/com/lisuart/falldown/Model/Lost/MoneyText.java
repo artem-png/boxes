@@ -103,14 +103,18 @@ public class MoneyText {
     }
 
     public void render(SpriteBatch batch) {
-        if (record) {
-            batch.setColor(Color.CORAL);
-        }
         if (com.lisuart.falldown.Config.Progress.diamonds < this.needDiamonds) {
             batch.setColor(0.4f, 0.4f, 0.4f, 1f);
             com.lisuart.falldown.Config.Tex.smallFont3.setColor(0.4f, 0.4f, 0.4f, 1f);
-        }
+        } else if (record) {
+            batch.setColor(Color.OLIVE);
+    }
         batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
+        if (com.lisuart.falldown.Config.Progress.diamonds < this.needDiamonds) {
+
+        } else if (record) {
+            batch.setColor(1, 1, 1, 1);
+        }
         batch.end();
         com.lisuart.falldown.MyGdxGame.batchFont.begin();
         com.lisuart.falldown.Config.Tex.smallFont3.draw(com.lisuart.falldown.MyGdxGame.batchFont, "" + needDiamonds, 500 * com.lisuart.falldown.Config.Tex.x, (position.y - 5f) * yd, 80 * com.lisuart.falldown.Config.Tex.x, 1, true);

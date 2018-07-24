@@ -118,12 +118,13 @@ public class AdText {
     public void render(SpriteBatch batch) {
         if (GameLayout.restartCount == 1 || !this.hasInternet) {
             batch.setColor(0.4f, 0.4f, 0.4f, 1f);
-        }
-        if (record) {
-            batch.setColor(Color.CORAL);
+        } else if (record) {
+            batch.setColor(Color.OLIVE);
         }
         batch.draw(button, position.x - size.x / 2, position.y - size.y / 2, size.x, size.y);
-        if (record) {
+        if (GameLayout.restartCount == 1 || !this.hasInternet) {
+
+        } else if (record) {
             batch.setColor(1, 1, 1, 1);
         }
         batch.draw(icon, position.x - size.x * 0.7f / 2, position.y - size.y * 0.7f / 2, size.x * 0.7f, size.y * 0.7f);
