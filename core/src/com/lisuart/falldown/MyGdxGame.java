@@ -182,7 +182,7 @@ public class MyGdxGame extends ApplicationAdapter implements VideoEventListener 
         batchDynamic.end();
         batchDynamic.setColor(batchDynamic.getColor().r, batchDynamic.getColor().g, batchDynamic.getColor().b, 1);
 
-        if (Info.needRateLayout()) {
+        if (true) {
             rateL--;
             if (rateL == 0 && layoutManager.vector.size() == 1) {
                 layoutManager.push(new RateLayout());

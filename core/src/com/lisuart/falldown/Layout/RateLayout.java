@@ -55,13 +55,13 @@ public class RateLayout implements LayoutInterface {
     public void render(SpriteBatch batch) {
         batch.end();
         com.lisuart.falldown.MyGdxGame.batchDynamic.begin();
-        com.lisuart.falldown.MyGdxGame.batchDynamic.draw(sprite, -2, -2, com.lisuart.falldown.MyGdxGame.width + 4, com.lisuart.falldown.MyGdxGame.height + 4);
-        com.lisuart.falldown.MyGdxGame.batchDynamic.draw(rateBg, 0, 15, com.lisuart.falldown.MyGdxGame.width - 1, com.lisuart.falldown.MyGdxGame.height - 33f);
+        com.lisuart.falldown.MyGdxGame.batchDynamic.draw(sprite, -2, -2, com.lisuart.falldown.MyGdxGame.width + 2, com.lisuart.falldown.MyGdxGame.height + 4);
+        com.lisuart.falldown.MyGdxGame.batchDynamic.draw(rateBg, 1, 15, com.lisuart.falldown.MyGdxGame.width - 3, com.lisuart.falldown.MyGdxGame.height - 37f);
         com.lisuart.falldown.MyGdxGame.batchDynamic.end();
         com.lisuart.falldown.MyGdxGame.batchFont.begin();
         textFont.draw(
                 com.lisuart.falldown.MyGdxGame.batchFont,
-                "Enjoying the RiseDown app? Recommend us to others by leaving us a review",
+                "Enjoying the FallDown app? Recommend us to others by leaving us a review:)",
                 5 * xd,
                 30 * yd,
                 (com.lisuart.falldown.MyGdxGame.width - 10) * xd,
@@ -75,13 +75,13 @@ public class RateLayout implements LayoutInterface {
                 32.5f * xd,
                 20 * yd
         );
-        yesFont.setColor(Color.BLACK);
         yesFont.draw(
                 com.lisuart.falldown.MyGdxGame.batchFont,
                 "LATER",
                 17.5f * xd,
                 20 * yd
         );
+        yesFont.setColor(Color.BLACK);
         yesFont.draw(
                 com.lisuart.falldown.MyGdxGame.batchFont,
                 "NEVER",
