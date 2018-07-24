@@ -41,6 +41,8 @@ public class Ballon extends AObject {
             sprite = com.lisuart.falldown.Config.Tex.baloon2;
         } else if (Progress.theme == 2) {
             sprite = com.lisuart.falldown.Config.Tex.baloon3;
+        } else if (Progress.theme == 3) {
+            sprite = com.lisuart.falldown.Config.Tex.baloon4;
         }
     }
 
@@ -94,6 +96,19 @@ public class Ballon extends AObject {
                     5,
                     8,
                     10,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
+        } else if (Progress.theme == 3) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - 3f,
+                    this.body.getPosition().y - 7f,
+                    3f,
+                    5.5f,
+                    6,
+                    11,
                     sprite.getScaleX(),
                     sprite.getScaleY(),
                     (float) Math.toDegrees(this.body.getAngle())

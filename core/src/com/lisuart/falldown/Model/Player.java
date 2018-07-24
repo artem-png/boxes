@@ -38,6 +38,8 @@ public class Player extends AObject {
     float prymoX = 5.5f;
     float prymoY = 1.8f;
 
+    float square = 2.8f;
+
     // triangle big
     float bigMultiplier = 2.0f;
 
@@ -60,6 +62,8 @@ public class Player extends AObject {
             sprite = com.lisuart.falldown.Config.Tex.player2;
         } else if (com.lisuart.falldown.Config.Progress.theme == 2) {
             sprite = com.lisuart.falldown.Config.Tex.player3;
+        } else if (com.lisuart.falldown.Config.Progress.theme == 3) {
+            sprite = com.lisuart.falldown.Config.Tex.player4;
         }
 
         toNormal(position);
@@ -181,6 +185,19 @@ public class Player extends AObject {
                     sprite.getScaleY(),
                     (float) Math.toDegrees(this.body.getAngle())
             );
+        }  else if (com.lisuart.falldown.Config.Progress.theme == 3) {
+            batch.draw(
+                    sprite,
+                    this.body.getPosition().x - square * multi,
+                    this.body.getPosition().y - square * multi,
+                    square * multi,
+                    square * multi,
+                    square * multi * 2,
+                    square * multi * 2,
+                    sprite.getScaleX(),
+                    sprite.getScaleY(),
+                    (float) Math.toDegrees(this.body.getAngle())
+            );
         }
     }
 
@@ -248,6 +265,10 @@ public class Player extends AObject {
             PolygonShape shape = new PolygonShape();
             shape.setAsBox(prymoX * bigMultiplier, prymoY * bigMultiplier);
             this.shape = shape;
+        } else if (com.lisuart.falldown.Config.Progress.theme == 3) {
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(square * bigMultiplier, square * bigMultiplier);
+            this.shape = shape;
         }
         isBig = true;
 
@@ -275,6 +296,10 @@ public class Player extends AObject {
         } else if (com.lisuart.falldown.Config.Progress.theme == 2) {
             PolygonShape shape = new PolygonShape();
             shape.setAsBox(prymoX, prymoY);
+            this.shape = shape;
+        } else if (com.lisuart.falldown.Config.Progress.theme == 3) {
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(square, square);
             this.shape = shape;
         }
         isBig = false;

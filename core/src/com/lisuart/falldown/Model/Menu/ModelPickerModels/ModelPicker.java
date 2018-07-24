@@ -33,6 +33,9 @@ public class ModelPicker {
         } else if (Progress.theme == 2) {
             currentModel = com.lisuart.falldown.Config.Tex.player3;
             size = new Vector2(20, 7);
+        }  else if (Progress.theme == 3) {
+            currentModel = com.lisuart.falldown.Config.Tex.player4;
+            size = new Vector2(13, 13);
         }
     }
 
@@ -79,6 +82,19 @@ public class ModelPicker {
                     rotation
             );
         } else if (Progress.theme == 2) {
+            batch.draw(
+                    currentModel,
+                    position.x,
+                    position.y,
+                    size.x / 2,
+                    size.y / 2,
+                    size.x,
+                    size.y,
+                    currentModel.getScaleX(),
+                    currentModel.getScaleY(),
+                    rotation
+            );
+        } else if (Progress.theme == 3) {
             batch.draw(
                     currentModel,
                     position.x,

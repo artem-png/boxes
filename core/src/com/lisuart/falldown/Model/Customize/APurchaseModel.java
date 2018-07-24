@@ -43,7 +43,7 @@ public class APurchaseModel {
 
     public void render(SpriteBatch batch) {
         if (!purchased) {
-            batch.setColor(0, 0, 0, 1);
+            batch.setColor(0.2f, 0.2f, 0.2f, 1);
         }
         if (purchased && Progress.theme != theme) {
             batch.setColor(0.7f, 0.7f, 0.7f, 0.4f);

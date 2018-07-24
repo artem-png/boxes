@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.lisuart.falldown.Config.Progress;
 import com.lisuart.falldown.Model.Customize.PurchaseCommon;
+import com.lisuart.falldown.Model.Customize.PurchaseMinecraft;
 import com.lisuart.falldown.Model.Customize.PurchaseTV;
 import com.lisuart.falldown.Model.LevelLayout.BackIcon;
 import com.lisuart.falldown.Model.LevelLayout.TopPanel;
@@ -19,6 +20,7 @@ public class CustomizeLayout implements LayoutInterface {
     com.lisuart.falldown.Model.Customize.PurchaseFootbal purchaseFootbal;
     PurchaseTV purchaseTV;
     PurchaseCommon purchaseCommon;
+    PurchaseMinecraft purchaseMinecraft;
 
     public CustomizeLayout() {
         backIcon = new BackIcon();
@@ -28,6 +30,7 @@ public class CustomizeLayout implements LayoutInterface {
         purchaseFootbal = new com.lisuart.falldown.Model.Customize.PurchaseFootbal();
         purchaseTV = new PurchaseTV();
         purchaseCommon = new PurchaseCommon();
+        purchaseMinecraft = new PurchaseMinecraft();
     }
 
     public void setLevel(int level) {
@@ -45,6 +48,7 @@ public class CustomizeLayout implements LayoutInterface {
         purchaseFootbal.act();
         purchaseTV.act();
         purchaseCommon.act();
+        purchaseMinecraft.act();
     }
 
     @Override
@@ -56,6 +60,7 @@ public class CustomizeLayout implements LayoutInterface {
         purchaseFootbal.render(com.lisuart.falldown.MyGdxGame.batchDynamic);
         purchaseTV.render(com.lisuart.falldown.MyGdxGame.batchDynamic);
         purchaseCommon.render(com.lisuart.falldown.MyGdxGame.batchDynamic);
+        purchaseMinecraft.render(com.lisuart.falldown.MyGdxGame.batchDynamic);
         com.lisuart.falldown.MyGdxGame.batchDynamic.end();
         com.lisuart.falldown.MyGdxGame.batchFont.begin();
         com.lisuart.falldown.Config.Tex.smallFont35.draw(com.lisuart.falldown.MyGdxGame.batchFont, "" + Progress.diamonds, -.0f, Gdx.graphics.getHeight() - 8 * com.lisuart.falldown.Config.Tex.y, Gdx.graphics.getWidth(), 1, true);
@@ -69,6 +74,7 @@ public class CustomizeLayout implements LayoutInterface {
         backIcon.dispose();
         topPanel.dispose();
         purchaseFootbal.dispose();
+        purchaseMinecraft.dispose();
     }
 
     @Override

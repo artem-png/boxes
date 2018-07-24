@@ -11,6 +11,7 @@ import com.lisuart.falldown.Model.Music.Music;
 import com.lisuart.falldown.Model.Player;
 import com.lisuart.falldown.ModelGenerator.Background;
 import com.lisuart.falldown.Model.Level.ALevel;
+import com.lisuart.falldown.MyGdxGame;
 
 import box2dLight.RayHandler;
 
@@ -154,7 +155,7 @@ public class GameLayout implements LayoutInterface {
         borderEffects.render(com.lisuart.falldown.MyGdxGame.batchDynamic);
         com.lisuart.falldown.MyGdxGame.batchDynamic.end();
         batch.begin();
-        //dDebugRenderer.render(world, MyGdxGame.camera.combined);
+        dDebugRenderer.render(world, MyGdxGame.camera.combined);
     }
 
     public boolean win() {

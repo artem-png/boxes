@@ -35,7 +35,7 @@ public class Progress {
     public static final String soundSetting = "sound";
     public static final String themeSetting = "gameTheme1";
     public static int[] levels = new int[24];
-    public static int[] themes = new int[2];
+    public static int[] themes = new int[3];
     public static int maxScore = 0;
     public static int diamonds = 0;
     public static int theme = 0;
